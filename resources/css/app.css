@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+    font-family: "Poppins";
+}
+
+.main {
+    display: flex;
+}
+
+.sidebar {
+    width: 300px;
+    height: 700px;
+    padding: 10px;
+}
+
+.body {
+    display: inline-block;
+    height: 700px;
+    padding: 10px;
+    background-color: aliceblue;
+}
+
+
+.profile {
+    padding: 10px 60px;
+    justify-content: center;
+    display: flex;
+}
+
+.menu-item {
+    display: flex;
+    padding: 5px;
+    color: aliceblue;
+    font-size: large;
+    text-decoration: none;
+}
+
+.menu-name {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-name-1 {
+    font-size: x-large;
+    font-weight: 700;
+    color: #29447F;
+}
+
+/* almost every button except delete's*/
+.neutralButton {
+    background-color: #29447F;
+    color: white;
+
+}
+
+/* Day in Calendar */
+.calendar-styles {
+    margin-top: 5px;
+    width: 1200px !important;
+    border-radius: 8px;
+}
+
+/* Calendar.css */
+
+
+.dialog-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Dialog's separate component */
+
+.dialog-body {
+    display: flex;
+    gap: 10px;
+}
+
+.dialog-sidebar {
+    height: 500px;
+    width: 200px;
+    background-color: #29447F;
+    border-radius: 6px;
+    color: white;
+}
+
+.dialog-taskbar {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    height: auto;
+    width: 700px;
+    border: 6px;
+    padding: 10px;
+}
+
+/* Inside Dialog component's sidebar */
+
+.taskList {
+    text-decoration: none;
+    color: black;
+    padding: 10px 40px;
+}
+
+.editDialog-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Button inside Dialog box*/
+.delete-task {
+    background-color: rgb(145, 19, 19);
+    margin-left: 10px;
+    color: white;
+}
+
+.task-lists {
+    list-style: none;
+    margin-top: 5px;
+}
+
+.task-buttons {
+    width: 100%;
+}
