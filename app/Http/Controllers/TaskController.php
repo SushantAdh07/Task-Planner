@@ -7,8 +7,7 @@ use Inertia\Inertia;
 use App\Models\Task;
 use App\Models\User;
 use App\Http\Requests\TaskStoreRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+
 
 class TaskController extends Controller
 {

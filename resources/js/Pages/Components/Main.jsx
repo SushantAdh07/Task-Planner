@@ -11,13 +11,11 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
         tasks.filter((task) => task.user_id === loggedInUser)
     );
 
-    // Handle when a user is clicked in the dropdown
     const handleOpenCommentBox = (userId) => {
         setSelectedUserId(userId);
         setUserTasks(tasks.filter((task) => task.user_id === userId));
     };
 
-    // Close the comment box
     const handleCloseCommentBox = () => {
         setOpenCommentBox(false);
     };
@@ -72,7 +70,6 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
                         </div>
                     </span>
 
-                    {/* Pass tasks of the selected user to the Calendar component */}
                     <Calendar
                         tasks={userTasks}
                         loggedInUser={auth.user.id}
