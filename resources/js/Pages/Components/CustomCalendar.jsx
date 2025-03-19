@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
     format,
     startOfMonth,
@@ -13,7 +14,14 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Dialog from "./Dialog/Dialog";
 
-function CustomCalendar({ tasks, loggedInUser, selectedUser, users, errors }) {
+function CustomCalendar({
+    tasks,
+    loggedInUser,
+    selectedUser,
+    users,
+    errors,
+    flash,
+}) {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(null);
     const [showDialog, setShowDialog] = useState(false);
@@ -46,6 +54,11 @@ function CustomCalendar({ tasks, loggedInUser, selectedUser, users, errors }) {
                     <h1 className="text-2xl font-bold text-gray-800">
                         Task Calendar
                     </h1>
+                    <div>
+                        {flash?.message && (
+                            <div className="alert">{flash.message}</div>
+                        )}
+                    </div>
                     <div className="flex items-center gap-4">
                         <button
                             onClick={handlePrevMonth}

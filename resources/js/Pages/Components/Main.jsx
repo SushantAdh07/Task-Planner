@@ -1,8 +1,6 @@
 import React from "react";
 import Calendar from "./CustomCalendar";
-import Sidebar from "./Sidebar";
-import Commenter from "./Dialog/Commenter";
-import FlashMessage from "@/Components/FlashMessage";
+import { usePage } from "@inertiajs/react";
 
 function Main({ tasks = [], users = [], auth, errors, children }) {
     const loggedInUser = auth.user.id;
@@ -23,14 +21,10 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
     const handleCloseCommentBox = () => {
         setOpenCommentBox(false);
     };
+    console.log("Flash message in React:", flash);
 
     return (
         <>
-            <div>
-                <FlashMessage flash={flash} />{" "}
-                {/* Flash message always available */}
-                {children}
-            </div>
             <div className="container p-3 main">
                 {/** <div className="col-md-4 mt-3 bg-dark sidebar">
                     <Sidebar />
@@ -85,6 +79,7 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
                         selectedUser={selectedUserId}
                         users={users}
                         errors={errors}
+                        flash={flash}
                     />
                 </div>
             </div>
