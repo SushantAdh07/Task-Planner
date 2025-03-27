@@ -2,31 +2,35 @@ import React from "react";
 import Calendar from "./CustomCalendar";
 import { usePage } from "@inertiajs/react";
 
-function Main({
-    tasks = [],
-    users = [],
-    auth,
-    errors,
-    children,
-    comments = [],
-}) {
+function Main({ tasks = [], users = [], auth, errors, children }) {
     const loggedInUser = auth.user.id;
     const [openCommentBox, setOpenCommentBox] = React.useState(null);
     const { flash } = usePage().props;
     const [selectedUserId, setSelectedUserId] = React.useState(loggedInUser); // State for selected user
     const [userTasks, setUserTasks] = React.useState(
-        tasks.filter((task) => task.user_id === loggedInUser)
+        tasks
+            .filter((task) => task.user_id === loggedInUser)
+            .map((task) => ({
+                ...task,
+                comments: task.comments || [], // Ensure comments exists
+            }))
     );
 
     const handleOpenCommentBox = (userId) => {
         setSelectedUserId(userId);
-        setUserTasks(tasks.filter((task) => task.user_id === userId));
+        setUserTasks(
+            tasks
+                .filter((task) => task.user_id === userId)
+                .map((task) => ({
+                    ...task,
+                    comments: task.comments || [],
+                }))
+        );
     };
 
     const handleCloseCommentBox = () => {
         setOpenCommentBox(false);
     };
-    console.log("Flash message in React:", flash);
 
     return (
         <>
@@ -83,7 +87,6 @@ function Main({
                         selectedUser={selectedUserId}
                         users={users}
                         errors={errors}
-                        comments={comments}
                         flash={flash}
                     />
                 </div>

@@ -4,15 +4,7 @@ import InputDialog from "./InputDialog";
 import Commenter from "./Commenter";
 import { router, useForm } from "@inertiajs/react";
 
-function Dialog({
-    value,
-    tasks,
-    loggedInUser,
-    selectedUser,
-    users,
-    errors,
-    comments,
-}) {
+function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors }) {
     const [inputDialog, setInputDialog] = useState(false); // Track if InputDialog is open
     const [editDialog, setEditDialog] = useState(null); // Track which task is being edited
     const [selectedTask, setSelectedTask] = useState(null); // Track the selected task
@@ -170,11 +162,14 @@ function Dialog({
                     </div>
                 </span>
                 <div className="mt-3">
-                    <Commenter
-                        comments={comments}
-                        loggedInUser={loggedInUser}
-                        selectedUser={selectedUser}
-                    />
+                    {selectedTask && (
+                        <Commenter
+                            comments={selectedTask.comments || []}
+                            loggedInUser={loggedInUser}
+                            selectedUser={selectedUser}
+                            taskId={selectedTask.id}
+                        />
+                    )}
                 </div>
             </div>
         </div>
