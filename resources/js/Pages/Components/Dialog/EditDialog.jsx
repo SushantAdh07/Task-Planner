@@ -11,12 +11,15 @@ function EditDialog({ selectedTask, onClose }) {
         user_id: auth.user.id,
         task_name: selectedTask.task_name,
         task_description: selectedTask.task_description,
-        selected_date: selectedTask.selected_date, // Keep the existing date
+        selected_date: selectedTask.selected_date,
+        status: selectedTask.status || 0,
     });
 
     // Handle input changes
     function handleChange(e) {
-        setData(e.target.name, e.target.value);
+        const { name, value, type, checked } = e.target;
+        // Handle checkbox differently
+        setData(name, type === "checkbox" ? (checked ? 1 : 0) : value);
     }
 
     // Handle form submission
@@ -75,6 +78,19 @@ function EditDialog({ selectedTask, onClose }) {
                                 {errors.task_description}
                             </p>
                         )}
+                    </div>
+                    <div className="form-check">
+                        <input
+                            type="checkbox"
+                            className="form-check-input"
+                            checked={data.status == 1}
+                            onChange={(e) =>
+                                setData("status", e.target.checked ? 1 : 0)
+                            }
+                        />
+                        <label className="form-check-label">
+                            Task Completed
+                        </label>
                     </div>
 
                     <input type="hidden" name="user_id" value={auth.user.id} />

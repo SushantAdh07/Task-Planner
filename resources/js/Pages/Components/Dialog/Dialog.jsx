@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import EditDialog from "./EditDialog";
 import InputDialog from "./InputDialog";
-import { router } from "@inertiajs/react";
+import { router, useForm } from "@inertiajs/react";
 
 function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors }) {
     const [inputDialog, setInputDialog] = useState(false); // Track if InputDialog is open
@@ -94,6 +94,7 @@ function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors }) {
                             <div>
                                 <p>
                                     <strong>Task Name</strong>
+
                                     <br />
                                     {selectedTask.task_name}
                                 </p>
@@ -103,6 +104,12 @@ function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors }) {
                                     <br />
                                     {selectedTask.task_description}
                                 </p>
+
+                                {selectedTask.status == 1 ? (
+                                    <i className="fas fa-check-circle text-success me-2">
+                                        Completed
+                                    </i>
+                                ) : null}
 
                                 <div className="mt-3">
                                     {loggedInUser === selectedUser && (

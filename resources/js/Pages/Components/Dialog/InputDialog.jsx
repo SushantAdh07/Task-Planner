@@ -15,12 +15,11 @@ function InputDialog({ value }) {
         setData(e.target.name, e.target.value);
     }
 
-    // Handle form submission
     function handleSubmit(e) {
         e.preventDefault();
         post("/tasks", {
-            preserveScroll: true, // Prevents page reload
-            onSuccess: () => reset(), // Reset form after success
+            preserveScroll: true,
+            onSuccess: () => reset(),
         });
     }
 

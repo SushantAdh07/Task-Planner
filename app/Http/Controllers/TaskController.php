@@ -7,7 +7,7 @@ use Inertia\Inertia;
 use App\Models\Task;
 use App\Models\User;
 use App\Http\Requests\TaskStoreRequest;
-
+use App\Http\Requests\UpdateTaskRequest;
 
 class TaskController extends Controller
 {
@@ -34,7 +34,7 @@ class TaskController extends Controller
         return Inertia::location(route('index'));
     }
 
-    public function editTask(Task $task, TaskStoreRequest $request){
+    public function editTask(Task $task, UpdateTaskRequest $request){
 
         $task->update($request->validated());
 

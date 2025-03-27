@@ -8,6 +8,7 @@ namespace App\Models {
      * @property \Illuminate\Support\Carbon|null $updated_at
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property string $selected_date
+     * @property bool $status
      * @property string $task_description
      * @property string $task_name
      * @property mixed $user_id
@@ -17,6 +18,7 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<Task>|Task whereUserId($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Task>|Task whereTaskName($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Task>|Task whereTaskDescription($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Task>|Task whereStatus($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Task>|Task whereSelectedDate($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Task>|Task whereCreatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Task>|Task whereUpdatedAt($value)
