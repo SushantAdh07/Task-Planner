@@ -52,4 +52,8 @@ class User extends Authenticatable
     public function tasks():HasMany{
         return $this->hasMany(Task::class);
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
 }

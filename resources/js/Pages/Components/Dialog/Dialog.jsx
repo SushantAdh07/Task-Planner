@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import EditDialog from "./EditDialog";
 import InputDialog from "./InputDialog";
+import Commenter from "./Commenter";
 import { router, useForm } from "@inertiajs/react";
 
-function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors }) {
+function Dialog({
+    value,
+    tasks,
+    loggedInUser,
+    selectedUser,
+    users,
+    errors,
+    comments,
+}) {
     const [inputDialog, setInputDialog] = useState(false); // Track if InputDialog is open
     const [editDialog, setEditDialog] = useState(null); // Track which task is being edited
     const [selectedTask, setSelectedTask] = useState(null); // Track the selected task
@@ -157,8 +166,16 @@ function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors }) {
                         ) : (
                             <h1>No tasks available</h1>
                         )}
+                        <hr className="mt-3" />
                     </div>
                 </span>
+                <div className="mt-3">
+                    <Commenter
+                        comments={comments}
+                        loggedInUser={loggedInUser}
+                        selectedUser={selectedUser}
+                    />
+                </div>
             </div>
         </div>
     );
