@@ -1,7 +1,15 @@
-function HeroSection() {
+import personalData from "@/utils/data/personal-data";
+import { Link } from "lucide-react";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { FaFacebook, FaTwitterSquare } from "react-icons/fa";
+import { MdDownload } from "react-icons/md";
+import { RiContactsFill } from "react-icons/ri";
+import { SiLeetcode } from "react-icons/si";
+
+function Home() {
     return (
         <section className="relative flex flex-col items-center justify-between py-4 lg:py-12">
-            <Image
+            <img
                 src="/hero.svg"
                 alt="Hero"
                 width={1572}
@@ -223,4 +231,4 @@ function HeroSection() {
     );
 }
 
-export default HeroSection;
+export default Home;
