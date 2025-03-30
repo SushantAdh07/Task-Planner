@@ -8,7 +8,7 @@ use App\Http\Controllers\TaskController;
 use Inertia\Inertia;
 
 
- Route::get('/', function () {
+ Route::get('/welcome', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -16,6 +16,8 @@ use Inertia\Inertia;
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
