@@ -32,7 +32,7 @@ function Hero() {
                             <div className="[font-family:'Poppins',Helvetica] font-normal text-white text-[17px] text-center tracking-[0.34px] underline">
                                 A Designer who
                             </div>
-                            <div className="mt-2 [font-family:'Poppins',Helvetica] font-normal text-[50px] tracking-[0.50px] leading-[35.1px]">
+                            <div className="mt-2 [font-family:'Poppins',Helvetica] font-normal text-[40px] tracking-[0.50px] leading-[35.1px]">
                                 <span className="text-white">
                                     Judges a book
                                     <br />
@@ -41,7 +41,7 @@ function Hero() {
                                 <span className="text-[#7127ba]">cover</span>
                                 <span className="text-white">...</span>
                             </div>
-                            <div className="absolute w-[189px] h-[58px] top-[92px] left-[150px] rounded-[94.29px/28.95px] border border-solid border-white rotate-[-4.74deg]" />
+                            <div className="absolute w-[189px] h-[58px] top-[62px] left-[130px] rounded-[94.29px/28.95px] border border-solid border-white rotate-[-4.74deg]" />
                             <div className="mt-4 [font-family:'Poppins',Helvetica] font-normal text-white text-[11px] text-center tracking-[0.22px]">
                                 Because if the cover does not impress you what
                                 else can?
