@@ -1,3 +1,8 @@
+import React from "react";
+import { Card, CardContent } from "../../ui/card";
+import { workExperienceCards } from "./data/experienceData";
+import { Button } from "../../ui/button";
+
 export const WorkExperience = () => {
     return (
         <section
@@ -16,7 +21,7 @@ export const WorkExperience = () => {
                     >
                         <CardContent className="p-0">
                             <img
-                                className="absolute w-full h-[172px] top-0 left-0"
+                                className="absolute w-full h-[172px] top-0 left-0 opacity-15"
                                 alt="Background pattern"
                                 src={card.maskSrc}
                             />
@@ -40,7 +45,7 @@ export const WorkExperience = () => {
                                     <p className="mt-2 [font-family:'Poppins',Helvetica] font-medium text-white text-[8px] tracking-[0] leading-[10.5px]">
                                         {card.description}
                                     </p>
-                                    <Button className="mt-4 w-[119px] h-[33px] bg-[url(/rectangle-977.svg)] bg-[100%_100%] p-0">
+                                    <Button className="mt-4 w-[119px] h-[33px] bg-[url(images/rectangle-977.svg)] bg-[100%_100%] p-0">
                                         <span className="[font-family:'Poppins',Helvetica] font-medium text-white text-[10px] text-center tracking-[0] leading-[15px]">
                                             LEARN MORE
                                         </span>
