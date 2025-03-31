@@ -9,7 +9,7 @@ export const WorkExperience = () => {
             id="work-experience"
             className="absolute top-[1134px] left-0 w-full"
         >
-            <h2 className="[font-family:'Preahvihear',Helvetica] font-normal text-white text-[40px] tracking-[0.80px] text-center mb-16">
+            <h2 className="[font-family:'Poppins',Helvetica] font-normal text-white text-[40px] tracking-[0.80px] text-center mb-16">
                 Work Experience
             </h2>
 

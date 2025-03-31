@@ -6,7 +6,7 @@ export default function Skills() {
         <section className="absolute top-[1817px] left-0 w-full flex justify-center">
             <div className="w-[899px] h-[754px] relative">
                 <div className="absolute w-[663px] h-[65px] top-0 left-[123px] text-center">
-                    <p className="[font-family:'Preahvihear',Helvetica] font-normal text-white text-2xl tracking-[0.48px] leading-[31px]">
+                    <p className="[font-family:'Poppins',Helvetica] font-normal text-white text-2xl tracking-[0.48px] leading-[31px]">
                         I&#39;m currently looking to join a{" "}
                         <span className="text-[#a261ff]">cross-functional</span>{" "}
                         team

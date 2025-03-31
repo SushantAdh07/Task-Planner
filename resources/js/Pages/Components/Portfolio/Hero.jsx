@@ -20,19 +20,19 @@ function Hero() {
                     {/* Hero Text */}
                     <div className="flex flex-col">
                         <div className="flex items-center gap-2">
-                            <span className="[font-family:'Preahvihear',Helvetica] font-normal text-white text-[19px] text-center">
+                            <span className="[font-family:'Poppins',Helvetica] font-normal text-white text-[19px] text-center">
                                 Hello! I Am{" "}
                             </span>
-                            <span className="[font-family:'Preahvihear',Helvetica] font-normal text-[#7127ba] text-[19px] text-center">
+                            <span className="[font-family:'Poppins',Helvetica] font-normal text-[#7127ba] text-[19px] text-center">
                                 Ibrahim Memon
                             </span>
                         </div>
 
                         <div className="mt-8 relative">
-                            <div className="[font-family:'Preahvihear',Helvetica] font-normal text-white text-[17px] text-center tracking-[0.34px] underline">
+                            <div className="[font-family:'Poppins',Helvetica] font-normal text-white text-[17px] text-center tracking-[0.34px] underline">
                                 A Designer who
                             </div>
-                            <div className="mt-2 [font-family:'Preahvihear',Helvetica] font-normal text-[50px] tracking-[0.50px] leading-[35.1px]">
+                            <div className="mt-2 [font-family:'Poppins',Helvetica] font-normal text-[50px] tracking-[0.50px] leading-[35.1px]">
                                 <span className="text-white">
                                     Judges a book
                                     <br />
@@ -42,7 +42,7 @@ function Hero() {
                                 <span className="text-white">...</span>
                             </div>
                             <div className="absolute w-[189px] h-[58px] top-[92px] left-[150px] rounded-[94.29px/28.95px] border border-solid border-white rotate-[-4.74deg]" />
-                            <div className="mt-4 [font-family:'Preahvihear',Helvetica] font-normal text-white text-[11px] text-center tracking-[0.22px]">
+                            <div className="mt-4 [font-family:'Poppins',Helvetica] font-normal text-white text-[11px] text-center tracking-[0.22px]">
                                 Because if the cover does not impress you what
                                 else can?
                             </div>
@@ -51,12 +51,12 @@ function Hero() {
                 </div>
             </section>
             <section className="absolute top-[660px] left-0 w-full flex flex-col items-center">
-                <h1 className="[font-family:'Preahvihear',Helvetica] font-normal text-white text-[50px] tracking-[1.00px]">
+                <h1 className="[font-family:'Poppins',Helvetica] font-normal text-white text-[50px] tracking-[1.00px]">
                     I&#39;m a Software Engineer.|
                 </h1>
 
                 <div className="mt-10 relative">
-                    <div className="w-[573px] [font-family:'Preahvihear',Helvetica] font-normal text-[21px] tracking-[0.42px] flex items-center">
+                    <div className="w-[573px] [font-family:'Poppins',Helvetica] font-normal text-[21px] tracking-[0.42px] flex items-center">
                         <span className="text-white tracking-[0.09px]">
                             Currently, I&#39;m a Software Engineer
                             at&nbsp;&nbsp;&nbsp;&nbsp;{" "}
@@ -69,7 +69,7 @@ function Hero() {
                     </div>
                 </div>
 
-                <div className="mt-16 max-w-[892px] [font-family:'Preahvihear',Helvetica] font-normal text-white text-[22px] tracking-[0.44px] text-center">
+                <div className="mt-16 max-w-[892px] [font-family:'Poppins',Helvetica] font-normal text-white text-[22px] tracking-[0.44px] text-center">
                     A self-taught UI/UX designer, functioning in the industry
                     for 3+ years now.
                     <br />I make meaningful and delightful digital products that
