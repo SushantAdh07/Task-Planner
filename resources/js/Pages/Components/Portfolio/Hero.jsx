@@ -63,7 +63,7 @@ function Hero() {
                         </span>
                         <span className="text-[#1877f2] tracking-[0.09px] flex items-center">
                             Facebook
-                            <div className="w-5 h-[21px] ml-2 bg-[url(/image-8.png)] bg-cover bg-[50%_50%]" />
+                            <div className="w-5 h-[21px] ml-2 bg-[url(images/image-8.png)] bg-cover bg-[50%_50%]" />
                         </span>
                         <span className="text-white tracking-[0.09px]">,</span>
                     </div>

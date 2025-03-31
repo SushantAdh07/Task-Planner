@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "./portfolio/hero";
 import { WorkExperience } from "./Portfolio/Experience";
 import Skills from "./Portfolio/Skills";
+import Projects from "./Portfolio/Projects";
 
 function Portfolio() {
     return (
@@ -24,6 +25,7 @@ function Portfolio() {
                     <Hero />
                     <WorkExperience />
                     <Skills />
+                    <Projects />
                 </div>
             </div>
         </main>

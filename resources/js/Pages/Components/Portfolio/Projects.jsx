@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent } from "../../ui/card";
 
 const projectCards = [
     {
@@ -8,7 +8,7 @@ const projectCards = [
         badge: "Featured Project",
         description:
             "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.",
-        imageSrc: "/portfolio.png",
+        imageSrc: "images/portfolio.png",
         isReversed: false,
     },
     {
@@ -17,12 +17,12 @@ const projectCards = [
         badge: "Featured Project",
         description:
             "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.",
-        imageSrc: "/portfolio-1.png",
+        imageSrc: "images/portfolio-1.png",
         isReversed: true,
     },
 ];
 
-export const Projects = (): JSX.Element => {
+const Projects = () => {
     return (
         <section id="projects" className="absolute top-[2762px] w-full">
             {projectCards.map((project) => (
@@ -48,7 +48,7 @@ export const Projects = (): JSX.Element => {
                             </h3>
                         </div>
 
-                        <Card className="mt-8 bg-transparent w-[669px]">
+                        <Card className="mt-8 w-[669px] border border-white/10 bg-white/5 backdrop-blur-lg rounded-xl shadow-lg shadow-black/10">
                             <CardContent className="p-6">
                                 <p className="[font-family:'Poppins',Helvetica] font-medium text-[#ccd6f6] text-lg">
                                     {project.description}
@@ -63,8 +63,8 @@ export const Projects = (): JSX.Element => {
                                     alt="Icon park solid"
                                     src={
                                         project.isReversed
-                                            ? "/icon-park-solid-click-5.svg"
-                                            : "/icon-park-solid-click.svg"
+                                            ? "images/icon-park-solid-click-5.svg"
+                                            : "images/icon-park-solid-click.svg"
                                     }
                                 />
                             </a>
@@ -74,8 +74,8 @@ export const Projects = (): JSX.Element => {
                                     alt="Icon park solid"
                                     src={
                                         project.isReversed
-                                            ? "/icon-park-solid-click-4.svg"
-                                            : "/icon-park-solid-click-3.svg"
+                                            ? "images/icon-park-solid-click-4.svg"
+                                            : "images/icon-park-solid-click-3.svg"
                                     }
                                 />
                             </a>
@@ -92,3 +92,5 @@ export const Projects = (): JSX.Element => {
         </section>
     );
 };
+
+export default Projects;
