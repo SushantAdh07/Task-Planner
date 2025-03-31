@@ -20,11 +20,29 @@ const projectCards = [
         imageSrc: "images/portfolio-1.png",
         isReversed: true,
     },
+    {
+        id: 2,
+        title: "Example Project",
+        badge: "Featured Project",
+        description:
+            "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.",
+        imageSrc: "images/portfolio-1.png",
+        isReversed: false,
+    },
+    {
+        id: 2,
+        title: "Example Project",
+        badge: "Featured Project",
+        description:
+            "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.",
+        imageSrc: "images/portfolio-1.png",
+        isReversed: true,
+    },
 ];
 
 const Projects = () => {
     return (
-        <section id="projects" className="absolute top-[2762px] w-full">
+        <section id="projects" className="absolute top-[2262px] w-full">
             {projectCards.map((project) => (
                 <div
                     key={project.id}

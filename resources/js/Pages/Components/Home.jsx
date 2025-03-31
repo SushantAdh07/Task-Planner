@@ -3,6 +3,8 @@ import Hero from "./portfolio/hero";
 import { WorkExperience } from "./Portfolio/Experience";
 import Skills from "./Portfolio/Skills";
 import Projects from "./Portfolio/Projects";
+import Contact from "./Portfolio/Contact";
+import { Navigation } from "./Navigation";
 
 function Portfolio() {
     return (
@@ -22,10 +24,12 @@ function Portfolio() {
                     <div className="w-[625px] h-[700px] top-[2571px] left-[1084px] rounded-[312.5px/350px] absolute [background:radial-gradient(50%_50%_at_50%_50%,rgba(118,60,172,1)_0%,rgba(50,15,133,0)_100%)]" />
                     <div className="w-[572px] h-[641px] top-[3166px] left-[274px] rounded-[286px/320.5px] absolute [background:radial-gradient(50%_50%_at_50%_50%,rgba(118,60,172,1)_0%,rgba(50,15,133,0)_100%)]" />
                     <div className="w-[385px] h-[431px] top-[220px] left-[385px] rounded-[192.5px/215.5px] absolute [background:radial-gradient(50%_50%_at_50%_50%,rgba(118,60,172,1)_0%,rgba(50,15,133,0)_100%)]" />
+                    <Navigation />
                     <Hero />
                     <WorkExperience />
                     <Skills />
                     <Projects />
+                    <Contact />
                 </div>
             </div>
         </main>
