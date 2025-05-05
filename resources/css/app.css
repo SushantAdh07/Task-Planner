@@ -2,136 +2,119 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-family: "Poppins", system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Buttons */
+  .btn-primary {
+    @apply bg-gradient-to-r from-blue-600 to-blue-800 text-white font-medium rounded-xl px-6 py-3 shadow-md hover:shadow-lg transition-all duration-300;
+  }
+  
+  .btn-secondary {
+    @apply bg-white border border-gray-300 text-gray-700 font-medium rounded-xl px-6 py-3 hover:bg-gray-50 transition-colors duration-200;
+  }
+  
+  .btn-danger {
+    @apply bg-red-600 text-white font-medium rounded-xl px-6 py-3 hover:bg-red-700 transition-colors duration-200;
+  }
+
+  /* Inputs */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:ring-0 transition-colors duration-200;
+  }
+  
+  .input-error {
+    @apply border-red-500;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-2xl shadow-sm overflow-hidden dark:bg-gray-800;
+  }
+
+  /* Calendar */
+  .calendar-day {
+    @apply aspect-square min-h-[50px] sm:min-h-[80px] p-1 rounded-lg transition-all flex flex-col items-end;
+  }
+  
+  .calendar-day-today {
+    @apply bg-blue-100 border-2 border-blue-400;
+  }
+  
+  .calendar-day-with-tasks {
+    @apply bg-blue-50 hover:bg-blue-100;
+  }
+
+  /* Dialog */
+  .dialog-container {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50;
+  }
+  
+  .dialog-content {
+    @apply bg-white rounded-2xl shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden;
+  }
+  
+  .dialog-sidebar {
+    @apply w-full lg:w-2/5 bg-blue-800 text-white p-6;
+  }
+  
+  .dialog-main {
+    @apply w-full lg:w-3/5 p-8 overflow-y-auto;
+  }
+
+  /* Task items */
+  .task-item {
+    @apply w-full text-left p-4 rounded-lg transition-all duration-200;
+  }
+  
+  .task-item-active {
+    @apply bg-blue-600 shadow-md;
+  }
+  
+  .task-item-inactive {
+    @apply bg-blue-700 hover:bg-blue-600;
+  }
+}
+
+/* Animations */
+@layer utilities {
+  .fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .slide-in {
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+}
+
+/* Custom base styles */
 #root {
-    font-family: "Poppins";
+  @apply min-h-screen bg-gray-50;
 }
 
-.main {
-    display: flex;
-}
-
-.sidebar {
-    width: 300px;
-    height: 700px;
-    padding: 10px;
-}
-
-.body {
-    display: inline-block;
-    height: 700px;
-    padding: 10px;
-    background-color: aliceblue;
-}
-
-
-.profile {
-    padding: 10px 60px;
-    justify-content: center;
-    display: flex;
-}
-
-.menu-item {
-    display: flex;
-    padding: 5px;
-    color: aliceblue;
-    font-size: large;
-    text-decoration: none;
-}
-
-.menu-name {
-    display: flex;
-    justify-content: space-between;
-}
-
+/* Legacy class conversions (can be removed after updating components) */
 .menu-name-1 {
-    font-size: x-large;
-    font-weight: 700;
-    color: #29447F;
+  @apply text-2xl font-bold text-blue-800;
 }
 
-/* almost every button except delete's*/
 .neutralButton {
-    background-color: #29447F;
-    color: white;
-
+  @apply bg-blue-800 text-white hover:bg-blue-900 transition-colors;
 }
 
-/* Day in Calendar */
-.calendar-styles {
-    margin-top: 5px;
-    width: 1200px !important;
-    border-radius: 8px;
-}
-
-/* Calendar.css */
-
-
-.dialog-box {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-/* Dialog's separate component */
-
-.dialog-body {
-    display: flex;
-    gap: 10px;
-}
-
-.dialog-sidebar {
-    height: 500px;
-    width: 200px;
-    background-color: #29447F;
-    border-radius: 6px;
-    color: white;
-}
-
-.dialog-taskbar {
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    height: auto;
-    width: 700px;
-    border: 6px;
-    padding: 10px;
-}
-
-/* Inside Dialog component's sidebar */
-
-.taskList {
-    text-decoration: none;
-    color: black;
-    padding: 10px 40px;
-}
-
-.editDialog-box {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-/* Button inside Dialog box*/
 .delete-task {
-    background-color: rgb(145, 19, 19);
-    margin-left: 10px;
-    color: white;
-}
-
-.task-lists {
-    list-style: none;
-    margin-top: 5px;
-}
-
-.task-buttons {
-    width: 100%;
+  @apply bg-red-600 text-white hover:bg-red-700 transition-colors;
 }

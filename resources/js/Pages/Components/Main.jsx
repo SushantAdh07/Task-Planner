@@ -43,9 +43,10 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
                         <h2 className="menu-name-1">
                             Calendar for {auth.user.name}
                         </h2>
+                        <div className="flex justify-end">
                         <div className="dropdown">
                             <a
-                                className="btn dropdown-toggle neutralButton"
+                                className="btn dropdown-toggle neutralButton hover:text-white"
                                 href="#"
                                 role="button"
                                 id="dropdownMenuLink"
@@ -78,6 +79,7 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
                                         </li>
                                     ))}
                             </ul>
+                        </div>
                         </div>
                     </span>
 
