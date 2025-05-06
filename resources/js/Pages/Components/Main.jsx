@@ -38,15 +38,16 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
                 {/** <div className="col-md-4 mt-3 bg-dark sidebar">
                     <Sidebar />
                 </div> */}
-                <div className="col-md-12 mx-auto">
-                    <span className="menu-name">
-                        <h2 className="menu-name-1">
+                
+                    <div className="flex justify-between items-center w-full">
+                    
+                        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 truncate max-w-[50%] sm:max-w-[70%]">
                             Calendar for {auth.user.name}
                         </h2>
-                        <div className="flex justify-end">
-                        <div className="dropdown">
+                        
+                        <div className="dropdown ml-2">
                             <a
-                                className="btn dropdown-toggle neutralButton hover:text-white"
+                                className="btn flex items-center gap-1 dropdown-toggle neutralButton hover:text-white"
                                 href="#"
                                 role="button"
                                 id="dropdownMenuLink"
@@ -80,8 +81,9 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
                                     ))}
                             </ul>
                         </div>
-                        </div>
-                    </span>
+                        
+                    
+                    </div>
 
                     <Calendar
                         tasks={userTasks}
@@ -91,7 +93,7 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
                         errors={errors}
                         flash={flash}
                     />
-                </div>
+                
             </div>
         </>
     );
