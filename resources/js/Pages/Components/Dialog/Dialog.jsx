@@ -11,7 +11,6 @@ function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors }) {
     const [selectedTask, setSelectedTask] = useState(null);
     const [mobileView, setMobileView] = useState(false);
 
-    // Check screen size on mount and resize
     useEffect(() => {
         const handleResize = () => {
             setMobileView(window.innerWidth < 768);

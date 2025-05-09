@@ -38,62 +38,60 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
                 {/** <div className="col-md-4 mt-3 bg-dark sidebar">
                     <Sidebar />
                 </div> */}
-                
-                    <div className="flex justify-between items-center w-full">
-                    
-                        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 truncate max-w-[50%] sm:max-w-[70%]">
-                            Calendar for {auth.user.name}
-                        </h2>
-                        
-                        <div className="dropdown ml-2">
-                            <a
-                                className="btn flex items-center gap-1 dropdown-toggle neutralButton hover:text-white"
-                                href="#"
-                                role="button"
-                                id="dropdownMenuLink"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                            >
-                                {users.find(
-                                    (user) => user.id === selectedUserId
-                                )?.name || auth.user.name}
-                            </a>
 
-                            <ul
-                                className="dropdown-menu"
-                                aria-labelledby="dropdownMenuLink"
-                            >
-                                {users &&
-                                    users.map((user) => (
-                                        <li key={user.id}>
-                                            <a
-                                                onClick={() =>
-                                                    handleOpenCommentBox(
-                                                        user.id
-                                                    )
-                                                } // Pass user ID
-                                                className="dropdown-item"
-                                                href="#"
-                                            >
-                                                {user.name}
-                                            </a>
-                                        </li>
-                                    ))}
-                            </ul>
-                        </div>
-                        
-                    
+                <div className="flex justify-between items-center w-full">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 truncate max-w-[50%] sm:max-w-[70%]">
+                        Calendar for {auth.user.name}
+                    </h2>
+
+                    <div className="dropdown ml-2">
+                        <a
+                            className="btn flex items-center gap-1 dropdown-toggle neutralButton hover:text-white"
+                            href="#"
+                            role="button"
+                            id="dropdownMenuLink"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            {users.find((user) => user.id === selectedUserId)
+                                ?.name || auth.user.name}
+                        </a>
+
+                        <ul
+                            className="dropdown-menu"
+                            aria-labelledby="dropdownMenuLink"
+                        >
+                            {users &&
+                                users.map((user) => (
+                                    <li key={user.id}>
+                                        <a
+                                            onClick={() =>
+                                                handleOpenCommentBox(user.id)
+                                            }
+                                            className={`dropdown-item ${
+                                                auth.user &&
+                                                auth.user.id === user.id
+                                                    ? "bg-gray-200 text-black"
+                                                    : ""
+                                            }`}
+                                            href="#"
+                                        >
+                                            {user.name}
+                                        </a>
+                                    </li>
+                                ))}
+                        </ul>
                     </div>
+                </div>
 
-                    <Calendar
-                        tasks={userTasks}
-                        loggedInUser={auth.user.id}
-                        selectedUser={selectedUserId}
-                        users={users}
-                        errors={errors}
-                        flash={flash}
-                    />
-                
+                <Calendar
+                    tasks={userTasks}
+                    loggedInUser={auth.user.id}
+                    selectedUser={selectedUserId}
+                    users={users}
+                    errors={errors}
+                    flash={flash}
+                />
             </div>
         </>
     );
