@@ -78,7 +78,7 @@ function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors }) {
                             <li key={task.id}>
                                 <button
                                     onClick={() => setSelectedTask(task)}
-                                    className={`w-full text-left p-3 rounded-lg transition-colors ${selectedTask?.id === task.id ? 'bg-blue-800 border border-white' : 'bg-blue-600 hover:bg-blue-600'}`}
+                                    className={`w-full text-left p-3 rounded-lg transition-colors ${selectedTask?.id === task.id ? 'bg-blue-600 border border-white border-2' : 'bg-blue-600 hover:bg-blue-600'}`}
                                 >
                                     <div className="flex justify-between items-center">
                                         <span>Task {filteredTasks.length - index}: {task.task_name}</span>
