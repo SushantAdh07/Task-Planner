@@ -142,7 +142,7 @@ function CustomCalendar({
                             <div className="p-4 border-t flex">
                                 <button
                                     onClick={() => setShowDialog(false)}
-                                    className="mx-auto py-2 px-12 text-white bg-red-600 hover:bg-red-800 rounded-lg transition-colors"
+                                    className="mx-auto py-2 px-12 text-white bg-red-600 hover:bg-red-700 rounded-lg transition-colors"
                                 >
                                     Close
                                 </button>

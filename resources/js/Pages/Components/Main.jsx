@@ -1,6 +1,6 @@
 import React from "react";
 import Calendar from "./CustomCalendar";
-import { usePage } from "@inertiajs/react";
+import { usePage, Link } from "@inertiajs/react";
 
 function Main({ tasks = [], users = [], auth, errors, children }) {
     const loggedInUser = auth.user.id;
@@ -63,7 +63,8 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
                         >
                             {users &&
                                 users.map((user) => (
-                                    <li key={user.id}>
+                                    
+                                        <li key={user.id}>
                                         <a
                                             onClick={() =>
                                                 handleOpenCommentBox(user.id)
@@ -79,7 +80,11 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
                                             {user.name}
                                         </a>
                                     </li>
+                                    
+                                    
                                 ))}
+                                <li><Link href={route("logout")} method="post" className="dropdown-item bg-blue-700 text-white hover:bg-blue-800">Logout</Link></li>
+                                
                         </ul>
                     </div>
                 </div>
