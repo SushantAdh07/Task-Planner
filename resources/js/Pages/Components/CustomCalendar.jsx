@@ -8,7 +8,7 @@ import {
     isSameDay,
     addMonths,
     subMonths,
-    isToday
+    isToday,
 } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Dialog from "./Dialog/Dialog";
@@ -47,7 +47,6 @@ function CustomCalendar({
     return (
         <div className="min-h-screen p-4">
             <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-6">
-                
                 <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
                     <h1 className="text-2xl font-bold text-gray-800">
                         Task Calendar
@@ -91,14 +90,33 @@ function CustomCalendar({
                         const dayTasks = getTasksForDate(date);
                         const isCurrentMonth = isSameMonth(date, currentDate);
                         const isCurrentDay = isToday(date);
+                        const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
+                        const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
 
                         return (
                             <button
                                 key={date.toISOString()}
                                 className={`min-h-[100px] p-1 border rounded-lg transition-colors flex flex-col
-                                    ${isCurrentDay ? "bg-blue-100 border-blue-400" : "border-gray-200"}
-                                    ${isCurrentMonth ? "bg-white" : "bg-gray-50"}
-                                    ${dayTasks.length > 0 ? "hover:bg-blue-50" : "hover:bg-gray-50"}
+                                    ${
+                                        isCurrentDay
+                                            ? "!bg-yellow-300"
+                                            : "bg-white"
+                                    }
+                                    ${
+                                        isCurrentMonth
+                                            ? "bg-white"
+                                            : "bg-gray-50"
+                                    }
+                                    ${
+                                        dayTasks.length > 0
+                                            ? "hover:bg-blue-50"
+                                            : "hover:bg-gray-50"
+                                    }
+                                    ${
+                                        isWeekend
+                                            ? "!bg-red-100 border-red-200"
+                                            : ""
+                                    }
                                     focus:outline-none focus:ring-2 focus:ring-blue-500
                                 `}
                                 onClick={() => handleDateClick(date)}
