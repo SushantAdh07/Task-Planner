@@ -175,7 +175,7 @@ function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors }) {
                         )}
 
                         {/* Comment Section - Uncomment if needed */}
-                        {/* <div className="mt-8">
+                         <div className="mt-8">
                             {selectedTask && (
                                 <Commenter
                                     comments={selectedTask.comments || []}
@@ -184,7 +184,7 @@ function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors }) {
                                     taskId={selectedTask.id}
                                 />
                             )}
-                        </div> */}
+                        </div> 
                     </div>
                 ) : loggedInUser === selectedUser ? (
                     <div className="text-center py-8">

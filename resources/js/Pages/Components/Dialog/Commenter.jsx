@@ -49,7 +49,9 @@ export default function Commenter({
                 <p className="text-muted">No comments yet</p>
             )}
 
-            {loggedInUser === selectedUser && (
+            {loggedInUser === selectedUser ? (
+                null
+            ):(
                 <form onSubmit={handleSubmit} className="mt-3">
                     <div className="form-group">
                         <textarea
@@ -69,7 +71,7 @@ export default function Commenter({
                         {processing ? "Posting..." : "Post Comment"}
                     </button>
                 </form>
-            )}
+            ) }
         </div>
     );
 }
