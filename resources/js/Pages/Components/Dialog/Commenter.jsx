@@ -1,5 +1,3 @@
-// Commenter.jsx
-import { useState } from "react";
 import { useForm } from "@inertiajs/react";
 
 export default function Commenter({
@@ -7,16 +5,17 @@ export default function Commenter({
     loggedInUser,
     selectedUser,
     taskId,
+    commenters,
 }) {
-    const { data, setData, post, processing } = useForm({
-        content: "",
+    const { data, setData, post, processing, errors } = useForm({
+        comment: "",
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
         post(`/tasks/${taskId}/comments`, {
             preserveScroll: true,
-            onSuccess: () => setData("content", ""),
+            onSuccess: () => setData("comment", ""),
         });
     };
 
@@ -27,20 +26,15 @@ export default function Commenter({
             {comments.length > 0 ? (
                 <div className="comment-list mt-2">
                     {comments.map((comment) => (
-                        <div
-                            key={comment.id}
-                            className="comment-card mb-3 p-3 bg-light rounded"
-                        >
+                        <div key={comment.id} className="comment-card mb-3 p-3 bg-light rounded">
                             <div className="comment-header d-flex justify-content-between align-items-center mb-2">
-                                <strong>{comment.user?.name}</strong>
+                                <strong>{commenters.userName}</strong>
                                 <small className="text-muted">
-                                    {new Date(
-                                        comment.created_at
-                                    ).toLocaleString()}
+                                    {new Date(comment.created_at).toLocaleString()}
                                 </small>
                             </div>
                             <div className="comment-body">
-                                <p className="mb-0">{comment.content}</p>
+                                <p className="mb-0">{comment.comment}</p>
                             </div>
                         </div>
                     ))}
@@ -49,19 +43,20 @@ export default function Commenter({
                 <p className="text-muted">No comments yet</p>
             )}
 
-            {loggedInUser === selectedUser ? (
-                null
-            ):(
+            {loggedInUser === selectedUser ? null : (
                 <form onSubmit={handleSubmit} className="mt-3">
                     <div className="form-group">
                         <textarea
-                            className="form-control"
-                            value={data.content}
-                            onChange={(e) => setData("content", e.target.value)}
+                            className={`form-control ${errors.comment ? 'is-invalid' : ''}`}
+                            value={data.comment}
+                            onChange={(e) => setData("comment", e.target.value)}
                             placeholder="Add a comment..."
                             rows="3"
                             required
                         />
+                        {errors.comment && (
+                            <div className="invalid-feedback">{errors.comment}</div>
+                        )}
                     </div>
                     <button
                         type="submit"
@@ -71,7 +66,7 @@ export default function Commenter({
                         {processing ? "Posting..." : "Post Comment"}
                     </button>
                 </form>
-            ) }
+            )}
         </div>
     );
 }

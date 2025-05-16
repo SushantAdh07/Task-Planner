@@ -97,6 +97,9 @@ function Main({ tasks = [], users = [], auth, errors, children, comments = [] })
                     errors={errors}
                     flash={flash}
                     comments={comments}
+                    commenters={comments.map(c=>({
+                        userName: c.user?.name || 'Unknown'
+                    }))}
                 />
             </div>
         </>

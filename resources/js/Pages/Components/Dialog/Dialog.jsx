@@ -5,7 +5,7 @@ import Commenter from "./Commenter";
 import { router, useForm } from "@inertiajs/react";
 import { X, Plus, Edit2, Trash2 } from "lucide-react";
 
-function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors }) {
+function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors, comments, commenters }) {
     const [inputDialog, setInputDialog] = useState(false);
     const [editDialog, setEditDialog] = useState(null);
     const [selectedTask, setSelectedTask] = useState(null);
@@ -182,6 +182,7 @@ function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors }) {
                                     loggedInUser={loggedInUser}
                                     selectedUser={selectedUser}
                                     taskId={selectedTask.id}
+                                    commenters={commenters}
                                 />
                             )}
                         </div> 
