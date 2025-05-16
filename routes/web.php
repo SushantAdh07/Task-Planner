@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,8 @@ Route::middleware('auth')->group(function(){
     Route::post('/tasks', [TaskController::class, 'createTask']);
     Route::put('/update-tasks/{task}', [TaskController::class, 'editTask']);
     Route::delete('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('task.delete');
+
+    Route::post('/tasks/{task}/comments', [CommentsController::class, 'createComments'])->name('create.comment');
     
 });
 
