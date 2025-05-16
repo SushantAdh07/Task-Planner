@@ -20,6 +20,7 @@ function CustomCalendar({
     users,
     errors,
     flash,
+    comments,
 }) {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(null);
@@ -156,6 +157,7 @@ function CustomCalendar({
                                 users={users}
                                 errors={errors}
                                 flash={flash}
+                                comments={comments}
                             />
                             <div className="p-4 border-t flex">
                                 <button

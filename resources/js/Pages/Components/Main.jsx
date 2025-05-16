@@ -2,7 +2,7 @@ import React from "react";
 import Calendar from "./CustomCalendar";
 import { usePage, Link } from "@inertiajs/react";
 
-function Main({ tasks = [], users = [], auth, errors, children }) {
+function Main({ tasks = [], users = [], auth, errors, children, comments = [] }) {
     const loggedInUser = auth.user.id;
     const [openCommentBox, setOpenCommentBox] = React.useState(null);
     const { flash } = usePage().props;
@@ -96,6 +96,7 @@ function Main({ tasks = [], users = [], auth, errors, children }) {
                     users={users}
                     errors={errors}
                     flash={flash}
+                    comments={comments}
                 />
             </div>
         </>
