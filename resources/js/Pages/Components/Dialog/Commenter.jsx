@@ -5,7 +5,6 @@ export default function Commenter({
     loggedInUser,
     selectedUser,
     taskId,
-    commenters,
 }) {
     const { data, setData, post, processing, errors } = useForm({
         comment: "",
@@ -28,7 +27,7 @@ export default function Commenter({
                     {comments.map((comment) => (
                         <div key={comment.id} className="comment-card mb-3 p-3 bg-light rounded">
                             <div className="comment-header d-flex justify-content-between align-items-center mb-2">
-                                <strong>{commenters.userName}</strong>
+                                <strong>{comment.user?.name || 'Unkn'}</strong>
                                 <small className="text-muted">
                                     {new Date(comment.created_at).toLocaleString()}
                                 </small>

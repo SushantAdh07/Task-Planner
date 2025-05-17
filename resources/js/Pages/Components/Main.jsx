@@ -28,6 +28,8 @@ function Main({ tasks = [], users = [], auth, errors, children, comments = [] })
         );
     };
 
+    console.log("First comment's user:", comments[0]?.user);
+
     const handleCloseCommentBox = () => {
         setOpenCommentBox(false);
     };
@@ -97,9 +99,6 @@ function Main({ tasks = [], users = [], auth, errors, children, comments = [] })
                     errors={errors}
                     flash={flash}
                     comments={comments}
-                    commenters={comments.map(c=>({
-                        userName: c.user?.name || 'Unknown'
-                    }))}
                 />
             </div>
         </>

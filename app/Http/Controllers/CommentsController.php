@@ -13,7 +13,7 @@ class CommentsController extends Controller
 {
     public function index(Task $task)
     {
-        $comments = $task->comments()->with('users:name')->latest()->get();
+        $comments = $task->comments()->with('users:id,name')->latest()->get();
 
         return Inertia::render('Components/Main', [
             'comments' => $comments,
