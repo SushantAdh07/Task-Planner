@@ -1,4 +1,4 @@
-import { useForm, usePage } from "@inertiajs/react";
+import { useForm, usePage, router } from "@inertiajs/react";
 import { useState, useEffect } from "react";
 
 export default function Commenter({
@@ -30,6 +30,10 @@ export default function Commenter({
         });
     };
 
+    const destroy = () => {
+        router.delete(route("comment.delete"));
+    }
+
     return (
         <div className="comment-section mt-4">
             <h5>Comments ({comments.length})</h5>
@@ -52,6 +56,7 @@ export default function Commenter({
                             <div className="comment-body">
                                 <p className="mb-0">{comment.comment}</p>
                             </div>
+                            {}
                         </div>
                     ))}
                 </div>

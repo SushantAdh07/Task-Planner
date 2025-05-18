@@ -29,4 +29,9 @@ class CommentsController extends Controller
             'newComment' => $comment // Pass the new comment with user data
         ]);
     }
+
+    public function deleteComment($id){
+        Comment::findOrFail($id)->delete();
+        return Inertia::location(route('index'));
+    }
 }
