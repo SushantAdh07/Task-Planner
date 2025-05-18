@@ -14,7 +14,7 @@ class TaskController extends Controller
     public function index(Request $request) {
         $user = $request->user();
         $users = User::latest()->get();
-        $tasks = Task::with(['comments.users'])->latest()->get();
+        $tasks = Task::with(['comments.user'])->latest()->get();
         
     
         return Inertia::render('Components/Main', [

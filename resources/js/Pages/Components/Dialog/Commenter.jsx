@@ -1,14 +1,26 @@
-import { useForm } from "@inertiajs/react";
+import { useForm, usePage } from "@inertiajs/react";
+import { useState, useEffect } from "react";
 
 export default function Commenter({
-    comments = [],
+    initialComments = [],
     loggedInUser,
     selectedUser,
     taskId,
 }) {
+    const { flash } = usePage().props;
+    const [comments, setComments] = useState(initialComments);
     const { data, setData, post, processing, errors } = useForm({
         comment: "",
     });
+
+    useEffect(() => {
+        if (
+            flash.newComment &&
+            flash.newComment.task_id === taskId // Ensure it belongs to this task
+        ) {
+            setComments((prev) => [...prev, flash.newComment]);
+        }
+    }, [flash.newComment, taskId]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,11 +37,16 @@ export default function Commenter({
             {comments.length > 0 ? (
                 <div className="comment-list mt-2">
                     {comments.map((comment) => (
-                        <div key={comment.id} className="comment-card mb-3 p-3 bg-light rounded">
+                        <div
+                            key={comment.id}
+                            className="comment-card mb-3 p-3 bg-light rounded"
+                        >
                             <div className="comment-header d-flex justify-content-between align-items-center mb-2">
-                                <strong>{comment.user?.name || 'Unkn'}</strong>
+                                <strong>{comment.user?.name}</strong>
                                 <small className="text-muted">
-                                    {new Date(comment.created_at).toLocaleString()}
+                                    {new Date(
+                                        comment.created_at
+                                    ).toLocaleString()}
                                 </small>
                             </div>
                             <div className="comment-body">
@@ -46,7 +63,9 @@ export default function Commenter({
                 <form onSubmit={handleSubmit} className="mt-3">
                     <div className="form-group">
                         <textarea
-                            className={`form-control ${errors.comment ? 'is-invalid' : ''}`}
+                            className={`form-control ${
+                                errors.comment ? "is-invalid" : ""
+                            }`}
                             value={data.comment}
                             onChange={(e) => setData("comment", e.target.value)}
                             placeholder="Add a comment..."
@@ -54,7 +73,9 @@ export default function Commenter({
                             required
                         />
                         {errors.comment && (
-                            <div className="invalid-feedback">{errors.comment}</div>
+                            <div className="invalid-feedback">
+                                {errors.comment}
+                            </div>
                         )}
                     </div>
                     <button

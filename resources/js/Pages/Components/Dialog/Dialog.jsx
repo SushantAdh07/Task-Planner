@@ -178,7 +178,7 @@ function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors, comme
                          <div className="mt-8">
                             {selectedTask && (
                                 <Commenter
-                                    comments={selectedTask.comments || []}
+                                    initialComments={selectedTask.comments || []}
                                     loggedInUser={loggedInUser}
                                     selectedUser={selectedUser}
                                     taskId={selectedTask.id}

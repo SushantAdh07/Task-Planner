@@ -39,12 +39,10 @@ class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
-        ];
-        return array_merge(parent::share($request), [
             'flash' => [
-                'message' => $request->session()->get('message'),
-                'error' => session('error'),
+                'success' => fn() => $request->session()->get('success'),
+                'newComment' => fn() => $request->session()->get('newComment'),
             ],
-        ]);
+        ];
     }
 }

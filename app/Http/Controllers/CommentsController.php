@@ -11,15 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
-    public function index(Task $task)
-    {
-        $comments = $task->comments()->with('users:id,name')->latest()->get();
 
-        return Inertia::render('Components/Main', [
-            'comments' => $comments,
-
-        ]);
-    }
 
     public function createComments(Request $request, Task $task)
     {
@@ -30,8 +22,11 @@ class CommentsController extends Controller
         $comment = $task->comments()->create([
             'comment' => $request->comment,
             'user_id' => Auth::id()
-        ]);
+        ])->load('user');
 
-        return back()->with('success', 'Comment added successfully');
+        return redirect()->back()->with([
+            'success' => 'Comment added successfully',
+            'newComment' => $comment // Pass the new comment with user data
+        ]);
     }
 }
