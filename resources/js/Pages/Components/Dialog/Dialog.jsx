@@ -174,7 +174,7 @@ function Dialog({ value, tasks, loggedInUser, selectedUser, users, errors, comme
                             </div>
                         )}
 
-                        {/* Comment Section - Uncomment if needed */}
+                        <hr />
                          <div className="mt-8">
                             {selectedTask && (
                                 <Commenter

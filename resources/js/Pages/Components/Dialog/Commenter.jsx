@@ -18,12 +18,12 @@ export default function Commenter({
     useEffect(() => {
         if (
             flash.newComment &&
-            flash.newComment.task_id === taskId 
+            flash.newComment.task_id === taskId &&
+            !comments.some((c) => c.id === flash.newComment.id)
         ) {
             setComments((prev) => [...prev, flash.newComment]);
         }
-
-    }, [flash.newComment, taskId]);
+    }, [flash.newComment, taskId, comments]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -38,26 +38,33 @@ export default function Commenter({
         router.delete(route("comment.delete", commentId), {
             preserveScroll: true,
             onSuccess: () => {
-                
-       
-            setComments((prev) => prev.filter((comment) => comment.id !== commentId));
-        
+                setComments((prev) =>
+                    prev.filter((comment) => comment.id !== commentId)
+                );
             },
             onFinish: () => setDeletingID(null),
         });
     };
 
+    
+
     return (
         <div className="comment-section mt-4">
-            <h5>Comments ({comments.length})</h5>
+            <p>
+                <strong>Comments</strong>{" "}
+                <span className="text-sm text-blue-600">
+                    ({comments.length})
+                </span>
+            </p>
 
             {comments.length > 0 ? (
                 <div className="comment-list mt-2">
                     {comments.map((comment) => (
                         <div
                             key={comment.id}
-                            className="comment-card mb-3 p-3 bg-light rounded"
-                        >
+                            className="comment-card mb-3 p-3 bg-blue-50 rounded"
+                        > 
+                        
                             <div className="comment-header d-flex justify-content-between align-items-center mb-2">
                                 <strong>{comment.user?.name}</strong>
                                 <small className="text-muted">
@@ -66,17 +73,20 @@ export default function Commenter({
                                     ).toLocaleString()}
                                 </small>
                             </div>
-                            <div className="comment-body">
+                            <div className="flex justify-between items-center comment-body">
                                 <p className="mb-0">{comment.comment}</p>
+                                {loggedInUser === comment.user.id && (
+                                    <button
+                                        onClick={() => destroy(comment.id)}
+                                        className="text-sm text-red-700"
+                                        disabled={deletingID == comment.id}
+                                    >
+                                        {deletingID == comment.id
+                                            ? "Deleting..."
+                                            : "Delete"}
+                                    </button>
+                                )}
                             </div>
-                            <button
-                                onClick={() => destroy(comment.id)}
-                                className="text-sm text-red-700"
-                                disabled={deletingID == comment.id}
-                            >
-                                {deletingID == comment.id ? "Deleting..." : "Delete"}
-                                
-                            </button>
                         </div>
                     ))}
                 </div>
@@ -105,7 +115,7 @@ export default function Commenter({
                     </div>
                     <button
                         type="submit"
-                        className="btn btn-primary mt-2"
+                        className="bg-blue-600 text-white mt-2 px-4 py-2 rounded-lg hover:bg-blue-800"
                         disabled={processing}
                     >
                         {processing ? "Posting..." : "Post Comment"}
