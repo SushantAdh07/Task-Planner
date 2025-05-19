@@ -100,7 +100,7 @@ function CustomCalendar({
                                 className={`min-h-[100px] p-1 border rounded-lg transition-colors flex flex-col
                                     ${
                                         isCurrentDay
-                                            ? "!bg-yellow-300"
+                                            ? "!border-yellow-400 border border-3"
                                             : "bg-white"
                                     }
                                     ${
