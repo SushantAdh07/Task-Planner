@@ -46,7 +46,15 @@ export default function Commenter({
         });
     };
 
-    
+    const getInitials = (name) => {
+        const names = name.trim().split(" ");
+        const first = names[0]?.charAt(0).toUpperCase() || "";
+        const last =
+            names.length > 1
+                ? names[names.length - 1].charAt(0).toUpperCase()
+                : "";
+        return first + last;
+    };
 
     return (
         <div className="comment-section mt-4">
@@ -63,29 +71,55 @@ export default function Commenter({
                         <div
                             key={comment.id}
                             className="comment-card mb-3 p-3 bg-blue-50 rounded"
-                        > 
-                        
-                            <div className="comment-header d-flex justify-content-between align-items-center mb-2">
-                                <strong>{comment.user?.name}</strong>
-                                <small className="text-muted">
-                                    {new Date(
-                                        comment.created_at
-                                    ).toLocaleString()}
-                                </small>
-                            </div>
-                            <div className="flex justify-between items-center comment-body">
-                                <p className="mb-0">{comment.comment}</p>
-                                {loggedInUser === comment.user.id && (
-                                    <button
-                                        onClick={() => destroy(comment.id)}
-                                        className="text-sm text-red-700"
-                                        disabled={deletingID == comment.id}
-                                    >
-                                        {deletingID == comment.id
-                                            ? "Deleting..."
-                                            : "Delete"}
-                                    </button>
-                                )}
+                        >
+                            <div className="flex items-start gap-2 mb-2">
+                                <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm">
+                                    {getInitials(comment.user.name)}
+                                </div>
+
+                                <div className="flex flex-col w-full">
+                                    <div className="flex justify-between items-center w-full">
+                                        <div>
+                                            <strong className="text-md">
+                                                {comment.user.name}
+                                            </strong>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-sm text-gray-500 whitespace-nowrap">
+                                            <small>
+                                                {new Date(
+                                                    comment.created_at
+                                                ).toLocaleString()}
+                                            </small>
+
+                                            {loggedInUser ===
+                                                comment.user.id && (
+                                                <>
+                                                    <small>&bull;</small>
+                                                    <button
+                                                        onClick={() =>
+                                                            destroy(comment.id)
+                                                        }
+                                                        className="text-red-600 hover:underline"
+                                                        disabled={
+                                                            deletingID ===
+                                                            comment.id
+                                                        }
+                                                    >
+                                                        {deletingID ===
+                                                        comment.id
+                                                            ? "Deleting..."
+                                                            : "Delete"}
+                                                    </button>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p className="text-gray-800 w-full pr-4">
+                                            {comment.comment}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     ))}
