@@ -26,12 +26,18 @@ class CommentsController extends Controller
 
         return redirect()->back()->with([
             'success' => 'Comment added successfully',
-            'newComment' => $comment // Pass the new comment with user data
+            'newComment' => $comment
         ]);
     }
 
-    public function deleteComment($id){
-        Comment::findOrFail($id)->delete();
-        return Inertia::location(route('index'));
+    public function deleteComment(Comment $comment){
+        if(auth()->id() !== $comment->user_id){
+            abort(403);
+        }
+        $comment->delete();
+
+        return redirect()->back()->with([
+            'deleteCommentId' => $comment->id
+        ]);
     }
 }

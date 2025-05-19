@@ -1,4 +1,5 @@
 import { useForm, usePage, router } from "@inertiajs/react";
+import { comment } from "postcss";
 import { useState, useEffect } from "react";
 
 export default function Commenter({
@@ -9,6 +10,7 @@ export default function Commenter({
 }) {
     const { flash } = usePage().props;
     const [comments, setComments] = useState(initialComments);
+    const [deletingID, setDeletingID] = useState(null);
     const { data, setData, post, processing, errors } = useForm({
         comment: "",
     });
@@ -16,10 +18,11 @@ export default function Commenter({
     useEffect(() => {
         if (
             flash.newComment &&
-            flash.newComment.task_id === taskId // Ensure it belongs to this task
+            flash.newComment.task_id === taskId 
         ) {
             setComments((prev) => [...prev, flash.newComment]);
         }
+
     }, [flash.newComment, taskId]);
 
     const handleSubmit = (e) => {
@@ -30,9 +33,19 @@ export default function Commenter({
         });
     };
 
-    const destroy = () => {
-        router.delete(route("comment.delete"));
-    }
+    const destroy = (commentId) => {
+        setDeletingID(commentId);
+        router.delete(route("comment.delete", commentId), {
+            preserveScroll: true,
+            onSuccess: () => {
+                
+       
+            setComments((prev) => prev.filter((comment) => comment.id !== commentId));
+        
+            },
+            onFinish: () => setDeletingID(null),
+        });
+    };
 
     return (
         <div className="comment-section mt-4">
@@ -56,7 +69,14 @@ export default function Commenter({
                             <div className="comment-body">
                                 <p className="mb-0">{comment.comment}</p>
                             </div>
-                            {}
+                            <button
+                                onClick={() => destroy(comment.id)}
+                                className="text-sm text-red-700"
+                                disabled={deletingID == comment.id}
+                            >
+                                {deletingID == comment.id ? "Deleting..." : "Delete"}
+                                
+                            </button>
                         </div>
                     ))}
                 </div>

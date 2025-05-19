@@ -42,6 +42,7 @@ class HandleInertiaRequests extends Middleware
             'flash' => [
                 'success' => fn() => $request->session()->get('success'),
                 'newComment' => fn() => $request->session()->get('newComment'),
+                'deleteComment' => fn() => $request->session()->get('deleteComment'),
             ],
         ];
     }

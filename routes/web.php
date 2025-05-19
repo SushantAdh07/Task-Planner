@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function(){
     Route::delete('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('task.delete');
 
     Route::post('/tasks/{task}/comments', [CommentsController::class, 'createComments'])->name('create.comment');
-    Route::delete('/delete-comment/{id}', [CommentsController::class, 'deleteComment'])->name('comment.delete');
+    Route::delete('/delete/comments/{comment}', [CommentsController::class, 'deleteComment'])->name('comment.delete');
 
 });
 
