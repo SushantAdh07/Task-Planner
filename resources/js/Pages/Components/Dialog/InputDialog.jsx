@@ -26,9 +26,7 @@ function InputDialog({ value, errors }) {
 
     return (
         <div className="space-y-6">
-            <div className="flex justify-between items-center border-b pb-4">
-                
-            </div>
+            
 
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
@@ -69,7 +67,7 @@ function InputDialog({ value, errors }) {
                     )}
                 </div>
 
-                <div className="text-sm text-gray-500 p-3 bg-gray-50 rounded-lg">
+                <div className="text-sm text-gray-500 bg-gray-50 rounded-lg">
                     <p>This task will be created for <strong>{value}</strong></p>
                 </div>
 
@@ -80,14 +78,14 @@ function InputDialog({ value, errors }) {
                     <button
                         type="button"
                         onClick={() => reset()}
-                        className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                        className="px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-gray-200 hover:bg-gray-400 transition-colors"
                         disabled={processing}
                     >
                         Cancel
                     </button>
                     <button
                         type="submit"
-                        className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        className="flex text-sm items-center px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-800 transition-colors"
                         disabled={processing}
                     >
                         {processing ? (
@@ -100,7 +98,7 @@ function InputDialog({ value, errors }) {
                             </>
                         ) : (
                             <>
-                                <Plus size={16} className="mr-2" />
+                                <Plus size={12} className="mr-2" />
                                 Create Task
                             </>
                         )}

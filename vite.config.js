@@ -10,11 +10,4 @@ export default defineConfig({
         }),
         react(),
     ],
-    build: {
-        manifest: true,
-        outDir: 'public/build', // Ensure the build output goes here
-        rollupOptions: {
-            input: 'resources/js/app.jsx',
-        },
-    },
 });

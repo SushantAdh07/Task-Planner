@@ -1,10 +1,8 @@
 {
   "node_modules/laravel-vite-plugin/inertia-helpers/index.js": [],
+  "resources/css/app.css": [],
   "resources/js/Components/ApplicationLogo.jsx": [
     "/build/assets/ApplicationLogo-CDM_RYOK.js"
-  ],
-  "resources/js/Components/Checkbox.jsx": [
-    "/build/assets/Login--A3Xpjgn.js"
   ],
   "resources/js/Components/DangerButton.jsx": [
     "/build/assets/DeleteUserForm-Bl6Dx7cL.js"
@@ -49,7 +47,7 @@
     "/build/assets/ForgotPassword-BmpNZ9ba.js"
   ],
   "resources/js/Pages/Auth/Login.jsx": [
-    "/build/assets/Login--A3Xpjgn.js"
+    "/build/assets/Login-D3HjgHT7.js"
   ],
   "resources/js/Pages/Auth/Register.jsx": [
     "/build/assets/Register-DC3hyFLh.js"
@@ -61,28 +59,28 @@
     "/build/assets/VerifyEmail-CdflMdqK.js"
   ],
   "resources/js/Pages/Components/CustomCalendar.jsx": [
-    "/build/assets/CustomCalendar-DBk61QwW.js"
+    "/build/assets/CustomCalendar-BhM_Kd22.js"
   ],
   "resources/js/Pages/Components/Dialog/Commenter.jsx": [
-    "/build/assets/Commenter-DcNfp8lH.js"
+    "/build/assets/Commenter-DwrxUdZm.js"
   ],
   "resources/js/Pages/Components/Dialog/Dialog.jsx": [
-    "/build/assets/Dialog-BJ_1HN8p.js"
+    "/build/assets/Dialog-CzXI4aRj.js"
   ],
   "resources/js/Pages/Components/Dialog/EditDialog.jsx": [
-    "/build/assets/EditDialog-DT0kblGB.js"
+    "/build/assets/EditDialog-pzEt6UPz.js"
   ],
   "resources/js/Pages/Components/Dialog/InputDialog.jsx": [
-    "/build/assets/InputDialog-CdZYwUKK.js"
+    "/build/assets/InputDialog-DAkcsFju.js"
   ],
   "resources/js/Pages/Components/Dialog/TasksDialog.jsx": [
-    "/build/assets/TasksDialog-l0sNRNKZ.js"
+    "/build/assets/Home-C26k-yq-.js"
   ],
   "resources/js/Pages/Components/Home.jsx": [
-    "/build/assets/Home-B7TTv_QA.js"
+    "/build/assets/Home-C26k-yq-.js"
   ],
   "resources/js/Pages/Components/Main.jsx": [
-    "/build/assets/Main-BFX7jEvc.js"
+    "/build/assets/Main-Bxa8kGNk.js"
   ],
   "resources/js/Pages/Components/Sidebar.jsx": [
     "/build/assets/Sidebar-DDhTo4Rc.js"
@@ -103,8 +101,17 @@
     "/build/assets/UpdateProfileInformationForm-CLBrpUHA.js"
   ],
   "resources/js/Pages/Welcome.jsx": [
-    "/build/assets/Welcome-ByNhCfvu.js"
+    "/build/assets/Welcome-B0RzpBoy.js"
   ],
-  "resources/js/ssr.jsx": [],
-  "vendor/tightenco/ziggy/dist/index.js": []
+  "resources/js/Pages/lib/utils.ts": [
+    "/build/assets/utils-H80jjgLf.js"
+  ],
+  "resources/js/Pages/ui/button.jsx": [
+    "/build/assets/button-Ck3YHGE9.js"
+  ],
+  "resources/js/Pages/ui/card.jsx": [
+    "/build/assets/card-DmckRZrH.js"
+  ],
+  "resources/js/app.jsx": [],
+  "resources/js/bootstrap.js": []
 }

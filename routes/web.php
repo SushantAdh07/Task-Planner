@@ -18,6 +18,9 @@ use Inertia\Inertia;
     ]);
 });
 
+Route::get('/welcome', function(){
+    return Inertia::render('Welcome/WelcomePage');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -82,6 +82,13 @@ class DatabaseSeeder extends Seeder
             'role' => 'user',
         ]);
 
+        User::create([
+            'name' => 'Swosti Shrestha',
+            'email' => 'swosti@user.com',
+            'password' => 'swosti@8',
+            'role' => 'user',
+        ]);
+
     }
 
 }
