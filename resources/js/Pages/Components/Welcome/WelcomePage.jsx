@@ -42,7 +42,7 @@ export default function WelcomePage() {
           {
             title: "Individual Plan",
             desc: "Stay focused, manage your tasks and plan your week efficiently.",
-            link: "/individual-plan",
+            link: "/home",
           },
           {
             title: "Team Plan",

@@ -112,7 +112,7 @@ export default function Login({ status, canResetPassword }) {
 
                 </form>
 
-                {/*<div className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+                <div className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
                     Don't have an account?{' '}
                     <Link 
                         href={route('register')} 
@@ -120,7 +120,7 @@ export default function Login({ status, canResetPassword }) {
                     >
                         Sign up
                     </Link>
-                </div>*/}
+                </div>
             </div>
             
         </GuestLayout>
