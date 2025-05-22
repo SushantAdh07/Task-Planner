@@ -19,7 +19,7 @@ use Inertia\Inertia;
 });
 
 Route::get('/welcome', function(){
-    return Inertia::render('Welcome/WelcomePage');
+    return Inertia::render('Components/Welcome/WelcomePage');
 });
 
 Route::middleware('auth')->group(function () {
