@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Plan\TeamPlanController;
 use App\Http\Controllers\TaskController;
 use Inertia\Inertia;
 
@@ -39,5 +40,12 @@ Route::middleware('auth')->group(function(){
 
 });
 
+//PlansRoutes
+
+Route::middleware('auth')->prefix('plan')->group(function(){
+    Route::controller(TeamPlanController::class)->group(function(){
+        Route::get('/team', 'index');
+    });
+});
 
 require __DIR__.'/auth.php';

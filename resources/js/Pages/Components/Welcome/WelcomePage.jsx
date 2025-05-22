@@ -42,12 +42,12 @@ export default function WelcomePage() {
           {
             title: "Individual Plan",
             desc: "Stay focused, manage your tasks and plan your week efficiently.",
-            link: "/register",
+            link: "/individual-plan",
           },
           {
             title: "Team Plan",
             desc: "Collaborate, assign, and track tasks across your whole team.",
-            link: "/register",
+            link: "/plan/team",
           },
         ].map((plan, idx) => (
           <motion.div
