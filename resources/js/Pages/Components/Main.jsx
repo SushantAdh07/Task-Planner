@@ -1,5 +1,5 @@
 import React from "react";
-import Calendar from "./CustomCalendar";
+import Calendar from "./Team/CustomCalendar";
 import { usePage, Link } from "@inertiajs/react";
 
 function Main({ tasks = [], users = [], auth, errors, children, comments = [] }) {
