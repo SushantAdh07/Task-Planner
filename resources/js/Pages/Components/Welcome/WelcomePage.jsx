@@ -1,6 +1,10 @@
+import { usePage } from "@inertiajs/react";
 import { motion } from "framer-motion";
 
 export default function WelcomePage() {
+  const { props } = usePage();
+  console.log('individualPlanUrl:', props.individualPlanUrl);
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-indigo-50 to-indigo-100 text-gray-900 font-sans">
       {/* Navbar */}
@@ -42,7 +46,7 @@ export default function WelcomePage() {
           {
             title: "Individual Plan",
             desc: "Stay focused, manage your tasks and plan your week efficiently.",
-            link: "/home",
+            link: `/plan/${slug}`,
           },
           {
             title: "Team Plan",

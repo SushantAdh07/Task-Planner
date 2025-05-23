@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Plan\IndividualPlanController;
 use App\Http\Controllers\Plan\TeamPlanController;
 use App\Http\Controllers\TaskController;
 use Inertia\Inertia;
@@ -46,6 +47,10 @@ Route::middleware('auth')->prefix('plan')->group(function(){
     Route::controller(TeamPlanController::class)->group(function(){
         Route::get('/team', 'index');
         Route::post('/create/team', 'createTeam');
+    });
+
+    Route::controller(IndividualPlanController::class)->group(function(){
+        Route::get('/{slug}', 'index');
     });
 });
 
