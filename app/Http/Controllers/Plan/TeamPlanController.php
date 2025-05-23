@@ -8,7 +8,12 @@ use Inertia\Inertia;
 
 class TeamPlanController extends Controller
 {
-    public function index(){
-        return Inertia::render('Components/Plans/TeamPlan');
+    public function index(Request $request){
+
+        $user = $request->user();
+        return Inertia::render('Components/Plans/TeamPlan',[
+            'auth' => ['user' => $user],
+        ]);
     }
+    
 }

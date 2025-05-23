@@ -1,18 +1,14 @@
 import { useState } from "react";
+import TeamSizeSelect from "./TeamSizeSelect";
+import { useForm } from "@inertiajs/inertia-react";
 
 export default function TeamPlanPage() {
-  const [form, setForm] = useState({ name: "", teamName: "" });
+  const {data, setData, post, processing, reset} = useForm({
+    
+    'team_name': "",
+    'team_size': "",
+  })
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission or redirect
-    console.log(form);
-    // You can redirect or send data to Laravel backend here
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-indigo-50 to-indigo-100 px-6 py-12">
@@ -22,35 +18,26 @@ export default function TeamPlanPage() {
           Enter your details to create your team workspace.
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="name" className="block text-sm font-semibold text-indigo-800 mb-1">
-              Your Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              required
-              value={form.name}
-              onChange={handleChange}
-              className="w-full px-4 py-2 bg-white/50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 backdrop-blur-md"
-              placeholder="e.g. Sarah Johnson"
-            />
-          </div>
+        <form className="space-y-6">
 
           <div>
-            <label htmlFor="teamName" className="block text-sm font-semibold text-indigo-800 mb-1">
+            <label htmlFor="team_name" className="block text-sm font-semibold text-indigo-800 mb-1">
               Team Name
             </label>
             <input
               type="text"
-              name="teamName"
+              name="team_name"
               required
-              value={form.teamName}
-              onChange={handleChange}
+              value={data.team_name}
               className="w-full px-4 py-2 bg-white/50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 backdrop-blur-md"
               placeholder="e.g. Dream Builders"
             />
+          </div>
+          <div>
+            <label htmlFor="team_size" className="block text-sm font-semibold text-indigo-800 mb-1">
+              Team Size
+            </label>
+            <TeamSizeSelect value={data.team_size} />
           </div>
 
           <button
