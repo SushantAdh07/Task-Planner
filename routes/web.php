@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function(){
-    Route::get('/home', [TaskController::class, 'index'])->name('index');
+    Route::get('/home', [HomeController::class, 'index'])->name('index');
     Route::post('/tasks', [TaskController::class, 'createTask']);
     Route::put('/update-tasks/{task}', [TaskController::class, 'editTask']);
     Route::delete('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('task.delete');

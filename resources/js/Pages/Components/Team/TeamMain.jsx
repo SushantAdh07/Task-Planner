@@ -1,16 +1,5 @@
 import React from "react";
-
-function Main(){
-    return(
-        <h1>Hello</h1>
-    )
-}
-export default Main;
-
-
-{/*
-    import React from "react";
-import Calendar from "./Team/CustomCalendar";
+import Calendar from "./CustomCalendar";
 import { usePage, Link } from "@inertiajs/react";
 
 function Main({ tasks = [], users = [], auth, errors, children, comments = [] }) {
@@ -48,9 +37,9 @@ function Main({ tasks = [], users = [], auth, errors, children, comments = [] })
     return (
         <>
             <div className="container p-3 main">
-                 <div className="col-md-4 mt-3 bg-dark sidebar">
+                {/** <div className="col-md-4 mt-3 bg-dark sidebar">
                     <Sidebar />
-                </div> 
+                </div> */}
 
                 <div className="flex justify-between items-center w-full">
                     <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 truncate max-w-[50%] sm:max-w-[70%]">
@@ -117,4 +106,3 @@ function Main({ tasks = [], users = [], auth, errors, children, comments = [] })
 }
 
 export default Main;
-*/}

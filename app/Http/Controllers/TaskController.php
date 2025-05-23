@@ -17,7 +17,7 @@ class TaskController extends Controller
         $tasks = Task::with(['comments.user'])->latest()->get();
         
     
-        return Inertia::render('Components/Main', [
+        return Inertia::render('Components/Team/TeamMain', [
             'auth' => ['user' => $user],
             'tasks' => $tasks,
             'users' => $users,
