@@ -11,7 +11,7 @@ import {
     isToday,
 } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Dialog from "../Individual/Dialog/Dialog";
+import Dialog from "./Dialog/Dialog";
 
 function CustomCalendar({
     tasks,

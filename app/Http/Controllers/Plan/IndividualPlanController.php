@@ -11,6 +11,11 @@ class IndividualPlanController extends Controller
 {
     public function index(Request $request)
     {
-        //
+        $tasks = Task::latest()->get();
+        $user = $request->user();
+        return Inertia::render('Components/Individual/CustomCalendar',[
+            'tasks' => $tasks,
+            'loggedInUser' => $user,
+        ]);
     }
 }

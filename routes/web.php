@@ -55,9 +55,9 @@ Route::middleware('auth')->group(function () {
 
 //PlansRoutes
 
-Route::get('/sushant', function(){
-    return Inertia::render('Components/Individual/CustomCalendar');
-});
+//    Route::get('/sushant', function(){
+ //       return Inertia::render('Components/Individual/CustomCalendar');
+ //   });
 
 
 Route::middleware('auth')->prefix('plan')->group(function () {
@@ -67,7 +67,7 @@ Route::middleware('auth')->prefix('plan')->group(function () {
     });
 
     Route::controller(IndividualPlanController::class)->group(function () {
-        Route::get('/solo', 'index');
+        Route::get('/{slug}', 'index')->name('indiviudal');
     });
 });
 
