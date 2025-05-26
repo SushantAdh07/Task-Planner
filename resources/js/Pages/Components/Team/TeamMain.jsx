@@ -2,7 +2,7 @@ import React from "react";
 import Calendar from "./CustomCalendar";
 import { usePage, Link } from "@inertiajs/react";
 
-function Main({ tasks = [], users = [], auth, errors, children, comments = [] }) {
+function Main({ tasks = [], members = [], auth, errors, children, comments = [] }) {
     const loggedInUser = auth.user.id;
     const [openCommentBox, setOpenCommentBox] = React.useState(null);
     const { flash } = usePage().props;
@@ -55,7 +55,7 @@ function Main({ tasks = [], users = [], auth, errors, children, comments = [] })
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
-                            {users.find((user) => user.id === selectedUserId)
+                            {members.find((user) => user.id === selectedUserId)
                                 ?.name || auth.user.name}
                         </a>
 
@@ -63,8 +63,8 @@ function Main({ tasks = [], users = [], auth, errors, children, comments = [] })
                             className="dropdown-menu"
                             aria-labelledby="dropdownMenuLink"
                         >
-                            {users &&
-                                users.map((user) => (
+                            {members &&
+                                members.map((user) => (
                                     
                                         <li key={user.id}>
                                         <a
@@ -85,6 +85,7 @@ function Main({ tasks = [], users = [], auth, errors, children, comments = [] })
                                     
                                     
                                 ))}
+                                <li>{auth.user.name}</li>
                                 <li><Link href={route("logout")} method="post" className="dropdown-item bg-blue-700 text-white hover:bg-blue-800">Logout</Link></li>
                                 
                         </ul>
@@ -95,7 +96,7 @@ function Main({ tasks = [], users = [], auth, errors, children, comments = [] })
                     tasks={userTasks}
                     loggedInUser={auth.user.id}
                     selectedUser={selectedUserId}
-                    users={users}
+                    users={members}
                     errors={errors}
                     flash={flash}
                     comments={comments}

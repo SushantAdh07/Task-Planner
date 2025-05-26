@@ -18,6 +18,7 @@ function CustomCalendar({
     loggedInUser,
     selectedUser,
     users,
+    members,
     errors,
     flash,
     comments,
@@ -38,6 +39,8 @@ function CustomCalendar({
         setSelectedDate(date);
         setShowDialog(true);
     };
+
+    
 
     const getTasksForDate = (date) => {
         return tasks.filter((task) =>
