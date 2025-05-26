@@ -14,7 +14,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Dialog from "./Dialog/Dialog";
 
 function CustomCalendar({
-    tasks,
+    tasks=[],
     loggedInUser,
     selectedUser,
     users,

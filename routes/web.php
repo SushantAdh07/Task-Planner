@@ -13,14 +13,14 @@ use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+}); */
 
 //    Route::get('/welcome', function (Request $request) {
 //
@@ -35,7 +35,11 @@ Route::get('/', function () {
 //        ]);
  //   });
 
-Route::get('/welcome', [HomeController::class, 'index']);
+Route::get('/', function(){
+    //
+});
+
+Route::get('/', [HomeController::class, 'index'])->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
