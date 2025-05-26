@@ -13,7 +13,7 @@ class TeamPlanController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $teams = $user->teams; // Using relationship as property for automatic loading
+        $teams = $user->teams()->with('members')->get(); // Eager load members
 
         switch ($teams->count()) {
             case 0:
@@ -22,9 +22,11 @@ class TeamPlanController extends Controller
                 ]);
 
             case 1:
+                $team = $teams->first();
                 return Inertia::render('Components/Team/TeamTest', [
                     'auth' => ['user' => $user],
-                    'team' => $teams->first()->load(['users', 'users.user'])
+                    'team' => $team,
+                    'members' => $team->members // Access members from the team
                 ]);
 
             default:

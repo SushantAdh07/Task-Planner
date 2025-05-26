@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Member;
 use App\Models\User;
 use App\Models\Task;
+use App\Models\Team;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -23,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'task_name' => 'hey',
             'task_description' => 'mate',
             'selected_date'=> '2025-02-25'
-        ]); */
+        ]); 
 
         User::create([
             'name' => 'Jagadish Prasad Adhikari',
@@ -87,6 +89,18 @@ class DatabaseSeeder extends Seeder
             'email' => 'swosti@user.com',
             'password' => 'swosti@8',
             'role' => 'user',
+        ]); 
+
+        Member::create([
+            'name' => 'Team Member',
+            'email' => 'team@member.com',
+            'team_id' => '1',
+        ]); */
+
+        Team::create([
+            'team_name' => 'DHRC',
+            'team_size' => 'small',
+            'user_id' => '2',
         ]);
 
     }
