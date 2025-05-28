@@ -14,7 +14,7 @@ class TeamPlanController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $teams = $user->teams()->with('members')->get(); // Eager load members
+        $teams = $user->teams()->with('members')->get(); 
 
         switch ($teams->count()) {
             case 0:
@@ -27,7 +27,7 @@ class TeamPlanController extends Controller
                 return Inertia::render('Components/Team/TeamMain', [
                     'auth' => ['user' => $user],
                     'team' => $team,
-                    'members' => $team->members // Access members from the team
+                    'members' => $team->members 
                 ]);
 
             default:
