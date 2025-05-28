@@ -1,10 +1,12 @@
 import React from "react";
 import Calendar from "./CustomCalendar";
+import AddMember from "./AddMember";
 import { usePage, Link } from "@inertiajs/react";
 
 function Main({ tasks = [], members = [], auth, errors, children, comments = [] }) {
     const loggedInUser = auth.user.id;
     const [openCommentBox, setOpenCommentBox] = React.useState(null);
+    const [openInviteBox, setOpenInviteBox] = React.useState(null);
     const { flash } = usePage().props;
     const [selectedUserId, setSelectedUserId] = React.useState(loggedInUser); 
     const [userTasks, setUserTasks] = React.useState(
@@ -27,6 +29,10 @@ function Main({ tasks = [], members = [], auth, errors, children, comments = [] 
                 }))
         );
     };
+
+    const handleOpenInviteBox = () => {
+        setOpenInviteBox(true);
+    }
 
     console.log("First comment's user:", comments[0]?.user);
 
@@ -86,11 +92,16 @@ function Main({ tasks = [], members = [], auth, errors, children, comments = [] 
                                     
                                 ))}
                                 <li>{auth.user.name}</li>
+                                <li onClick={handleOpenInviteBox}>Add Member</li>
                                 <li><Link href={route("logout")} method="post" className="dropdown-item bg-blue-700 text-white hover:bg-blue-800">Logout</Link></li>
                                 
                         </ul>
                     </div>
                 </div>
+
+                { openInviteBox && (
+                    <AddMember />
+                ) }
 
                 <Calendar
                     tasks={userTasks}
