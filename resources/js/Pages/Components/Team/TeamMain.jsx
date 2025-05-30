@@ -91,7 +91,7 @@ function Main({ tasks = [], members = [], auth, errors, children, comments = [] 
                                     
                                     
                                 ))}
-                                <li>{auth.user.name}</li>
+                                
                                 <li onClick={handleOpenInviteBox}>Add Member</li>
                                 <li><Link href={route("logout")} method="post" className="dropdown-item bg-blue-700 text-white hover:bg-blue-800">Logout</Link></li>
                                 
@@ -99,8 +99,9 @@ function Main({ tasks = [], members = [], auth, errors, children, comments = [] 
                     </div>
                 </div>
 
+                
                 { openInviteBox && (
-                    <AddMember />
+                    <AddMember onClose={() => setOpenInviteBox(false)}/>
                 ) }
 
                 <Calendar
