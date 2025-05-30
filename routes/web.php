@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Plan\IndividualPlanController;
+use App\Http\Controllers\Plan\Team\AddMemberController;
 use App\Http\Controllers\Plan\TeamPlanController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
@@ -66,8 +67,13 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->prefix('plan')->group(function () {
     Route::controller(TeamPlanController::class)->group(function () {
-        Route::get('/team', 'index');
+        Route::get('/team', 'index')->name('team.calendar');
         Route::post('/create/team', 'createTeam');
+        
+    });
+
+    Route::controller(AddMemberController::class)->group(function(){
+        Route::post('/add/member', 'addMember');
     });
 
     Route::controller(IndividualPlanController::class)->group(function () {

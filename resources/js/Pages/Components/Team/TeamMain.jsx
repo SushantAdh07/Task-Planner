@@ -101,7 +101,7 @@ function Main({ tasks = [], members = [], auth, errors, children, comments = [] 
 
                 
                 { openInviteBox && (
-                    <AddMember onClose={() => setOpenInviteBox(false)}/>
+                    <AddMember errors={errors} onClose={() => setOpenInviteBox(false)}/>
                 ) }
 
                 <Calendar

@@ -13,6 +13,7 @@ class HomeController extends Controller
         $user = $request->user();
 
         $slug = $user ? Str::slug($user->name) : null;
+        
 
         return Inertia::render('Components/Welcome/WelcomePage', [
             'auth' => ['user' => $user],

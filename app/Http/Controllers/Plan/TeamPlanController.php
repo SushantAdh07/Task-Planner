@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Plan;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TeamPlanRequest;
+use App\Models\Member;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,11 +15,11 @@ class TeamPlanController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $teams = $user->teams()->with('members')->get(); 
+        $teams = $user->teams()->with('members')->get();
 
         switch ($teams->count()) {
             case 0:
-                return Inertia::render('Components/Plans/CreateTeam', [
+                return Inertia::render('Components/Plans/TeamPlan', [
                     'auth' => ['user' => $user]
                 ]);
 
@@ -27,7 +28,7 @@ class TeamPlanController extends Controller
                 return Inertia::render('Components/Team/TeamMain', [
                     'auth' => ['user' => $user],
                     'team' => $team,
-                    'members' => $team->members 
+                    'members' => $team->members
                 ]);
 
             default:
@@ -44,15 +45,22 @@ class TeamPlanController extends Controller
         $user = Auth::user();
 
         if ($user->teams()->exists()) {
-        return back()->withErrors([
-            'team' => 'You can only create one team'
+            return back()->withErrors([
+                'team' => 'You can only create one team'
+            ]);
+        }
+        $team = Team::create($request->validated());
+        
+
+        Member::create([
+            'team_id' => $team->id,
+            'name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+            'role' => 'creator',
         ]);
-    }
-        Team::create($request->validated());
-        return redirect()->route('index');
+
+        return redirect()->route('team.calendar');
     }
 
-    public function teamCalendar(){
-        
-    }
+    public function teamCalendar() {}
 }
