@@ -1,8 +1,9 @@
 import React from "react";
 import { useForm } from "@inertiajs/inertia-react";
+import axios from 'axios'; // Add axios
 
-export default function AddMember({ onClose, errors }) {
-    const { data, setData, post, processing, reset } = useForm({
+export default function AddMember({ onClose }) {
+    const { data, setData, processing, errors, setError, reset } = useForm({
         email: "",
         name: "",
     });
@@ -11,32 +12,30 @@ export default function AddMember({ onClose, errors }) {
         setData(e.target.name, e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        post("/plan/add/member", {
-            preserveScroll: true, // Prevent page jumping
-            onSuccess: () => {
+        
+        try {
+            const response = await axios.post('/plan/add/member', data);
+            
+            if (response.data.success) {
                 reset();
-                 // Only close on successful submission
-            },
-            // No need for onError - errors will automatically populate
-        });
+                onClose();
+            }
+        } catch (error) {
+            if (error.response.status === 422) {
+                // Set Inertia errors manually
+                setError(error.response.data.errors);
+            } else {
+                console.error('Error:', error);
+            }
+        }
     };
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-md">
-                <div className="w-full flex justify-between mb-4">
-                    <h2 className="text-xl font-bold text-center">
-                        Add a Team Member
-                    </h2>
-                    <button
-                        onClick={onClose}
-                        className="text-gray-500 hover:text-black text-xl font-bold"
-                    >
-                        &times;
-                    </button>
-                </div>
+                {/* ... rest of your modal header ... */}
 
                 <form onSubmit={handleSubmit} className="space-y-3">
                     <div>
