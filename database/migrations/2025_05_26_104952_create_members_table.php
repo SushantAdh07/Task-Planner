@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('team_id')->constrained()->onDelete('cascade');
             $table->string('name')->nullable();
-            $table->string('email');
-            $table->string('role')->nullable();
+            $table->string('email')->unique();
+            $table->string('password')->nullable();
+            $table->enum('status', ['invited', 'registered'])->default('invited');
+            $table->string('invite_token')->nullable()->unique();
+            $table->enum('role', ['creator', 'member'])->default('member');
             $table->timestamps();
         });
     }

@@ -24,7 +24,6 @@ class AddMemberController extends Controller
                 'team_id' => $team->id,
                 'name'    => $validated['name'],
                 'email'   => $validated['email'],
-                'role'    => 'member',
             ]);
 
             return response()->json(['success' => true]); // Return JSON instead of redirect

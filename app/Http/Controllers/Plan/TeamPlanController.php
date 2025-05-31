@@ -57,6 +57,7 @@ class TeamPlanController extends Controller
             'name' => Auth::user()->name,
             'email' => Auth::user()->email,
             'role' => 'creator',
+            'status' => 'registered',
         ]);
 
         return redirect()->route('team.calendar');
