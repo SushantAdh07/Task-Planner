@@ -9,6 +9,7 @@ use App\Http\Controllers\Plan\IndividualPlanController;
 use App\Http\Controllers\Plan\Team\AddMemberController;
 use App\Http\Controllers\Plan\TeamPlanController;
 use App\Http\Controllers\TaskController;
+use App\Http\Middleware\PlanMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
@@ -66,11 +67,15 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware('auth')->prefix('plan')->group(function () {
+    
     Route::controller(TeamPlanController::class)->group(function () {
-        Route::get('/team', 'index')->name('team.calendar');
+        
+            Route::get('/team', 'index')->name('team.calendar');
+        
         Route::post('/create/team', 'createTeam');
         
     });
+    
 
     Route::controller(AddMemberController::class)->group(function(){
         Route::post('/add/member', 'addMember');
