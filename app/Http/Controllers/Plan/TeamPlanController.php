@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Plan;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TeamPlanRequest;
 use App\Models\Member;
+use App\Models\Task;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,12 +16,20 @@ class TeamPlanController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $teams = $user->teams()->with(['members' => function ($query) {
-            $query->where('status', 'registered'); 
-        }])->get();
+        $team = $user->team()->with(['members' => function ($query) {
+            $query->where('status', 'registered');
+        }])->first();
+        $tasks = Task::with(['comments.user'])->latest()->get();
+
+        return Inertia::render('Components/Team/TeamMain', [
+                    'auth' => ['user' => $user],
+                    'team' => $team,
+                    'members' => $team->members,
+                    'tasks' => $tasks
+                ]);
 
 
-        switch ($teams->count()) {
+        /* switch ($teams->count()) {
             case 0:
                 return Inertia::render('Components/Plans/TeamPlan', [
                     'auth' => ['user' => $user]
@@ -39,7 +48,7 @@ class TeamPlanController extends Controller
                     'auth' => ['user' => $user],
                     'teams' => $teams
                 ]);
-        }
+        }*/
     }
 
 
