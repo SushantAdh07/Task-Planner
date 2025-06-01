@@ -15,7 +15,10 @@ class TeamPlanController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $teams = $user->teams()->with('members')->get();
+        $teams = $user->teams()->with(['members' => function ($query) {
+            $query->where('status', 'registered'); 
+        }])->get();
+
 
         switch ($teams->count()) {
             case 0:
@@ -50,7 +53,7 @@ class TeamPlanController extends Controller
             ]);
         }
         $team = Team::create($request->validated());
-        
+
 
         Member::create([
             'team_id' => $team->id,
