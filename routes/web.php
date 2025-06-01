@@ -79,6 +79,8 @@ Route::middleware('auth')->prefix('plan')->group(function () {
 
     Route::controller(AddMemberController::class)->group(function(){
         Route::post('/add/member', 'addMember');
+        Route::get('/edit/profile/{id}', 'index');
+        Route::put('/update/profile/{id}', 'updateProfile');
     });
 
     Route::controller(IndividualPlanController::class)->group(function () {

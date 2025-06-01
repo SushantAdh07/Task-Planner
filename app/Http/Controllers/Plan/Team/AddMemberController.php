@@ -35,4 +35,25 @@ class AddMemberController extends Controller
             ], 422);
         }
     }
+
+    public function index(){
+        return Inertia::render('Components/Team/CreateProfile');
+    }
+
+    public function updateProfile(Request $request, $id){
+        $request->validate([
+            'name' => "required|string|min:3|max:20",
+            'password' => "required|min:8",
+        ]);
+
+        $member = Member::findOrFail($id);
+
+        $member->update([
+            'name' => $request->name,
+            'password' => $request->password,
+            'status' => 'registered',
+        ]);
+
+        return redirect()->back();
+    }
 }
