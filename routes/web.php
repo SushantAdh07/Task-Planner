@@ -11,6 +11,7 @@ use App\Http\Controllers\Plan\TeamPlanController;
 use App\Http\Controllers\TaskController;
 use App\Http\Middleware\PlanMiddleware;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
@@ -78,7 +79,7 @@ Route::middleware('auth')->prefix('plan')->group(function () {
     
 
     Route::controller(AddMemberController::class)->group(function(){
-        Route::post('/add/member', 'addMember');
+        Route::post('/add/member', 'addMember')->name('member.register.form');
         Route::get('/edit/profile/{id}', 'index');
         Route::put('/update/profile/{id}', 'updateProfile');
     });
@@ -86,6 +87,16 @@ Route::middleware('auth')->prefix('plan')->group(function () {
     Route::controller(IndividualPlanController::class)->group(function () {
         Route::get('/{slug}', 'index')->name('indiviudal');
     });
+});
+
+
+Route::get('/test-mail', function () {
+    Mail::raw('This is a test email from Laravel to Mailtrap.', function ($message) {
+        $message->to('your@email.com') 
+                ->subject('Test Mail');
+    });
+
+    return 'Mail sent!';
 });
 
 require __DIR__ . '/auth.php';

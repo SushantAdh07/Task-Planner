@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Plan\Team;
 
 use App\Http\Controllers\Controller;
+use App\Mail\InviteMemberMail;
 use App\Models\Member;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
 class AddMemberController extends Controller
@@ -20,13 +24,21 @@ class AddMemberController extends Controller
 
             $team = Team::where('user_id', auth()->id())->first();
 
-            Member::create([
+            $member = Member::create([
                 'team_id' => $team->id,
                 'name'    => $validated['name'],
                 'email'   => $validated['email'],
             ]);
 
-            return response()->json(['success' => true]); // Return JSON instead of redirect
+            $inviteUrl = URL::temporarySignedRoute(
+                'member.register.form',
+                now()->addMinutes(60),
+                ['member' => $member->id]
+            );
+
+            Mail::to($member->email)->send(new InviteMemberMail($inviteUrl));
+
+            return Inertia::render('Components/Team/TeamMain');
 
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
@@ -36,11 +48,13 @@ class AddMemberController extends Controller
         }
     }
 
-    public function index(){
+    public function index()
+    {
         return Inertia::render('Components/Team/CreateProfile');
     }
 
-    public function updateProfile(Request $request, $id){
+    public function updateProfile(Request $request, $id)
+    {
         $request->validate([
             'name' => "required|string|min:3|max:20",
             'password' => "required|min:8",
@@ -50,7 +64,7 @@ class AddMemberController extends Controller
 
         $member->update([
             'name' => $request->name,
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
             'status' => 'registered',
         ]);
 

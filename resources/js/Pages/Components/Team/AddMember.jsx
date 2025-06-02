@@ -1,9 +1,8 @@
 import React from "react";
 import { useForm } from "@inertiajs/inertia-react";
-import axios from 'axios'; // Add axios
 
-export default function AddMember({ onClose }) {
-    const { data, setData, processing, errors, setError, reset } = useForm({
+export default function AddMember() {
+    const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
         name: "",
     });
@@ -12,30 +11,14 @@ export default function AddMember({ onClose }) {
         setData(e.target.name, e.target.value);
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        
-        try {
-            const response = await axios.post('/plan/add/member', data);
-            
-            if (response.data.success) {
-                reset();
-                onClose();
-            }
-        } catch (error) {
-            if (error.response.status === 422) {
-                // Set Inertia errors manually
-                setError(error.response.data.errors);
-            } else {
-                console.error('Error:', error);
-            }
-        }
+        post('/plan/add/member'); // Automatically reloads page on success
     };
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-md">
-
                 <form onSubmit={handleSubmit} className="space-y-3">
                     <div>
                         <input 
@@ -43,6 +26,7 @@ export default function AddMember({ onClose }) {
                             name="name" 
                             value={data.name} 
                             onChange={handleChange} 
+                            placeholder="Enter name"
                             className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-500"
                             required 
                         />
