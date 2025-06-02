@@ -1,20 +1,27 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Calendar from "./CustomCalendar";
 import AddMember from "./AddMember";
 import { usePage, Link } from "@inertiajs/react";
 
-function Main({ tasks = [], members = [], auth, errors, children, comments = [] }) {
+function Main({
+    tasks = [],
+    members = [],
+    auth,
+    errors,
+    children,
+    comments = [],
+}) {
     const loggedInUser = auth.user.id;
     const [openCommentBox, setOpenCommentBox] = React.useState(null);
     const [openInviteBox, setOpenInviteBox] = React.useState(null);
     const { flash } = usePage().props;
-    const [selectedUserId, setSelectedUserId] = React.useState(loggedInUser); 
+    const [selectedUserId, setSelectedUserId] = React.useState(loggedInUser);
     const [userTasks, setUserTasks] = React.useState(
         tasks
             .filter((task) => task.user_id === loggedInUser)
             .map((task) => ({
                 ...task,
-                comments: task.comments || [], 
+                comments: task.comments || [],
             }))
     );
 
@@ -32,13 +39,19 @@ function Main({ tasks = [], members = [], auth, errors, children, comments = [] 
 
     const handleOpenInviteBox = () => {
         setOpenInviteBox(true);
-    }
+    };
 
     console.log("First comment's user:", comments[0]?.user);
 
     const handleCloseCommentBox = () => {
         setOpenCommentBox(false);
     };
+
+    useEffect(() => {
+        if (flash.success) {
+            alert(flash.success); // or use toast, or display inside modal
+        }
+    }, [flash.success]);
 
     return (
         <>
@@ -71,8 +84,7 @@ function Main({ tasks = [], members = [], auth, errors, children, comments = [] 
                         >
                             {members &&
                                 members.map((user) => (
-                                    
-                                        <li key={user.id}>
+                                    <li key={user.id}>
                                         <a
                                             onClick={() =>
                                                 handleOpenCommentBox(user.id)
@@ -88,21 +100,29 @@ function Main({ tasks = [], members = [], auth, errors, children, comments = [] 
                                             {user.name}
                                         </a>
                                     </li>
-                                    
-                                    
                                 ))}
-                                
-                                <li onClick={handleOpenInviteBox}>Add Member</li>
-                                <li><Link href={route("logout")} method="post" className="dropdown-item bg-blue-700 text-white hover:bg-blue-800">Logout</Link></li>
-                                
+
+                            <li onClick={handleOpenInviteBox}>Add Member</li>
+                            <li>
+                                <Link
+                                    href={route("logout")}
+                                    method="post"
+                                    className="dropdown-item bg-blue-700 text-white hover:bg-blue-800"
+                                >
+                                    Logout
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
 
-                
-                { openInviteBox && (
-                    <AddMember errors={errors} flash={flash} onClose={() => setOpenInviteBox(false)}/>
-                ) }
+                {openInviteBox && (
+                    <AddMember
+                        errors={errors}
+                        flash={flash}
+                        onClose={() => setOpenInviteBox(false)}
+                    />
+                )}
 
                 <Calendar
                     tasks={userTasks}

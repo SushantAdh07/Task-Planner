@@ -28,10 +28,8 @@ class TaskController extends Controller
         $task->create(
             $request->validated()
         );
-        session()->flash('message', 'Task added successfully!');
-        logger('Flash message set:', ['message' => session('message')]);
 
-        return Inertia::location(route('index'));
+        return back()->with('success', 'Task added successfully');
     }
 
     public function editTask(Task $task, UpdateTaskRequest $request){
