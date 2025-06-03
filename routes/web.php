@@ -76,18 +76,17 @@ Route::middleware('auth')->prefix('plan')->group(function () {
         Route::post('/create/team', 'createTeam');
         
     });
-    
-
-    Route::controller(AddMemberController::class)->group(function(){
-        Route::post('/add/member', 'addMember')->name('member.register.form');
-        Route::get('/edit/profile/{id}', 'index');
-        Route::put('/update/profile/{id}', 'updateProfile');
-    });
 
     Route::controller(IndividualPlanController::class)->group(function () {
         Route::get('/{slug}', 'index')->name('indiviudal');
     });
 });
+
+Route::controller(AddMemberController::class)->prefix('plan')->group(function(){
+        Route::post('/add/member', 'addMember');
+        Route::get('/create/profile/{member}', 'showRegistrationForm')->name('member.register.form');
+        Route::put('/update/profile/{member}', 'updateProfile');
+    });
 
 
 Route::get('/test-mail', function () {

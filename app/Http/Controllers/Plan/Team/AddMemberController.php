@@ -41,11 +41,11 @@ class AddMemberController extends Controller
         return back()->with('success', 'Invitation sent successfully!');
     }
 
-    public function index()
+    public function showRegistrationForm(Member $member)
     {
-        return Inertia::render('Components/Team/CreateProfile');
+        abort_if($member->status !== 'invited', 403);
+        return Inertia::render('Components/Team/CreateProfile', ['member' => $member]);
     }
-
     public function updateProfile(Request $request, $id)
     {
         $request->validate([
@@ -61,6 +61,6 @@ class AddMemberController extends Controller
             'status' => 'registered',
         ]);
 
-        return redirect()->back();
+        return back();
     }
 }
