@@ -17,7 +17,6 @@ export default function PlanoraLanding() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 relative overflow-hidden font-['Poppins',sans-serif]">
-      {/* Animated background elements */}
       <div className="absolute inset-0">
         <div 
           className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-400/20 blur-3xl animate-pulse"
@@ -31,7 +30,6 @@ export default function PlanoraLanding() {
         <div className="absolute bottom-1/3 left-1/5 w-80 h-80 rounded-full bg-gradient-to-r from-cyan-500/15 to-blue-600/15 blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
 
-      {/* Navigation */}
       <nav className="relative z-10 p-8 flex justify-between items-center backdrop-blur-sm">
         <div className={`transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}>
           <h1 className="text-xl font-semibold bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent tracking-tight">
@@ -47,7 +45,6 @@ export default function PlanoraLanding() {
         </div>
       </nav>
 
-      {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-[75vh] px-8 text-center">
         <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
           <div className="inline-block p-2 rounded-2xl bg-white/5 backdrop-blur-md mb-12 border border-blue-500/20">
@@ -76,7 +73,6 @@ export default function PlanoraLanding() {
           </p>
         </div>
 
-        {/* Main Action Buttons */}
         <div className={`transition-all duration-1000 delay-1100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
           <div className="flex flex-col sm:flex-row gap-4 mb-20">
             <button className="group relative px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl text-white font-medium text-sm transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:scale-105 transform tracking-wide">
@@ -91,7 +87,6 @@ export default function PlanoraLanding() {
           </div>
         </div>
 
-        {/* Feature Preview Cards */}
         <div className={`transition-all duration-1000 delay-1300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
             {[
@@ -115,7 +110,6 @@ export default function PlanoraLanding() {
         </div>
       </div>
 
-      {/* Bottom Section */}
       <div className="relative z-10 pb-12 px-8 text-center">
         <div className={`transition-all duration-1000 delay-1500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
           <p className="text-slate-400 text-xs font-light tracking-wider">
@@ -124,12 +118,10 @@ export default function PlanoraLanding() {
         </div>
       </div>
 
-      {/* Floating elements */}
       <div className="absolute top-24 left-12 w-1 h-1 bg-blue-400 rounded-full animate-ping" />
       <div className="absolute top-48 right-24 w-0.5 h-0.5 bg-cyan-400 rounded-full animate-pulse" />
       <div className="absolute bottom-40 left-24 w-1 h-1 bg-blue-300 rounded-full animate-bounce" />
       
-      {/* Additional subtle grid pattern */}
       <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
         backgroundSize: '50px 50px'
