@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Plan\IndividualPlanController;
 use App\Http\Controllers\Plan\Team\AddMemberController;
+use App\Http\Controllers\Plan\Team\MemberLoginController;
 use App\Http\Controllers\Plan\TeamPlanController;
 use App\Http\Controllers\TaskController;
 use App\Http\Middleware\PlanMiddleware;
+use App\Models\Member;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -87,6 +89,10 @@ Route::controller(AddMemberController::class)->prefix('plan')->group(function(){
         Route::get('/create/profile/{member}', 'showRegistrationForm')->name('member.register.form');
         Route::put('/update/profile/{member}', 'updateProfile');
     });
+
+Route::controller(MemberLoginController::class)->prefix('member')->group(function(){
+    Route::get('/login', 'indexMemberLogin');
+});
 
 
 Route::get('/test-mail', function () {

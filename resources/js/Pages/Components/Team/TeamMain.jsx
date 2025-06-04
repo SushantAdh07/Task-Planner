@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Calendar from "./CustomCalendar";
-import AddMember from "./AddMember";
+import AddMember from "./Member/AddMember";
 import { usePage, Link } from "@inertiajs/react";
 
 function Main({
