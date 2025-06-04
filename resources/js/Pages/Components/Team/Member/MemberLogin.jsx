@@ -30,11 +30,6 @@ export default function MemberLogin( ) {
                         Sign in to access your tasks
                     </p>
                 </div>
-
-                
-                    <div className="mb-6 p-3 bg-green-100 text-green-700 rounded-lg text-sm dark:bg-green-900 dark:text-green-100">
-                        
-                    </div>
                 
 
                 <form className="space-y-5">

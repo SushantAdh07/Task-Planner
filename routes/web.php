@@ -40,8 +40,8 @@ use Inertia\Inertia;
 //        ]);
  //   });
 
-Route::get('/', function(){
-    //
+Route::get('/landing', function(){
+    return Inertia::render('Components/LandingPage');
 });
 
 Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('index');
