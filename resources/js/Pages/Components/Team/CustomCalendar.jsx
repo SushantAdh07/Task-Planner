@@ -52,9 +52,7 @@ function CustomCalendar({
         <div className="min-h-screen p-4">
             <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-6">
                 <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-                    <h1 className="text-2xl font-bold text-gray-800">
-                        Task Calendar
-                    </h1>
+                    
                     <div className="flex items-center gap-4">
                         <button
                             onClick={handlePrevMonth}
@@ -94,8 +92,9 @@ function CustomCalendar({
                         const dayTasks = getTasksForDate(date);
                         const isCurrentMonth = isSameMonth(date, currentDate);
                         const isCurrentDay = isToday(date);
-                        const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
+                        const dayOfWeek = date.getDay(); 
                         const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+                        
 
                         return (
                             <button
@@ -132,7 +131,7 @@ function CustomCalendar({
                                     {dayTasks.slice(0, 2).map((task) => (
                                         <div
                                             key={task.id}
-                                            className="text-xs bg-blue-100 text-blue-800 p-1 rounded mt-1 truncate"
+                                            className={`text-xs ${task.status == 1 ? "bg-green-200 text-black" : "bg-blue-500 text-white" } p-1 rounded mt-1 truncate`}
                                         >
                                             {task.task_name}
                                         </div>
@@ -148,7 +147,6 @@ function CustomCalendar({
                     })}
                 </div>
 
-                {/* Dialog Box - Maintained compatibility */}
                 {showDialog && selectedDate && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
                         <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
