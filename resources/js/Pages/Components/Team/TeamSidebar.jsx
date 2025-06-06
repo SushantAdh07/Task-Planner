@@ -117,7 +117,7 @@ export default function TeamSidebar() {
                 onClick={() => setActiveItem(item.id)}
                 className={`w-full flex items-center px-3 py-3 rounded-xl text-sm font-medium transition-all duration-300 group ${
                   activeItem === item.id
-                    ? 'bg-gradient-to-r from-blue-600/20 to-cyan-600/20 text-white border border-blue-500/30 shadow-lg shadow-blue-500/10'
+                    ? 'bg-gradient-to-r from-blue-600/20 to-cyan-600/20 text-white shadow-lg shadow-blue-500/10'
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
               >
