@@ -10,6 +10,7 @@ use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class TeamPlanController extends Controller
 {
@@ -20,12 +21,13 @@ class TeamPlanController extends Controller
             $query->where('status', 'registered');
         }])->first();
         $tasks = Task::with(['comments.user'])->latest()->get();
-
+        $slug = $user ? Str::slug($user->name) : null;
         return Inertia::render('Components/Team/TeamMain', [
                     'auth' => ['user' => $user],
                     'team' => $team,
                     'members' => $team->members,
-                    'tasks' => $tasks
+                    'tasks' => $tasks,
+                    'slug' => $slug,
                 ]);
 
 

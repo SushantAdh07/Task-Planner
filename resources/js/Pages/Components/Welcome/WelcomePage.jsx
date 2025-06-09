@@ -7,7 +7,6 @@ export default function WelcomePage({ auth }) {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-white via-indigo-50 to-indigo-100 text-gray-900 font-sans">
-            {/* Navbar */}
             <nav className="sticky top-0 z-50 bg-white/70 backdrop-blur-md border-b border-gray-200 px-6 py-4 flex justify-between items-center shadow-sm">
                 <h1 className="text-2xl font-extrabold text-indigo-600">
                     PlanWise

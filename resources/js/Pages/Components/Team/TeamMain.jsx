@@ -11,6 +11,7 @@ function Main({
     errors,
     children,
     comments = [],
+    slug
 }) {
     const loggedInUser = auth.user.id;
     const [openCommentBox, setOpenCommentBox] = React.useState(null);
@@ -57,7 +58,7 @@ function Main({
     return (
         <>
             <div className="flex h-screen bg-slate-950 overflow-hidden font-['Poppins',sans-serif]">
-                <TeamSidebar />
+                <TeamSidebar slug={slug} />
 
                 <div className="flex-1 flex flex-col overflow-hidden">
                     <header className="bg-gradient-to-r from-slate-900 to-slate-800 border-b border-white/10 px-4 py-2">
@@ -115,7 +116,7 @@ function Main({
                                                                 ? "bg-blue-500/10 text-blue-300"
                                                                 : ""
                                                         }`}
-                                                        href="#"
+                                                        
                                                     >
                                                         {auth.user &&
                                                             auth.user.id ===

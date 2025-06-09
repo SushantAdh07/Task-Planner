@@ -8,15 +8,12 @@ export default function TeamSelection({ teams = [] }) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-blue-50 p-8">
       <div className="w-full max-w-sm space-y-6">
-        {/* White Selection Box */}
         <div className="bg-white rounded-xl shadow-md p-8 space-y-6">
-          {/* Minimal Header */}
           <div className="space-y-1">
             <h2 className="text-lg font-medium text-gray-800">Select team</h2>
             <p className="text-sm text-gray-500">Choose from your available options</p>
           </div>
 
-          {/* Spacious Dropdown */}
           <div className="relative">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -46,7 +43,6 @@ export default function TeamSelection({ teams = [] }) {
             )}
           </div>
 
-          {/* Select Button with Ample Space */}
           <div className="pt-4">
             <button
               disabled={!selectedTeam}
@@ -62,7 +58,6 @@ export default function TeamSelection({ teams = [] }) {
           </div>
         </div>
 
-        {/* Additional Spacing Element */}
         <div className="text-center">
           <p className="text-xs text-gray-400">Choose carefully - you can change later</p>
         </div>
