@@ -53,12 +53,16 @@ class TeamPlanController extends Controller
         }*/
     }
 
+    public function newTeam(){
+        return Inertia::render('Components/Plans/TeamPlan');
+    }
+
 
     public function createTeam(TeamPlanRequest $request)
     {
         $user = Auth::user();
 
-        if ($user->teams()->exists()) {
+        if ($user->team()->exists()) {
             return back()->withErrors([
                 'team' => 'You can only create one team'
             ]);
