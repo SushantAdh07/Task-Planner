@@ -73,7 +73,7 @@ Route::middleware('auth')->prefix('plan')->group(function () {
     
     Route::controller(TeamPlanController::class)->group(function () {
         
-        Route::get('/team', 'index')->name('team.calendar')->middleware('plan');
+        Route::get('/team', 'showTeam')->name('team.calendar')->middleware('plan');
         Route::get('/new/team', 'newTeam')->name('new.team');
         Route::post('/create/team', 'createTeam');
         

@@ -15,27 +15,41 @@ use Illuminate\Support\Str;
 
 class TeamPlanController extends Controller
 {
-    public function index(Request $request)
+
+
+    protected function getCurrentTeam()
     {
-        $user = $request->user();
-        $team = $user->team()->with(['members' => function ($query) {
-            $query->where('status', 'registered');
-        }])->first();
-        $tasks = TeamTasks::with(['comments.member'])->latest()->get();
-        $slug = $user ? Str::slug($user->name) : null;
+        if (Auth::guard('member')->check()) {
+            
+            return Auth::guard('member')->user()->team;
+        }    
+        
+        return Auth::user()->team;
+    }
+
+    public function showTeam()
+    {
+        $team = $this->getCurrentTeam()->load(['members', 'tasks.member']);
+        
         return Inertia::render('Components/Team/TeamMain', [
-                    'auth' => ['user' => $user],
-                    'team' => $team,
-                    'members' => $team->members,
-                    'tasks' => $tasks,
-                    'slug' => $slug,
-                ]);
-
+            'team' => $team,
+            'isCreator' => !Auth::guard('member')->check()
+        ]);
+    }
+    
+    public function showMemberTasks($memberId)
+    {
+        $team = $this->getCurrentTeam();
+        $member = $team->members()->findOrFail($memberId);
+        
+        return Inertia::render('Components/Team/TeamMain', [
+            'members' => $member,
+            'tasks' => $member->tasks,
+            'team' => $team,
+            'isCreator' => !Auth::guard('member')->check()
+        ]);
     }
 
-    public function newTeam(){
-        return Inertia::render('Components/Plans/TeamPlan');
-    }
 
 
     public function createTeam(TeamPlanRequest $request)
