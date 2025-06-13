@@ -8,13 +8,14 @@ function Main({
     tasks = [],
     members = [],
     auth,
+    loggedInUser,
     errors,
     children,
     comments = [],
     slug
 }) {
-    const loggedInUser = auth.user.id;
-    console.log('tasks:', tasks);
+    
+    
     const [openCommentBox, setOpenCommentBox] = React.useState(null);
     const [openInviteBox, setOpenInviteBox] = React.useState(null);
     const { flash } = usePage().props;
@@ -22,7 +23,7 @@ function Main({
     const [userTasks, setUserTasks] = React.useState(
         tasks
             .filter((task) => task.member_id === loggedInUser)
-            .map((task) => ({
+            .map(task => ({
                 ...task,
                 comments: task.comments || [],
             }))

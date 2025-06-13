@@ -16,23 +16,33 @@ use Illuminate\Support\Str;
 class TeamPlanController extends Controller
 {
 
+    protected function loggedInUser(){
+        if(Auth::guard('member')->check()){
+            return Auth::guard('member')->user();
+        }
+
+        return Auth::user();
+    }
+
 
     protected function getCurrentTeam()
     {
-        if (Auth::guard('member')->check()) {
-            
-            return Auth::guard('member')->user()->team;
-        }    
-        
-        return Auth::user()->team;
+        return $this->loggedInUser()->team;
     }
 
     public function showTeam()
     {
-        $team = $this->getCurrentTeam()->load(['members', 'tasks.member']);
-        
+        $team = $this->getCurrentTeam()->with(['members' => function ($query){
+            $query->where('status', 'registered');
+        }, 'tasks.member'])->first();
+
+        $loggedInUser = $this->loggedInUser()->id;        
+
         return Inertia::render('Components/Team/TeamMain', [
             'team' => $team,
+            'tasks' => $team->tasks,
+            'members' => $team->members,
+            'loggedInUser' => $loggedInUser,
             'isCreator' => !Auth::guard('member')->check()
         ]);
     }
@@ -43,8 +53,7 @@ class TeamPlanController extends Controller
         $member = $team->members()->findOrFail($memberId);
         
         return Inertia::render('Components/Team/TeamMain', [
-            'members' => $member,
-            'tasks' => $member->tasks,
+            'member' => $member,
             'team' => $team,
             'isCreator' => !Auth::guard('member')->check()
         ]);
