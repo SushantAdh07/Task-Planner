@@ -6,8 +6,8 @@ export default function MemberRegister({ member }) {
         name: "",
         password: "",
         password_confirmation: "",
-        email: member.email,          // prefilled
-        team_id: member.team_id       // hidden
+        email: member.email,          
+        team_id: member.team_id       
     });
     console.log("id:", member.id);
 
@@ -29,7 +29,6 @@ export default function MemberRegister({ member }) {
             <h2 className="text-2xl font-bold mb-4 text-center">Complete Your Registration</h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Email (readonly) */}
                 <div>
                     <label>Email</label>
                     <input
@@ -41,10 +40,8 @@ export default function MemberRegister({ member }) {
                     />
                 </div>
 
-                {/* Hidden Team ID */}
                 <input type="hidden" name="team_id" value={data.team_id} />
 
-                {/* Name */}
                 <div>
                     <label>Name</label>
                     <input
@@ -58,7 +55,6 @@ export default function MemberRegister({ member }) {
                     {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
                 </div>
 
-                {/* Password */}
                 <div>
                     <label>Password</label>
                     <input

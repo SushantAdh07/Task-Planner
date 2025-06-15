@@ -16,8 +16,9 @@ use Illuminate\Support\Str;
 class TeamPlanController extends Controller
 {
 
-    protected function loggedInUser(){
-        if(Auth::guard('member')->check()){
+    protected function loggedInUser()
+    {
+        if (Auth::guard('member')->check()) {
             return Auth::guard('member')->user();
         }
 
@@ -32,26 +33,33 @@ class TeamPlanController extends Controller
 
     public function showTeam()
     {
-        $team = $this->getCurrentTeam()->with(['members' => function ($query){
+        $team = $this->getCurrentTeam()->with(['members' => function ($query) {
             $query->where('status', 'registered');
         }, 'tasks.member'])->first();
 
-        $loggedInUser = $this->loggedInUser()->id;        
+        $loggedInUser = $this->loggedInUser();
+
+        $loggedInMember = $team->members->firstWhere('user_id', $loggedInUser->id);
 
         return Inertia::render('Components/Team/TeamMain', [
             'team' => $team,
             'tasks' => $team->tasks,
             'members' => $team->members,
-            'loggedInUser' => $loggedInUser,
-            'isCreator' => !Auth::guard('member')->check()
+            'auth' => [
+                'user' => $loggedInUser,
+                'memberId' => optional($loggedInMember)->id,
+            ],
+            'isCreator' => !Auth::guard('member')->check(),
+            'selectedUserId' => optional($loggedInMember)->id, 
         ]);
     }
-    
+
+
     public function showMemberTasks($memberId)
     {
         $team = $this->getCurrentTeam();
         $member = $team->members()->findOrFail($memberId);
-        
+
         return Inertia::render('Components/Team/TeamMain', [
             'member' => $member,
             'team' => $team,
@@ -83,5 +91,4 @@ class TeamPlanController extends Controller
 
         return redirect()->route('team.calendar');
     }
-
 }

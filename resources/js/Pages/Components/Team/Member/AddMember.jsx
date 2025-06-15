@@ -19,14 +19,14 @@ export default function AddMember({ onClose, flash }) {
             preserveScroll: true,
             onSuccess: () => {
                 reset();
-                onClose(); // Close modal after success
+                onClose(); 
             },
         });
     };
 
     useEffect(() => {
         if (flash.success) {
-            alert(flash.success); // or use toast, or display inside modal
+            alert(flash.success); 
         }
     }, [flash.success]);
 
