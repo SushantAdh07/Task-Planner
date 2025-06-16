@@ -67,7 +67,9 @@ class TeamPlanController extends Controller
         ]);
     }
 
-
+    public function newTeam(){
+        return Inertia::render('Components/Plans/TeamPlan');
+    }
 
     public function createTeam(TeamPlanRequest $request)
     {
@@ -85,6 +87,7 @@ class TeamPlanController extends Controller
             'team_id' => $team->id,
             'name' => Auth::user()->name,
             'email' => Auth::user()->email,
+            'password' => Auth::user()->password,
             'role' => 'creator',
             'status' => 'registered',
         ]);

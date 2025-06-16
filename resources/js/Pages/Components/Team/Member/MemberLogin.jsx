@@ -12,6 +12,13 @@ export default function MemberLogin() {
         password: '',
     });
 
+    const submit = (e) => {
+        e.preventDefault();
+        post(route('member.login'), {
+            onFinish: () => reset('password'),
+        });
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-950 to-slate-900 flex items-center justify-center p-4 font-['Poppins',sans-serif]">
             <Head title="Member Log in" />
@@ -29,9 +36,8 @@ export default function MemberLogin() {
                     </p>
                 </div>
 
-                {/* Form Body */}
                 <div className="p-8">
-                    <form className="space-y-5">
+                    <form onSubmit={submit} className="space-y-5">
                         <div>
                             <TextInput
                                 id="email"

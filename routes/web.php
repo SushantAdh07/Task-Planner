@@ -62,17 +62,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/delete/comments/{comment}', [CommentsController::class, 'deleteComment'])->name('comment.delete');
 });
 
-//PlansRoutes
-
-//    Route::get('/sushant', function(){
- //       return Inertia::render('Components/Individual/CustomCalendar');
- //   });
 
 
 Route::middleware('auth')->prefix('plan')->group(function () {
     
     Route::controller(TeamPlanController::class)->group(function () {
-        
         Route::get('/team', 'showTeam')->name('team.calendar')->middleware('plan');
         Route::get('/new/team', 'newTeam')->name('new.team');
         Route::post('/create/team', 'createTeam');
@@ -92,6 +86,8 @@ Route::controller(AddMemberController::class)->prefix('plan')->group(function(){
 
 Route::controller(MemberLoginController::class)->prefix('member')->group(function(){
     Route::get('/login', 'indexMemberLogin');
+    Route::post('login', 'login')->name('member.login');
+    Route::post('logout', 'logout')->name('member.logout');
 });
 
 
