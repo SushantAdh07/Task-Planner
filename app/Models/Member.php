@@ -3,14 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Member extends Model
+class Member extends Authenticatable
 {
-    protected $guarded = [];
+    protected $fillable = [
+        'team_id',
+        'name',
+        'email',
+        'password',
+        'role',
+        'status',
+    ];
 
-    public function teams()
+    protected $hidden = [
+        'password',
+    ];
+
+    public function team()
     {
-        return $this->belongsToMany(Team::class);
+        return $this->belongsTo(Team::class);
     }
 
     public function teamTasks(){

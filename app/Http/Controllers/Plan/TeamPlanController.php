@@ -18,21 +18,19 @@ class TeamPlanController extends Controller
 
     protected function loggedInUser()
     {
-        if (Auth::guard('member')->check()) {
-            return Auth::guard('member')->user();
-        }
-
-        return Auth::user();
+        return Auth::guard('member')->user();
     }
 
 
-    protected function getCurrentTeam()
+    public function getCurrentTeam()
     {
         return $this->loggedInUser()->team;
     }
 
     public function showTeam()
     {
+
+
         $team = $this->getCurrentTeam()->with(['members' => function ($query) {
             $query->where('status', 'registered');
         }, 'tasks.member'])->first();
@@ -50,7 +48,7 @@ class TeamPlanController extends Controller
                 'memberId' => optional($loggedInMember)->id,
             ],
             'isCreator' => !Auth::guard('member')->check(),
-            'selectedUserId' => optional($loggedInMember)->id, 
+            'selectedUserId' => optional($loggedInMember)->id,
         ]);
     }
 
@@ -67,7 +65,8 @@ class TeamPlanController extends Controller
         ]);
     }
 
-    public function newTeam(){
+    public function newTeam()
+    {
         return Inertia::render('Components/Plans/TeamPlan');
     }
 

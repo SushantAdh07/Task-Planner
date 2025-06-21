@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         TeamTasks::create([
-            'member_id' => '3',
-            'team_id' => '2',
-            'task_name' => 'Team Task',
-            'task_description' => 'Test of Team Task Description',
-            'selected_date' => '2025-06-19'
+            'member_id' => '20',
+            'team_id' => '5',
+            'task_name' => 'Sabita Task',
+            'task_description' => 'Sabita Test of Team Task Description',
+            'selected_date' => '2025-06-20'
         ]);
     }
 
