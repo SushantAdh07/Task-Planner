@@ -18,6 +18,8 @@ function Main({
     
     const { flash } = usePage().props;
 
+    console.log('auth', auth.user.name);
+
     const [openInviteBox, setOpenInviteBox] = useState(false);
     const [selectedUserId, setSelectedUserId] = useState(
         initialSelectedUserId || loggedInMemberId
@@ -52,6 +54,8 @@ function Main({
                             Calendar for {auth.user.name}
                         </h1>
 
+                        
+
                         <div className="flex items-center space-x-4">
                             <div className="dropdown">
                                 <a
@@ -63,9 +67,7 @@ function Main({
                                     aria-expanded="false"
                                 >
                                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                                    {members.find(
-                                        (u) => u.id === selectedUserId
-                                    )?.name || auth.user.name}
+                                    {auth.user.name}
                                     <svg
                                         className="w-4 h-4"
                                         fill="none"

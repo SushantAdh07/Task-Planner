@@ -30,10 +30,12 @@ class TeamPlanController extends Controller
     public function showTeam()
     {
 
+        $team = $this->getCurrentTeam();
 
-        $team = $this->getCurrentTeam()->with(['members' => function ($query) {
-            $query->where('status', 'registered');
-        }, 'tasks.member'])->first();
+        $team->load([
+            'members' => fn($q) => $q->where('status', 'registered'),
+            'tasks.member'
+        ]);
 
         $loggedInUser = $this->loggedInUser();
 
@@ -45,7 +47,7 @@ class TeamPlanController extends Controller
             'members' => $team->members,
             'auth' => [
                 'user' => $loggedInUser,
-                'memberId' => optional($loggedInMember)->id,
+                'memberId' => optional($loggedInUser)->id,
             ],
             'isCreator' => !Auth::guard('member')->check(),
             'selectedUserId' => optional($loggedInMember)->id,
