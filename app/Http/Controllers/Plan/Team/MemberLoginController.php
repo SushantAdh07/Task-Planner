@@ -19,7 +19,7 @@ class MemberLoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('member')->attempt($credentials)) {
-            return redirect()->intended('/calendar');
+            return redirect()->route('team.calendar');
         }
 
         return redirect()->back()->withErrors([

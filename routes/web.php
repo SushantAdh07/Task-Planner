@@ -64,7 +64,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::middleware('auth')->prefix('plan')->group(function () {
+Route::prefix('plan')->group(function () {
     
     Route::controller(TeamPlanController::class)->group(function () {
         Route::get('/team', 'showTeam')->name('team.calendar')->middleware('plan');

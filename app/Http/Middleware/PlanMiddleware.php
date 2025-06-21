@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Member;
 use App\Models\Team;
 use Closure;
 use Illuminate\Http\Request;
@@ -17,8 +18,8 @@ class PlanMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::user();
-        $hasTeam = Team::where('user_id', $user->id)->exists();
+        $member = Auth::guard('member')->user();
+        $hasTeam = Member::where('id', $member->id)->exists();
 
         if (!$hasTeam){
             return redirect()->route('new.team');
