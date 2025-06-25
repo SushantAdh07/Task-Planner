@@ -18,13 +18,23 @@ class PlanMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $member = Auth::guard('member')->user();
-        $hasTeam = Member::where('id', $member->id)->exists();
+        $user = Auth::guard('member')->user() ?? Auth::user();
 
-        if (!$hasTeam){
+        if (!$user) {
+            return redirect()->route('login');
+        }
+
+        if ($user instanceof \App\Models\Member) {
+            $hasTeam = !empty($user->team_id);
+        }
+        else {
+            $hasTeam = Member::where('user_id', $user->id)->exists();
+        }
+
+        if (!$hasTeam) {
             return redirect()->route('new.team');
         }
-        
+
         return $next($request);
     }
 }
