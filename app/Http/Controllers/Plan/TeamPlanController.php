@@ -12,20 +12,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
+use App\Traits\AuthTrait;
 
 class TeamPlanController extends Controller
 {
 
-    protected function loggedInUser()
-    {
-        return Auth::guard('member')->user();
-    }
-
-
-    public function getCurrentTeam()
-    {
-        return $this->loggedInUser()->team;
-    }
+    use AuthTrait;
 
     public function showTeam()
     {

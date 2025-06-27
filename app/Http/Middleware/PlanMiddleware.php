@@ -8,9 +8,11 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use App\Traits\AuthTrait;
 
 class PlanMiddleware
 {
+    use AuthTrait;
     /**
      * Handle an incoming request.
      *
@@ -19,6 +21,7 @@ class PlanMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::guard('member')->user() ?? Auth::user();
+        $team = $this->getCurrentTeam();
 
         if (!$user) {
             return redirect()->route('login');
@@ -28,7 +31,7 @@ class PlanMiddleware
             $hasTeam = !empty($user->team_id);
         }
         else {
-            $hasTeam = Member::where('user_id', $user->id)->exists();
+            $hasTeam = Member::where('team_id', $team->id)->exists();
         }
 
         if (!$hasTeam) {
