@@ -30,6 +30,7 @@ export default function TeamSidebar({slug}) {
         {
             id: "assignments",
             name: "Assignments",
+            link: '/plan/assignments',
             icon: (
                 <svg
                     className="w-5 h-5"
@@ -199,8 +200,9 @@ export default function TeamSidebar({slug}) {
 
                     <nav className="space-y-2">
                         {menuItems.map((item) => (
-                            <button
+                            <a
                                 key={item.id}
+                                href={item.link}
                                 onClick={() => setActiveItem(item.id)}
                                 className={`w-full flex items-center px-3 py-3 rounded-xl text-sm font-medium transition-all duration-300 group ${
                                     activeItem === item.id
@@ -230,7 +232,7 @@ export default function TeamSidebar({slug}) {
                                         )}
                                     </>
                                 )}
-                            </button>
+                            </a>
                         ))}
                     </nav>
                 </div>

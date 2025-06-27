@@ -59,6 +59,12 @@ class TeamPlanController extends Controller
         ]);
     }
 
+    //Assignments
+
+    public function showAssignments(){
+        return Inertia::render('Components/Team/Sidebar/Assignments');
+    }
+
     public function newTeam()
     {
         return Inertia::render('Components/Plans/TeamPlan');

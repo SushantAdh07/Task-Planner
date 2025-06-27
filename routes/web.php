@@ -70,8 +70,10 @@ Route::prefix('plan')->group(function () {
         Route::get('/team', 'showTeam')->name('team.calendar')->middleware('plan');
         Route::get('/new/team', 'newTeam')->name('new.team');
         Route::post('/create/team', 'createTeam');
-        
+        Route::get('/assignments', 'showAssignments');    
     });
+
+
 
     Route::controller(IndividualPlanController::class)->group(function () {
         Route::get('/{slug}', 'index')->name('indiviudal');
