@@ -53,6 +53,7 @@ class TeamPlanController extends Controller
         $member = $team->members()->findOrFail($memberId);
 
         return Inertia::render('Components/Team/TeamMain', [
+            'tasks' => $member->task,
             'member' => $member,
             'team' => $team,
             'isCreator' => !Auth::guard('member')->check()

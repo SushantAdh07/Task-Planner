@@ -19,6 +19,7 @@ function Main({
     const { flash } = usePage().props;
 
     console.log('auth', auth.user.name);
+    console.log(tasks);
 
     const [openInviteBox, setOpenInviteBox] = useState(false);
     const [selectedUserId, setSelectedUserId] = useState(
@@ -42,6 +43,8 @@ function Main({
             ...task,
             comments: task.comments || [],
         }));
+
+    console.log(filteredTasks);    
 
     return (
         <div className="flex h-screen bg-slate-950 overflow-hidden font-['Poppins',sans-serif]">
