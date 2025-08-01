@@ -45,8 +45,8 @@ export default function ForgotPassword({ status }) {
                 <InputError message={errors.email} className="mt-2" />
 
                 <div className="mt-4 flex items-center justify-end">
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Email Password Reset Link
+                    <PrimaryButton className="w-full flex justify-center py-2 px-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-lg text-sm font-medium shadow-sm hover:shadow-md transition-all" disabled={processing}>
+                        Send Email
                     </PrimaryButton>
                 </div>
             </form>
