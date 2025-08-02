@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { usePage } from "@inertiajs/react";
 
-export default function TeamSidebar({slug}) {
+export default function TeamSidebar() {
     const [activeItem, setActiveItem] = useState("calendar");
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const { props } = usePage();
+    const slug = props.slug;
     
 
     const menuItems = [
@@ -266,28 +268,7 @@ export default function TeamSidebar({slug}) {
             </div>
 
             <div className="p-4 border-t border-white/5">
-                <div
-                    className={`${
-                        isCollapsed
-                            ? "flex justify-center"
-                            : "flex items-center justify-between"
-                    }`}
-                >
-                    {!isCollapsed && (
-                        <div className="text-xs text-slate-400">
-                            <p className="font-medium">Pro Plan</p>
-                            <p>15 days left</p>
-                        </div>
-                    )}
-
-                    <button
-                        className={`${
-                            isCollapsed ? "w-8 h-8" : "px-3 py-2"
-                        } bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg text-white text-xs font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105`}
-                    >
-                        {isCollapsed ? "↗" : "Upgrade"}
-                    </button>
-                </div>
+                
             </div>
 
             <div className="absolute top-20 right-4 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />

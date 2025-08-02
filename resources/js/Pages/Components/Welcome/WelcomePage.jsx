@@ -38,7 +38,6 @@ export default function WelcomePage({ auth }) {
                 </div>
             </nav>
 
-            {/* Hero Section */}
             <section className="text-center px-6 pt-20 pb-12 relative z-10">
                 <motion.h2
                     initial={{ opacity: 0, y: -20 }}
@@ -59,7 +58,6 @@ export default function WelcomePage({ auth }) {
                 </motion.p>
             </section>
 
-            {/* Plan Options */}
             <section className="px-6 py-12 flex flex-col md:flex-row gap-8 justify-center items-center">
                 {[
                     {
@@ -91,7 +89,6 @@ export default function WelcomePage({ auth }) {
                 ))}
             </section>
 
-            {/* Workflow Section */}
             <section className="py-16 px-6 bg-white/30 backdrop-blur-lg rounded-3xl mx-4 md:mx-12 mt-8 shadow-2xl">
                 <h3 className="text-3xl font-bold text-center mb-12 text-indigo-700">
                     How It Works
@@ -132,7 +129,6 @@ export default function WelcomePage({ auth }) {
                 </div>
             </section>
 
-            {/* CTA Footer */}
             <footer className="text-center py-16 bg-gradient-to-br from-indigo-600 to-purple-600 text-white mt-20 rounded-t-[3rem]">
                 <p className="text-2xl font-semibold mb-6">
                     Ready to Plan Smarter?
