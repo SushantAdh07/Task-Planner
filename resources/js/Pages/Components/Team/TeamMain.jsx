@@ -14,12 +14,10 @@ function Main({
     selectedUserId: initialSelectedUserId,
 }) {
     const loggedInUser = auth?.user?.id;
+    const slugName = auth?.user?.name;
     const loggedInMemberId = auth?.memberId;
     
     const { flash } = usePage().props;
-
-    console.log('auth', auth.user.name);
-    console.log(tasks);
 
     const [openInviteBox, setOpenInviteBox] = useState(false);
     const [selectedUserId, setSelectedUserId] = useState(
@@ -48,7 +46,7 @@ function Main({
 
     return (
         <div className="flex h-screen bg-slate-950 overflow-hidden font-['Poppins',sans-serif]">
-            <TeamSidebar slug={slug} />
+            <TeamSidebar slug={slugName} />
 
             <div className="flex-1 flex flex-col overflow-hidden">
                 <header className="bg-gradient-to-r from-slate-900 to-slate-800 border-b border-white/10 px-4 py-2">

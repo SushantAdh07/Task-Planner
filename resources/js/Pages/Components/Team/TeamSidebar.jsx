@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { usePage } from "@inertiajs/react";
 
-export default function TeamSidebar() {
+export default function TeamSidebar({slug}) {
     const [activeItem, setActiveItem] = useState("calendar");
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const { props } = usePage();
-    const slug = props.slug;
+
     
+    console.log("user:", slug);
 
     const menuItems = [
         {
