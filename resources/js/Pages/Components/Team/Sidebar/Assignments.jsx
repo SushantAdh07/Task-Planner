@@ -113,6 +113,7 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
                                         type="date"
                                         className="w-full bg-slate-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                                         value={newTask.due_date}
+                                        required
                                         onChange={(e) => setNewTask({...newTask, due_date: e.target.value})}
                                     />
                                 </div>
@@ -121,6 +122,7 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
                                     <select
                                         className="w-full bg-slate-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                                         value={newTask.priority}
+                                        required
                                         onChange={(e) => setNewTask({...newTask, priority: e.target.value})}
                                     >
                                         <option value="low">Low</option>
