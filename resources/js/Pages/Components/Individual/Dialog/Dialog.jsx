@@ -119,7 +119,6 @@ function Dialog({
                 </ul>
             </div>
 
-            {/* Main Content Area */}
             <div
                 className={`${
                     mobileView && (inputDialog || editDialog)

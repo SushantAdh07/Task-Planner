@@ -26,6 +26,8 @@ function CustomCalendar({
     const daysInMonth = eachDayOfInterval({ start: monthStart, end: monthEnd });
     const firstDayIndex = monthStart.getDay();
 
+    console.log("loggedInUser:", loggedInUser);
+
     const handlePrevMonth = () => setCurrentDate(subMonths(currentDate, 1));
     const handleNextMonth = () => setCurrentDate(addMonths(currentDate, 1));
 
@@ -140,7 +142,6 @@ function CustomCalendar({
                     })}
                 </div>
 
-                {/* Dialog Box - Maintained compatibility */}
                 {showDialog && selectedDate && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
                         <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
