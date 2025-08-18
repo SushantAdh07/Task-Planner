@@ -11,23 +11,23 @@ import {
     isToday,
 } from "date-fns";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import Dialog from "../Team/Dialog/Dialog";
+import Dialog from "./Dialog/Dialog";
 
 function CustomCalendar({
     tasks,
-    loggedInUser
+    
 }) {
+
+    console.log('tasks:', tasks);
+
+
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(null);
     const [showDialog, setShowDialog] = useState(false);
-
     const monthStart = startOfMonth(currentDate);
     const monthEnd = endOfMonth(currentDate);
     const daysInMonth = eachDayOfInterval({ start: monthStart, end: monthEnd });
     const firstDayIndex = monthStart.getDay();
-
-    console.log("loggedInUser:", loggedInUser);
-
     const handlePrevMonth = () => setCurrentDate(subMonths(currentDate, 1));
     const handleNextMonth = () => setCurrentDate(addMonths(currentDate, 1));
 
@@ -148,7 +148,6 @@ function CustomCalendar({
                             <Dialog
                                 value={selectedDate.toLocaleDateString("en-CA")}
                                 tasks={tasks}
-                                loggedInUser={loggedInUser}
                 
                             />
                             <div className="p-4 border-t flex">

@@ -6,12 +6,9 @@ import { router, useForm } from "@inertiajs/react";
 import { X, Plus, Edit2, Trash2, CircleCheck } from "lucide-react";
 
 function Dialog({
-    value,
-    tasks,
-    loggedInUser,
-    selectedUser,
-    users,
+    tasks = [],
     errors,
+    value,
     comments,
 }) {
     const [inputDialog, setInputDialog] = useState(false);
@@ -39,17 +36,17 @@ function Dialog({
     }, [value, tasks]);
 
     const openInputDialog = () => {
-        if (loggedInUser === selectedUser) {
+        
             setInputDialog(true);
             setEditDialog(null);
-        }
+        
     };
 
     const openEditDialog = (taskId) => {
-        if (loggedInUser === selectedUser) {
+        
             setEditDialog(taskId);
             setInputDialog(false);
-        }
+        
     };
 
     const closeDialog = () => {
@@ -74,7 +71,7 @@ function Dialog({
             >
                 <div className="flex justify-between items-center mb-4">
                     <h3 className="text-lg font-semibold">Tasks for {value}</h3>
-                    {loggedInUser === selectedUser && (
+                    
                         <button
                             onClick={openInputDialog}
                             className="p-2 bg-blue-700 hover:bg-blue-600 rounded-full transition-colors"
@@ -82,7 +79,7 @@ function Dialog({
                         >
                             <Plus size={18} />
                         </button>
-                    )}
+                    
                 </div>
 
                 <ul className="space-y-2 max-h-[300px] md:max-h-[400px] overflow-y-auto">
@@ -162,15 +159,11 @@ function Dialog({
                         />
                     </div>
                 ) : selectedTask ? (
+                    <>
                     <div className="space-y-6">
                         <div>
                             <p className="text-sm text-gray-500">
-                                {
-                                    users.find(
-                                        (user) => user.id === selectedUser
-                                    )?.name
-                                }{" "}
-                                • {value}
+                                User Name
                             </p>
                         </div>
                         <div className="bg-blue-50 px-4 py-2.5 space-y-4 rounded-lg">
@@ -185,7 +178,6 @@ function Dialog({
                                 {selectedTask.task_description ||
                                     "No description provided"}
                             </p>
-                            {loggedInUser === selectedUser && (
                                 <div className="flex flex-wrap gap-2 pt-4 border-t border-gray-200">
                                     <button
                                         onClick={() =>
@@ -204,24 +196,22 @@ function Dialog({
                                         Delete Task
                                     </button>
                                 </div>
-                            )}
+                            
                         </div>
 
                         <hr />
                         <div className="mt-8">
-                            {selectedTask && (
+                            
                                 <Commenter
                                     initialComments={
                                         selectedTask.comments || []
                                     }
-                                    loggedInUser={loggedInUser}
-                                    selectedUser={selectedUser}
                                     taskId={selectedTask.id}
                                 />
-                            )}
+                        
                         </div>
                     </div>
-                ) : loggedInUser === selectedUser ? (
+            
                     <div className="text-center py-8">
                         <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
                             <Plus className="text-blue-600" size={24} />
@@ -238,7 +228,7 @@ function Dialog({
                         >
                             Create New Task
                         </button>
-                    </div>
+                    </div></>
                 ) : (
                     <div className="text-center py-8">
                         <h3 className="text-lg font-medium text-gray-800 mb-2">

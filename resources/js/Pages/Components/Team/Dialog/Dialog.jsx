@@ -18,7 +18,7 @@ function Dialog({
     const [editDialog, setEditDialog] = useState(null);
     const [selectedTask, setSelectedTask] = useState(null);
     const [mobileView, setMobileView] = useState(false);
-
+    console.log('none');
     useEffect(() => {
         const handleResize = () => {
             setMobileView(window.innerWidth < 768);
