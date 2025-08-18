@@ -14,7 +14,7 @@ class IndividualPlanController extends Controller
     {
         $user = Auth::user();
         $tasks = $user->tasks;
-        dd($tasks);
+        
         return Inertia::render('Components/Individual/IndividualMain',[
             'tasks' => $tasks,
             'user'=>$user,
