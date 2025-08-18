@@ -31,6 +31,8 @@ class TeamPlanController extends Controller
 
         $loggedInUser = $this->loggedInUser();
 
+        
+
         $loggedInMember = $team->members->firstWhere('user_id', $loggedInUser->id);
 
         return Inertia::render('Components/Team/TeamMain', [

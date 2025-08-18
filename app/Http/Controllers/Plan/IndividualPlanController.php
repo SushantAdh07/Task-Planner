@@ -5,17 +5,19 @@ namespace App\Http\Controllers\Plan;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class IndividualPlanController extends Controller
 {
     public function index(Request $request)
     {
-        $tasks = Task::latest()->get();
-        $user = $request->user();
-        return Inertia::render('Components/Individual/CustomCalendar',[
+        $user = Auth::user();
+        $tasks = $user->tasks;
+        dd($tasks);
+        return Inertia::render('Components/Individual/IndividualMain',[
             'tasks' => $tasks,
-            'loggedInUser' => $user,
+            'user'=>$user,
         ]);
     }
 }
