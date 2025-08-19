@@ -20,7 +20,7 @@ function EditDialog({ selectedTask, onClose }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        put(`/update-tasks/${selectedTask.id}`, {
+        put(`/plan/update-tasks/${selectedTask.id}`, {
             preserveScroll: true,
             onSuccess: () => {
                 reset();

@@ -2,7 +2,7 @@ import React from "react";
 import { useForm, usePage } from "@inertiajs/react";
 import { Plus, X } from "lucide-react";
 
-function InputDialog({ value, errors }) {
+function InputDialog({ value, errors=[] }) {
     const { auth } = usePage().props;
 
     const { data, setData, post, processing, reset } = useForm({
@@ -18,9 +18,9 @@ function InputDialog({ value, errors }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post("/tasks", {
+        post("/plan/tasks", {
             preserveScroll: true,
-            onSuccess: () => reset(),
+            onSuccess: () => {reset(); setOpen(false);}
         });
     };
 

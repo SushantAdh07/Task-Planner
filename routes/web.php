@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Individual\IndividualTaskController;
 use App\Http\Controllers\Plan\IndividualPlanController;
 use App\Http\Controllers\Plan\Team\AddMemberController;
 use App\Http\Controllers\Plan\Team\MemberLoginController;
@@ -54,9 +55,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     //Route::get('/home', [HomeController::class, 'index'])->name('index');
-    Route::post('/tasks', [TaskController::class, 'createTask']);
-    Route::put('/update-tasks/{task}', [TaskController::class, 'editTask']);
-    Route::delete('/delete-task/{id}', [TaskController::class, 'deleteTask'])->name('task.delete');
+    Route::post('/team-tasks', [TaskController::class, 'createTask']);
+    Route::put('/update-team-tasks/{task}', [TaskController::class, 'editTask']);
+    Route::delete('/delete-team-task/{id}', [TaskController::class, 'deleteTask'])->name('team-task.delete');
 
     Route::post('/tasks/{task}/comments', [CommentsController::class, 'createComments'])->name('create.comment');
     Route::delete('/delete/comments/{comment}', [CommentsController::class, 'deleteComment'])->name('comment.delete');
@@ -78,6 +79,12 @@ Route::prefix('plan')->group(function () {
     Route::controller(IndividualPlanController::class)->group(function () {
         Route::get('/{slug}', 'index')->name('indiviudal');
     });
+    Route::post('/tasks', [IndividualTaskController::class, 'createTask']);
+    Route::put('/update-tasks/{id}', [IndividualTaskController::class, 'editTask']);
+    Route::delete('/delete-task/{id}', [IndividualTaskController::class, 'deleteTask'])->name('task.delete');
+
+
+
 });
 
 Route::controller(AddMemberController::class)->prefix('plan')->group(function(){

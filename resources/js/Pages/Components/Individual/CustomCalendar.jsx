@@ -45,8 +45,8 @@ function CustomCalendar({
     return (
         <div className="min-h-screen p-4">
             <div className="max-w-7xl mx-auto bg-white rounded-lg shadow-lg p-6">
-                <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-                    <h1 className="text-2xl font-bold text-gray-800">
+                <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
+                    <h1 className="text-xl font-bold text-gray-800">
                         Task Calendar
                     </h1>
                     <div className="flex items-center gap-4">
