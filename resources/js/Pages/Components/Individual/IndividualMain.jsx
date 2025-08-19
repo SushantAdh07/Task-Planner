@@ -31,15 +31,16 @@ function Main({ tasks = [], user, errors, comments = [] }) {
 
     return (
         <>
-            <div className="container p-3 main">
+            <div className="container main">
                 {/** <div className="col-md-4 mt-3 bg-dark sidebar">
                     <Sidebar />
                 </div> */}
 
-                <div className="flex justify-between items-center w-full">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 truncate max-w-[50%] sm:max-w-[70%]">
+                <div className="flex justify-between items-center w-full p-3">
+                    <h3 className="text-md font-bold text-gray-800 truncate max-w-[50%] sm:max-w-[70%]">
                         Calendar for {user.name}
-                    </h2>
+                    </h3>
+                    <a href="/" className="text-md font-bold text-gray-800 truncate max-w-[50%] sm:max-w-[70%]">Home</a>
                 </div>
 
                 <Calendar

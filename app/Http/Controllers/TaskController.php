@@ -8,6 +8,7 @@ use App\Models\Task;
 use App\Models\User;
 use App\Http\Requests\TaskStoreRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Models\TeamTasks;
 
 class TaskController extends Controller
 {
@@ -24,17 +25,17 @@ class TaskController extends Controller
         ]);
     }
 
-    public function createTask(Task $task, TaskStoreRequest $request){
-        $task->create(
+    public function createTask(TeamTasks $team_tasks, TaskStoreRequest $request){
+        $team_tasks->create(
             $request->validated()
         );
 
         return back()->with('success', 'Task added successfully');
     }
 
-    public function editTask(Task $task, UpdateTaskRequest $request){
+    public function editTask(TeamTasks $team_tasks, UpdateTaskRequest $request){
 
-        $task->update($request->validated());
+        $team_tasks->update($request->validated());
 
         return Inertia::location(route('index'));
     }
