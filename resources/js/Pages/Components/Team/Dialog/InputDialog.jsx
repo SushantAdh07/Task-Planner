@@ -4,9 +4,12 @@ import { Plus, X } from "lucide-react";
 
 function InputDialog({ value, errors }) {
     const { auth } = usePage().props;
+    const { team } = usePage().props;
+    
 
     const { data, setData, post, processing, reset } = useForm({
-        user_id: auth.user.id,
+        member_id: auth.user.id,
+        team_id: team.id,
         task_name: "",
         task_description: "",
         selected_date: value,
@@ -18,7 +21,7 @@ function InputDialog({ value, errors }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post("/tasks", {
+        post("/team-tasks", {
             preserveScroll: true,
             onSuccess: () => reset(),
         });
@@ -71,7 +74,8 @@ function InputDialog({ value, errors }) {
                     <p>This task will be created for <strong>{value}</strong></p>
                 </div>
 
-                <input type="hidden" name="user_id" value={auth.user.id} />
+                
+                <input type="hidden" name="member_id" value={auth.user.id} />
                 <input type="hidden" name="selected_date" value={data.selected_date} />
 
                 <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">

@@ -23,7 +23,8 @@ class TaskStoreRequest extends FormRequest
     {
         return [
             
-            'user_id' => ['required'],
+            'member_id' => ['required'],
+            'team_id' => ['required'],
             'task_name' => ['required', 'max:100'],
             'task_description' => ['required', 'min:10'],
             'selected_date' => ['required'],
