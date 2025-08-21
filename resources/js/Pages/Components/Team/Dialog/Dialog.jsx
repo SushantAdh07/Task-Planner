@@ -59,7 +59,7 @@ function Dialog({
 
     const destroy = () => {
         if (confirm("Are you sure you want to delete this task?")) {
-            router.delete(route("task.delete", selectedTask.id));
+            router.delete(route("teamtask.delete", selectedTask.id));
         }
     };
 
