@@ -33,15 +33,17 @@ class TaskController extends Controller
         return back()->with('success', 'Task added successfully');
     }
 
-    public function editTask(TeamTasks $team_tasks, UpdateTaskRequest $request){
+    public function editTask($id, UpdateTaskRequest $request){
 
+        $team_tasks = TeamTasks::findOrFail($id);
+        
         $team_tasks->update($request->validated());
 
-        return Inertia::location(route('index'));
+        return back();
     }
 
     public function deleteTask($id){
-        Task::findOrFail($id)->delete();
-        return Inertia::location(route('index'));
+        TeamTasks::findOrFail($id)->delete();
+        return back();
     }
 }

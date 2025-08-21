@@ -56,8 +56,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     //Route::get('/home', [HomeController::class, 'index'])->name('index');
     Route::post('/team-tasks', [TaskController::class, 'createTask']);
-    Route::put('/update-team-tasks/{task}', [TaskController::class, 'editTask']);
-    Route::delete('/delete-team-task/{id}', [TaskController::class, 'deleteTask'])->name('team-task.delete');
+    Route::put('/update-team-tasks/{id}', [TaskController::class, 'editTask']);
+    Route::delete('/delete-team-task/{id}', [TaskController::class, 'deleteTask'])->name('teamtask.delete');
 
     Route::post('/tasks/{task}/comments', [CommentsController::class, 'createComments'])->name('create.comment');
     Route::delete('/delete/comments/{comment}', [CommentsController::class, 'deleteComment'])->name('comment.delete');

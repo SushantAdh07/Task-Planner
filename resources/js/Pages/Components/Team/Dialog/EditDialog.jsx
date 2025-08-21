@@ -6,7 +6,7 @@ function EditDialog({ selectedTask, onClose }) {
     const { auth, errors } = usePage().props;
 
     const { data, setData, put, processing, reset } = useForm({
-        user_id: auth.user.id,
+        member_id: auth.user.id,
         task_name: selectedTask.task_name,
         task_description: selectedTask.task_description,
         selected_date: selectedTask.selected_date,
@@ -20,7 +20,7 @@ function EditDialog({ selectedTask, onClose }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        put(`/update-tasks/${selectedTask.id}`, {
+        put(`/update-team-tasks/${selectedTask.id}`, {
             preserveScroll: true,
             onSuccess: () => {
                 reset();
