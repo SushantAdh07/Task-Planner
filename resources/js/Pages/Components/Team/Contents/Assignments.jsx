@@ -12,7 +12,9 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
     });
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-950 to-blue-950 p-6 font-['Poppins',sans-serif]">
+        <div className='min-h-screen p-4'>
+
+            <div className="min-h-screen bg-gradient-to-br from-slate-950 to-blue-950 p-6 font-['Poppins',sans-serif]">
             <div className="flex justify-between items-center mb-8">
                 <h1 className="text-2xl font-semibold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
                     Task Manager
@@ -152,41 +154,8 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
                 </div>
             )}
         </div>
-    );
-}
-
-function TaskCard({ task, type }) {
-    const priorityColors = {
-        high: 'bg-red-500/20 text-red-400',
-        medium: 'bg-yellow-500/20 text-yellow-400',
-        low: 'bg-green-500/20 text-green-400'
-    };
-
-    return (
-        <div className="bg-slate-800/50 border border-white/5 rounded-lg p-4 hover:border-white/10 transition-colors">
-            <div className="flex justify-between items-start">
-                <div>
-                    <h3 className="text-sm font-medium text-white">{task.title}</h3>
-                    <p className="text-xs text-slate-400 mt-1">
-                        {type === 'received' ? `From: ${task.from}` : `To: ${task.to}`}
-                    </p>
-                </div>
-                <span className={`text-xs px-2 py-1 rounded-full ${priorityColors[task.priority]}`}>
-                    {task.priority}
-                </span>
-            </div>
-            
-            <div className="flex items-center justify-between mt-4">
-                <span className="text-xs text-slate-400">{task.due_date}</span>
-                <div className="flex gap-2">
-                    <button className="text-xs text-blue-400 hover:text-blue-300">
-                        {type === 'received' ? 'Mark Complete' : 'Edit'}
-                    </button>
-                    <button className="text-xs text-slate-400 hover:text-slate-300">
-                        {type === 'received' ? 'Request Extension' : 'Cancel'}
-                    </button>
-                </div>
-            </div>
+        
         </div>
     );
 }
+

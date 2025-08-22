@@ -35,7 +35,7 @@ class TeamPlanController extends Controller
 
         $loggedInMember = $team->members->firstWhere('user_id', $loggedInUser->id);
 
-        return Inertia::render('Components/Team/TeamMain', [
+        return Inertia::render('Components/Team/Contents/TeamMain', [
             'team' => $team,
             'tasks' => $team->tasks,
             'members' => $team->members,
@@ -54,7 +54,7 @@ class TeamPlanController extends Controller
         $team = $this->getCurrentTeam();
         $member = $team->members()->findOrFail($memberId);
 
-        return Inertia::render('Components/Team/TeamMain', [
+        return Inertia::render('Components/Team/Contents/TeamMain', [
             'tasks' => $member->task,
             'member' => $member,
             'team' => $team,
@@ -65,7 +65,7 @@ class TeamPlanController extends Controller
     //Assignments
 
     public function showAssignments(){
-        return Inertia::render('Components/Team/Sidebar/Assignments');
+        return Inertia::render('Components/Team/Contents/Assignments');
     }
 
     public function newTeam()
