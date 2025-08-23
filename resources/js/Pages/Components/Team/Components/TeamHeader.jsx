@@ -1,7 +1,9 @@
+import { usePage } from "@inertiajs/react";
 import React from "react";
 
 export default function TeamHeader(){
     const { auth } = usePage().props;
+    const { members } = usePage().props;
     
     return(
         <>

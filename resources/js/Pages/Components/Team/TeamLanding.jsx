@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import TeamMain from "./Contents/TeamMain";
+import Header from "./Components/TeamHeader";
+import Sidebar from "./Components/TeamSidebar";
 import Assignments from "./Contents/Assignments";
 
 export default function Landing(){

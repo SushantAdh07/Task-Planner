@@ -5,8 +5,6 @@ export default function TeamSidebar({slug}) {
     const [activeItem, setActiveItem] = useState("calendar");
     const [isCollapsed, setIsCollapsed] = useState(false);
 
-    
-    console.log("user:", slug);
 
     const menuItems = [
         {

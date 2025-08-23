@@ -19,6 +19,10 @@ class TeamPlanController extends Controller
 
     use AuthTrait;
 
+    public function dashboard(){
+        
+    }
+
     public function showTeam()
     {
 
