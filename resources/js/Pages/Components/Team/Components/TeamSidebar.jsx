@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { usePage } from "@inertiajs/react";
 
-export default function TeamSidebar({slug}) {
+export default function TeamSidebar({slug, activeMenu, setActiveMenu}) {
     const [activeItem, setActiveItem] = useState("calendar");
     const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -203,7 +203,7 @@ export default function TeamSidebar({slug}) {
                             <a
                                 key={item.id}
                                 href={item.link}
-                                onClick={() => setActiveItem(item.id)}
+                                onClick={() => setActiveMenu(item.id)}
                                 className={`w-full flex items-center px-3 py-3 rounded-xl text-sm font-medium transition-all duration-300 group ${
                                     activeItem === item.id
                                         ? "bg-gradient-to-r from-blue-600/20 to-cyan-600/20 text-white shadow-lg shadow-blue-500/10"

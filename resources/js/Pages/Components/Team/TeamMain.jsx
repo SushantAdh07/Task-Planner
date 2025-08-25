@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Calendar from "./CustomCalendar";
-import AddMember from "../Member/AddMember";
-import TeamSidebar from "../Components/TeamSidebar";
-import Header from "../Components/TeamHeader";
-import Assignments from "./Assignments";
+import Calendar from "./Contents/CustomCalendar";
+import AddMember from "./Member/AddMember";
+import TeamSidebar from "./Components/TeamSidebar";
+import Header from "./Components/TeamHeader";
+import Assignments from "./Contents/Assignments";
 import { usePage, Link } from "@inertiajs/react";
 
 function Main({
@@ -71,7 +71,7 @@ function Main({
 
     return (
         <div className="flex h-screen bg-slate-950 overflow-hidden font-['Poppins',sans-serif]">
-            <TeamSidebar slug={slugName} />
+            <TeamSidebar slug={slugName} activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
 
             <div className="flex-1 flex flex-col overflow-hidden">
                 <header className="bg-gradient-to-r from-slate-900 to-slate-800 border-b border-white/10 px-4 py-2">

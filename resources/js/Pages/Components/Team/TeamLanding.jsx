@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import TeamMain from "./Contents/TeamMain";
+import TeamMain from "./TeamMain";
 import Header from "./Components/TeamHeader";
 import Sidebar from "./Components/TeamSidebar";
 import Assignments from "./Contents/Assignments";
