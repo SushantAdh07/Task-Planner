@@ -30,7 +30,7 @@ export default function TeamSidebar({slug, activeMenu, setActiveMenu}) {
         {
             id: "assignments",
             name: "Assignments",
-            link: '/plan/assignments',
+            // link: '/plan/assignments',
             icon: (
                 <svg
                     className="w-5 h-5"
@@ -204,15 +204,15 @@ export default function TeamSidebar({slug, activeMenu, setActiveMenu}) {
                                 key={item.id}
                                 href={item.link}
                                 onClick={() => setActiveMenu(item.id)}
-                                className={`w-full flex items-center px-3 py-3 rounded-xl text-sm font-medium transition-all duration-300 group ${
-                                    activeItem === item.id
+                                className={`w-full flex items-center px-3 py-3 rounded-xl text-sm font-medium cursor-pointer transition-all duration-300 group ${
+                                    activeMenu === item.id
                                         ? "bg-gradient-to-r from-blue-600/20 to-cyan-600/20 text-white shadow-lg shadow-blue-500/10"
                                         : "text-slate-400 hover:text-white hover:bg-white/5"
                                 }`}
                             >
                                 <div
                                     className={`flex-shrink-0 transition-all duration-300 ${
-                                        activeItem === item.id
+                                        activeMenu === item.id
                                             ? "text-blue-400"
                                             : "group-hover:text-white group-hover:scale-110"
                                     }`}

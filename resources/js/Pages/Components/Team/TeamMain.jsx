@@ -26,10 +26,10 @@ function Main({
         initialSelectedUserId || loggedInMemberId
     );
 
-    const [activeMenu, setActiveMenu] = useState(false);
+    const [activeMenu, setActiveMenu] = useState("calendar");
     const renderContent = () => {
         switch (activeMenu) {
-            case "Calendar":
+            case "calendar":
                 return <Calendar tasks={filteredTasks}
                         loggedInUser={loggedInUser}
                         selectedUser={selectedUserId}
@@ -37,7 +37,7 @@ function Main({
                         errors={errors}
                         flash={flash}
                         comments={comments}/>;
-            case "Assignment":
+            case "assignments":
                 return <Assignments />;
             default:
                 return <Calendar tasks={filteredTasks}
