@@ -14,9 +14,9 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
     return (
         <div className='min-h-screen p-4'>
 
-            <div className="min-h-screen bg-gradient-to-br from-slate-950 to-blue-950 p-6 font-['Poppins',sans-serif]">
+            <div className="min-h-screen bg-white from-slate-950 to-blue-950 p-6 font-['Poppins',sans-serif]">
             <div className="flex justify-between items-center mb-8">
-                <h1 className="text-2xl font-semibold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-semibold bg-gradient-to-r from-black to-blue-800 bg-clip-text text-transparent">
                     Task Manager
                 </h1>
                 <PrimaryButton 
@@ -31,7 +31,7 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-slate-900/50 border border-white/10 rounded-xl p-5 backdrop-blur-sm">
+                <div className="bg-gradient-to-b from-slate-950/95 via-blue-950/95 to-slate-950/95 to-cyan-500 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-lg font-medium text-white flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
@@ -41,15 +41,15 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
                     </div>
 
                     <div className="space-y-3">
-                        
-                            <div className="text-center py-6 text-slate-400 text-sm">
-                                No tasks assigned to you
-                            </div>
-                        
+                            <ol>
+                                <li className="text-center py-6 text-white text-sm">
+                                    No tasks assigned to you
+                                </li> 
+                            </ol>                       
                     </div>
                 </div>
 
-                <div className="bg-slate-900/50 border border-white/10 rounded-xl p-5 backdrop-blur-sm">
+                <div className="bg-gradient-to-b from-slate-950/95 via-blue-950/95 to-slate-950/95 border border-white/10 rounded-xl p-3 backdrop-blur-sm">
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="text-lg font-medium text-white flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-blue-400"></span>
@@ -60,9 +60,11 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
 
                     <div className="space-y-3">
                         
-                            <div className="text-center py-6 text-slate-400 text-sm">
+                            <ol>
+                                <li className="text-center py-6 text-white text-sm">
                                 You haven't assigned any tasks
-                            </div>
+                                </li>
+                            </ol>
                     
                     </div>
                 </div>
