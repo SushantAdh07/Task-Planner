@@ -44,7 +44,7 @@ class AddMemberController extends Controller
     public function showRegistrationForm(Member $member)
     {
         abort_if($member->status !== 'invited', 403);
-        return Inertia::render('Components/Team/CreateProfile', ['member' => $member]);
+        return Inertia::render('Components/Team/Member/CreateProfile', ['member' => $member]);
     }
     public function updateProfile(Request $request, $id)
     {

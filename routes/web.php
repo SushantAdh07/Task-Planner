@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('plan')->group(function () {
     //Route::get('/home', [HomeController::class, 'index'])->name('index');
     Route::post('/team-tasks', [TaskController::class, 'createTask']);
     Route::put('/update-team-tasks/{id}', [TaskController::class, 'editTask']);
