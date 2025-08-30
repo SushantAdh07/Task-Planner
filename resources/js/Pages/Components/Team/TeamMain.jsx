@@ -10,6 +10,7 @@ function Main({
     tasks = [],
     members = [],
     auth,
+    loggedMember,
     errors,
     comments = [],
     slug,
@@ -18,38 +19,12 @@ function Main({
     const loggedInUser = auth?.user?.id;
     const slugName = auth?.user?.name;
     const loggedInMemberId = auth?.memberId;
-
     const { flash } = usePage().props;
-
     const [openInviteBox, setOpenInviteBox] = useState(false);
     const [selectedUserId, setSelectedUserId] = useState(
         initialSelectedUserId || loggedInMemberId
     );
-
-    const [activeMenu, setActiveMenu] = useState("calendar");
-    const renderContent = () => {
-        switch (activeMenu) {
-            case "calendar":
-                return <Calendar tasks={filteredTasks}
-                        loggedInUser={loggedInUser}
-                        selectedUser={selectedUserId}
-                        users={members}
-                        errors={errors}
-                        flash={flash}
-                        comments={comments}/>;
-            case "assignments":
-                return <Assignments />;
-            default:
-                return <Calendar tasks={filteredTasks}
-                        loggedInUser={loggedInUser}
-                        selectedUser={selectedUserId}
-                        users={members}
-                        errors={errors}
-                        flash={flash}
-                        comments={comments}/>;
-        }
-    };
-
+    console.log("mmebers:", loggedMember);
     useEffect(() => {
         if (flash?.success) {
             alert(flash.success);
@@ -68,10 +43,45 @@ function Main({
             ...task,
             comments: task.comments || [],
         }));
+    const [activeMenu, setActiveMenu] = useState("calendar");
+    const renderContent = () => {
+        switch (activeMenu) {
+            case "calendar":
+                return (
+                    <Calendar
+                        tasks={filteredTasks}
+                        loggedInUser={loggedInMemberId}
+                        selectedUser={selectedUserId}
+                        users={members}
+                        errors={errors}
+                        flash={flash}
+                        comments={comments}
+                    />
+                );
+            case "assignments":
+                return <Assignments />;
+            default:
+                return (
+                    <Calendar
+                        tasks={filteredTasks}
+                        loggedInUser={loggedInUser}
+                        selectedUser={selectedUserId}
+                        users={members}
+                        errors={errors}
+                        flash={flash}
+                        comments={comments}
+                    />
+                );
+        }
+    };
 
     return (
         <div className="flex h-screen bg-slate-950 overflow-hidden font-['Poppins',sans-serif]">
-            <TeamSidebar slug={slugName} activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+            <TeamSidebar
+                slug={slugName}
+                activeMenu={activeMenu}
+                setActiveMenu={setActiveMenu}
+            />
 
             <div className="flex-1 flex flex-col overflow-hidden">
                 <header className="bg-gradient-to-r from-slate-900 to-slate-800 border-b border-white/10 px-4 py-2">
@@ -91,7 +101,9 @@ function Main({
                                     aria-expanded="false"
                                 >
                                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                                    {auth.user.name}
+                                    {members.find(
+                                        (user) => user.id === selectedUserId
+                                    )?.name}
                                     <svg
                                         className="w-4 h-4"
                                         fill="none"
@@ -120,8 +132,9 @@ function Main({
                                                     )
                                                 }
                                                 className={`dropdown-item px-4 py-2 hover:bg-white/5 text-slate-300 hover:text-white flex items-center ${
-                                                    user.id === selectedUserId
-                                                        ? "bg-blue-500/10 text-blue-300"
+                                                    auth.user.id &&
+                                                    auth.user.id === user.id
+                                                        ? "bg-blue-500 text-blue-300"
                                                         : ""
                                                 }`}
                                             >
