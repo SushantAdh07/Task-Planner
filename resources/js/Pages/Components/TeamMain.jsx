@@ -24,7 +24,7 @@ function Main({
     const [selectedUserId, setSelectedUserId] = useState(
         initialSelectedUserId || loggedInMemberId
     );
-    console.log("logged Member:", loggedInMemberId);
+    console.log("members:", self);
     useEffect(() => {
         if (flash?.success) {
             alert(flash.success);
@@ -103,7 +103,7 @@ function Main({
                                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
                                     {members.find(
                                         (user) => user.id === selectedUserId
-                                    )?.name || auth.user.name}
+                                    )?.name}
                                     <svg
                                         className="w-4 h-4"
                                         fill="none"

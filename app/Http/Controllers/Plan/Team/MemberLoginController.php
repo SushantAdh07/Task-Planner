@@ -22,7 +22,7 @@ class MemberLoginController extends Controller
             return redirect()->route('team.calendar');
         }
 
-        return redirect()->back()->withErrors([
+        return redirect('/plan/team')->withErrors([
             'email' => 'Invalid credentials',
         ]);
     }

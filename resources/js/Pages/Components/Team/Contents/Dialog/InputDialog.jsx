@@ -2,18 +2,19 @@ import React from "react";
 import { useForm, usePage } from "@inertiajs/react";
 import { Plus, X } from "lucide-react";
 
-function InputDialog({ value, errors }) {
-    const { auth } = usePage().props;
+function InputDialog({ value, errors, loggedInUser }) {
     const { team } = usePage().props;
     
 
     const { data, setData, post, processing, reset } = useForm({
-        member_id: auth.user.id,
+        member_id: loggedInUser,
         team_id: team.id,
         task_name: "",
         task_description: "",
         selected_date: value,
     });
+
+    console.log("logged in:", loggedInUser);
 
     const handleChange = (e) => {
         setData(e.target.name, e.target.value);
@@ -75,7 +76,6 @@ function InputDialog({ value, errors }) {
                 </div>
 
                 
-                <input type="hidden" name="member_id" value={auth.user.id} />
                 <input type="hidden" name="selected_date" value={data.selected_date} />
 
                 <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">

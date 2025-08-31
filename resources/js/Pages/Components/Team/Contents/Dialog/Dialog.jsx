@@ -141,7 +141,7 @@ function Dialog({
                                 <X size={20} />
                             </button>
                         </div>
-                        <InputDialog value={value} errors={errors} />
+                        <InputDialog value={value} errors={errors} loggedInUser={loggedInUser}/>
                     </div>
                 ) : editDialog ? (
                     <div className="space-y-4">
