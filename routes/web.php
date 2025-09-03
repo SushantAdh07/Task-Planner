@@ -43,7 +43,7 @@ use Inertia\Inertia;
 
 Route::get('/', function(){
     return Inertia::render('Components/LandingPage');
-});
+})->name('home');
 
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('index');
 
@@ -94,7 +94,7 @@ Route::controller(AddMemberController::class)->prefix('plan')->group(function(){
     });
 
 Route::controller(MemberLoginController::class)->prefix('member')->group(function(){
-    Route::get('/login', 'indexMemberLogin');
+    Route::get('/login', 'indexMemberLogin')->middleware('customGuest');
     Route::post('login', 'login')->name('member.login');
     Route::post('logout', 'logout')->name('member.logout');
 });

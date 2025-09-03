@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { usePage } from "@inertiajs/react";
 
-export default function TeamSidebar({slug, activeMenu, setActiveMenu}) {
+export default function TeamSidebar({ slug, activeMenu, setActiveMenu, authUsers }) {
     const [activeItem, setActiveItem] = useState("calendar");
     const [isCollapsed, setIsCollapsed] = useState(false);
-
 
     const menuItems = [
         {
@@ -237,37 +236,37 @@ export default function TeamSidebar({slug, activeMenu, setActiveMenu}) {
                     </nav>
                 </div>
 
-                <div className="px-3 mt-8">
-                    {!isCollapsed && (
-                        <p className="text-xs font-medium text-slate-400 uppercase tracking-wider mb-4 px-3">
-                            Quick Actions
-                        </p>
-                    )}
+                {authUsers.guard === "web" && (
+                    <div className="px-3 mt-8">
+                        {!isCollapsed && (
+                            <p className="text-xs font-medium text-slate-400 uppercase tracking-wider mb-4 px-3">
+                                Quick Actions
+                            </p>
+                        )}
 
-                    <div className="space-y-2">
-                        {quickActions.map((action) => (
-                            <a
-                                href={action.link}
-                                key={action.id}
-                                className="w-full flex items-center px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-300 group"
-                            >
-                                <div className="flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                                    {action.icon}
-                                </div>
-                                {!isCollapsed && (
-                                    <span className="ml-3 tracking-wide">
-                                        {action.name}
-                                    </span>
-                                )}
-                            </a>
-                        ))}
+                        <div className="space-y-2">
+                            {quickActions.map((action) => (
+                                <a
+                                    href={action.link}
+                                    key={action.id}
+                                    className="w-full flex items-center px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-300 group"
+                                >
+                                    <div className="flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                        {action.icon}
+                                    </div>
+                                    {!isCollapsed && (
+                                        <span className="ml-3 tracking-wide">
+                                            {action.name}
+                                        </span>
+                                    )}
+                                </a>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
 
-            <div className="p-4 border-t border-white/5">
-                
-            </div>
+            <div className="p-4 border-t border-white/5"></div>
 
             <div className="absolute top-20 right-4 w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
         </div>

@@ -14,10 +14,16 @@ class IndividualPlanController extends Controller
     {
         $user = Auth::user();
         $tasks = $user->tasks;
-        
-        return Inertia::render('Components/Individual/IndividualMain',[
+
+        if($tasks){
+            return Inertia::render('Components/Individual/IndividualMain',[
             'tasks' => $tasks,
             'user'=>$user,
         ]);
+        }
+        else{
+            return redirect()->back();
+        }
+        
     }
 }

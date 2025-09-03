@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\GuestMiddleware;
 use App\Http\Middleware\PlanMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -18,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
             
         ])->alias([
             'plan' => PlanMiddleware::class,
+            'customGuest' => GuestMiddleware::class,
         ]);
 
         //

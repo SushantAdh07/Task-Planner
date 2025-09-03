@@ -83,6 +83,7 @@ function Main({
                 slug={slugName}
                 activeMenu={activeMenu}
                 setActiveMenu={setActiveMenu}
+                authUsers={authUsers}
             />
 
             <div className="flex-1 flex flex-col overflow-hidden">
