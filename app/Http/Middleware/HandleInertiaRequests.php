@@ -45,7 +45,7 @@ class HandleInertiaRequests extends Middleware
 
         return [
             ...parent::share($request),
-            'auth' => [
+            'authUsers' => [
                 'user' => $request->user(),
                 'guard' => $currentGuard,
             ],

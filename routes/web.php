@@ -41,11 +41,11 @@ use Inertia\Inertia;
 //        ]);
  //   });
 
-Route::get('/landing', function(){
+Route::get('/', function(){
     return Inertia::render('Components/LandingPage');
 });
 
-Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('index');
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
