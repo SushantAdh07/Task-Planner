@@ -15,13 +15,14 @@ use Illuminate\Support\Facades\Auth;
 class TaskController extends Controller
 {
     public function index(Request $request) {
-        $user = $request->user();
+        $user = Auth::guard('web')->user();
         $users = User::latest()->get();
         $tasks = Task::with(['comments.user'])->latest()->get();
         $member = Member::where('email', $user->email)->first();   
+        
     
         return Inertia::render('Components/Team/TeamMain', [
-            'auth' => ['user' => $user],
+            'currentUser' => $user,
             'tasks' => $tasks,
             'users' => $users,
             'self' => $member,
@@ -29,6 +30,7 @@ class TaskController extends Controller
     }
 
     public function createTask(TeamTasks $team_tasks, TaskStoreRequest $request){
+        
         
         $team_tasks->create(
             $request->validated()

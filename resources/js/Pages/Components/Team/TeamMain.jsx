@@ -10,6 +10,7 @@ function Main({
     tasks = [],
     members = [],
     auth,
+    currentUser,
     self,
     errors,
     comments = [],
@@ -24,7 +25,7 @@ function Main({
     const [selectedUserId, setSelectedUserId] = useState(
         initialSelectedUserId || loggedInMemberId
     );
-    console.log("logged Member:", loggedInMemberId);
+    console.log("auth guard:", auth.guard);
     useEffect(() => {
         if (flash?.success) {
             alert(flash.success);
@@ -143,7 +144,7 @@ function Main({
                                         </li>
                                     ))}
                                     <li>
-                                        <button
+                                        {auth.guard === "web" && ( <button
                                             onClick={handleOpenInviteBox}
                                             className="w-full text-left px-4 py-2 hover:bg-white/5 text-slate-300 hover:text-white flex items-center"
                                         >
@@ -161,7 +162,7 @@ function Main({
                                                 />
                                             </svg>
                                             Add Member
-                                        </button>
+                                        </button>)}
                                     </li>
                                     <li className="border-t border-white/5 mt-1 pt-1">
                                         <Link

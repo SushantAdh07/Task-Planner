@@ -43,10 +43,10 @@ class TeamPlanController extends Controller
             'team' => $team,
             'tasks' => $team->tasks,
             'members' => $team->members,
-            'auth' => [
-                'user' => $loggedInUser,
-                'memberId' => optional($loggedInUser)->id,
-            ],
+            /** *'auth' => [
+                *'user' => $loggedInUser,
+                *'memberId' => optional($loggedInUser)->id,
+            *], */
             'isCreator' => !Auth::guard('member')->check(),
             'selectedUserId' => optional($loggedInMember)->id,
         ]);
