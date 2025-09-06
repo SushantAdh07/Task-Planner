@@ -34,7 +34,7 @@ export default function Login({ status, canResetPassword }) {
                     </div>
                     <h2 className="text-2xl font-semibold text-white tracking-tight">Welcome Back</h2>
                     <p className="mt-1 text-white/90">
-                        Sign in to continue
+                        Only users can sign in to continue
                     </p>
                 </div>
 
@@ -126,6 +126,7 @@ export default function Login({ status, canResetPassword }) {
                             Sign up
                         </Link>
                     </div>
+                    
                 </div>
             </div>
         </div>

@@ -75,15 +75,10 @@ export default function PlanoraLanding() {
 
         <div className={`transition-all duration-1000 delay-1100 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
           <div className="flex flex-col sm:flex-row gap-4 mb-20">
-            <button className="group relative px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl text-white font-medium text-sm transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:scale-105 transform tracking-wide">
-              <a href='/plan/team' className="relative z-10">Get Started</a>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-cyan-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
+            <a href="/plan/team" className="relative px-6 py-3 bg-gradient-to-r pointer from-blue-600 to-cyan-600 rounded-xl text-white font-medium text-sm transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:scale-105 transform tracking-wide">Get Started</a>
             
-            <button className="group relative px-6 py-3 bg-white/8 backdrop-blur-md rounded-xl text-white font-medium text-sm border border-white/15 transition-all duration-300 hover:bg-white/12 hover:shadow-xl hover:shadow-white/10 hover:scale-105 transform tracking-wide">
-              <a href='/member/login' className="relative z-10">Join Team</a>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/15 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
+            
+              <a href='/member/login' className="relative px-6 py-3 bg-white/8 backdrop-blur-md rounded-xl text-white font-medium text-sm border border-white/15 transition-all duration-300 hover:bg-white/12 hover:shadow-xl hover:shadow-white/10 hover:scale-105 transform tracking-wide">Join Team</a>
           </div>
         </div>
 

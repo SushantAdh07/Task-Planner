@@ -142,9 +142,11 @@ export default function TeamSidebar({ slug, activeMenu, setActiveMenu, authUsers
                                     />
                                 </svg>
                             </div>
-                            <span className="text-lg font-medium bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent tracking-tight">
+                            <a href="/home">
+                                <span className="text-lg font-medium bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent tracking-tight">
                                 Planora
                             </span>
+                            </a>
                         </div>
                     )}
 
