@@ -1,15 +1,29 @@
 import { useState } from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, useForm } from '@inertiajs/react';
 import PrimaryButton from '@/Components/PrimaryButton';
 
 export default function TaskManager({ assignedToYou, assignedByYou }) {
     const [showTaskModal, setShowTaskModal] = useState(false);
-    const [newTask, setNewTask] = useState({
-        title: '',
+    const {data, setData, post, processing, reset} = useForm({
+        
+        assigned_task: '',
         assignee: '',
         due_date: '',
-        priority: 'medium'
+        priority: ''
+    
     });
+
+    const handleChange = (e) => {
+        setData(e.target.name, e.target.value);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        post('/create/assignments', {
+            preserveScroll: true,
+            onSuccess: () => reset(),
+        });
+    }
 
     return (
         <div className='min-h-screen p-4'>
@@ -85,14 +99,15 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
                             </button>
                         </div>
 
-                        <form className="space-y-4">
+                        <form action={handleSubmit} className="space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-slate-300 mb-1">Task Title</label>
                                 <input
                                     type="text"
+                                    name="assigned_task"
                                     className="w-full bg-slate-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                    value={newTask.title}
-                                    onChange={(e) => setNewTask({...newTask, title: e.target.value})}
+                                    value={data.assigned_task}
+                                    onChange={handleChange}
                                 />
                             </div>
 
@@ -100,8 +115,8 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
                                 <label className="block text-sm font-medium text-slate-300 mb-1">Assign To</label>
                                 <select
                                     className="w-full bg-slate-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                    value={newTask.assignee}
-                                    onChange={(e) => setNewTask({...newTask, assignee: e.target.value})}
+                                    value={data.assignee}
+                                    onChange={handleChange}
                                 >
                                     <option value="">Select team member</option>
                                     <option value="1">John Doe</option>
@@ -116,18 +131,18 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
                                     <input
                                         type="date"
                                         className="w-full bg-slate-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                        value={newTask.due_date}
+                                        value={data.due_date}
                                         required
-                                        onChange={(e) => setNewTask({...newTask, due_date: e.target.value})}
+                                        onChange={handleChange}
                                     />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-slate-300 mb-1">Priority</label>
                                     <select
                                         className="w-full bg-slate-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                        value={newTask.priority}
+                                        value={data.priority}
                                         required
-                                        onChange={(e) => setNewTask({...newTask, priority: e.target.value})}
+                                        onChange={handleChange}
                                     >
                                         <option value="low">Low</option>
                                         <option value="medium">Medium</option>

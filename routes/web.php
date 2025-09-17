@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Individual\IndividualTaskController;
 use App\Http\Controllers\Plan\IndividualPlanController;
 use App\Http\Controllers\Plan\Team\AddMemberController;
+use App\Http\Controllers\Plan\Team\AssignedTaskController;
 use App\Http\Controllers\Plan\Team\MemberLoginController;
 use App\Http\Controllers\Plan\TeamPlanController;
 use App\Http\Controllers\TaskController;
@@ -71,8 +72,10 @@ Route::prefix('plan')->group(function () {
         Route::get('/team', 'showTeam')->name('team.calendar')->middleware('plan');
         Route::get('/new/team', 'newTeam')->name('new.team');
         Route::post('/create/team', 'createTeam');
-        Route::get('/assignments', 'showAssignments');    
+        Route::get('/assignments', 'showAssignments');  
     });
+
+    Route::post('/create/assignments', [AssignedTaskController::class, 'createAssignments']);
 
 
 
