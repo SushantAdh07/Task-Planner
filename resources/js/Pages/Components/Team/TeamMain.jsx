@@ -61,7 +61,7 @@ function Main({
                     />
                 );
             case "assignments":
-                return <Assignments />;
+                return <Assignments members={members} />;
             default:
                 return (
                     <Calendar

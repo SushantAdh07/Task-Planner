@@ -21,7 +21,10 @@ class AssignedTaskController extends Controller
     public function store(AssignedTaskRequest $request)
     {
         $validatedData = $request->validated();
-        $member_id = Auth::guard('member')->id;
+        $member_id = Auth::guard('member')->id() 
+         ?? Auth::guard('web')->id() 
+         ?? Auth::id();
+
         $validatedData['assigned_by_user_id'] = $member_id;
         $validatedData['status'] = 'pending';
         $this->assignedTaskRepository->create($validatedData);
