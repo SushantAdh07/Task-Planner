@@ -22,9 +22,10 @@ class AssignedTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id'=> ['required', 'exists:users,id'],
+            'user_id'=> ['required', 'exists:members,id'],
             'task_id'=> ['required', 'exists:tasks,id'],
             'team_id'=> ['required', 'exists:teams,id'],
+            'assigned_by_user_id' => ['required', 'exists:members,id'],
             'assigned_task'=> ['required'],
             'due_date'=> ['required', 'date'],
             'priority'=> ['required', 'string', 'in:low,medium,high,critical'],

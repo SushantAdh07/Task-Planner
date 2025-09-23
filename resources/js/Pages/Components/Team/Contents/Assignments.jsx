@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Link, useForm } from '@inertiajs/react';
 import PrimaryButton from '@/Components/PrimaryButton';
 
-export default function TaskManager({ assignedToYou, assignedByYou }) {
+export default function TaskManager({ assignedToYou, assignedByYou, members }) {
     const [showTaskModal, setShowTaskModal] = useState(false);
     const {data, setData, post, processing, reset} = useForm({
         
         assigned_task: '',
-        assignee: '',
+        user_id: '',
         due_date: '',
         priority: ''
     
@@ -19,7 +19,7 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post('/create/assignments', {
+        post('/plan/create/assignments', {
             preserveScroll: true,
             onSuccess: () => reset(),
         });
@@ -99,7 +99,7 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
                             </button>
                         </div>
 
-                        <form action={handleSubmit} className="space-y-4">
+                        <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-slate-300 mb-1">Task Title</label>
                                 <input
@@ -115,13 +115,16 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
                                 <label className="block text-sm font-medium text-slate-300 mb-1">Assign To</label>
                                 <select
                                     className="w-full bg-slate-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                    value={data.assignee}
+                                    name="user_id"
+                                    id="user_id"
+                                    value={data.user_id}
                                     onChange={handleChange}
                                 >
-                                    <option value="">Select team member</option>
-                                    <option value="1">John Doe</option>
-                                    <option value="2">Jane Smith</option>
-                                    <option value="3">Mike Johnson</option>
+                                    
+                                    <option value="">Select a member</option>
+                                    {members.map((member) => (
+                                        <option key={member.id} value={member.id}>{member.name}</option>
+                                    ))}
                                 </select>
                             </div>
 
@@ -130,6 +133,7 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
                                     <label className="block text-sm font-medium text-slate-300 mb-1">Due Date</label>
                                     <input
                                         type="date"
+                                        name="due_date"
                                         className="w-full bg-slate-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                                         value={data.due_date}
                                         required
@@ -139,6 +143,7 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
                                 <div>
                                     <label className="block text-sm font-medium text-slate-300 mb-1">Priority</label>
                                     <select
+                                        name="priority"
                                         className="w-full bg-slate-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                                         value={data.priority}
                                         required
@@ -153,14 +158,14 @@ export default function TaskManager({ assignedToYou, assignedByYou }) {
 
                             <div className="flex justify-end gap-3 pt-4">
                                 <button
-                                    type="button"
+                                    type="submit"
                                     onClick={() => setShowTaskModal(false)}
                                     className="px-4 py-2 text-sm text-slate-300 hover:text-white"
                                 >
                                     Cancel
                                 </button>
                                 <PrimaryButton
-                                    type="button"
+                                    type="submit"
                                     className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-4 py-2 rounded-lg text-sm font-medium"
                                 >
                                     Assign Task

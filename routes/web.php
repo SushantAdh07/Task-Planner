@@ -75,7 +75,7 @@ Route::prefix('plan')->group(function () {
         Route::get('/assignments', 'showAssignments');  
     });
 
-    Route::post('/create/assignments', [AssignedTaskController::class, 'createAssignments']);
+    Route::post('/create/assignments', [AssignedTaskController::class, 'store']);
 
 
 
