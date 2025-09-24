@@ -9,7 +9,7 @@ export default function TaskManager({ assignedToYou, assignedByYou, members }) {
         assigned_task: '',
         user_id: '',
         due_date: '',
-        priority: ''
+        priority: '',
     
     });
 
