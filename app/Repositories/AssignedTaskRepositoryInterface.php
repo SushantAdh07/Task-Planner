@@ -25,7 +25,3 @@ interface AssignedTaskRepositoryInterface
     
     public function delete(int $id): bool;
 }
-
-
-    
-

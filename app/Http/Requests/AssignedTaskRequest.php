@@ -23,10 +23,7 @@ class AssignedTaskRequest extends FormRequest
     {
         return [
             'user_id'=> ['required', 'exists:members,id'],
-            'task_id'=> ['required', 'exists:tasks,id'],
-            'team_id'=> ['required', 'exists:teams,id'],
-            'assigned_by_user_id' => ['required', 'exists:members,id'],
-            'assigned_task'=> ['required'],
+            'assigned_tasks'=> ['required'],
             'due_date'=> ['required', 'date'],
             'priority'=> ['required', 'string', 'in:low,medium,high,critical'],
             

@@ -23,15 +23,29 @@ class AssignedTaskController extends Controller
    
     public function store(AssignedTaskRequest $request)
     {
+        // Validation now passes for fields sent from the frontend (assigned_task, user_id, due_date, priority)
         $validatedData = $request->validated();
-        $member_id = Auth::guard('member')->id() 
-         ?? Auth::guard('web')->id() 
-         ?? Auth::id();
-        $team_id = $this->getCurrentTeam()->id();
-        $validatedData['team_id'] = $team_id;
-        $validatedData['assigned_by_user_id'] = $member_id;
-        $validatedData['status'] = 'pending';
-        $this->assignedTaskRepository->create($validatedData);
-        return redirect()->back()->with('success', 'Task assigned successfully!');
+        
+        // Determine the ID of the user assigning the task
+        $assignedByUserId = Auth::guard('member')->id() 
+            ?? Auth::guard('web')->id() 
+            ?? Auth::id();
+        
+        // Compute IDs required for the database insertion
+        $teamId = $this->getCurrentTeam()->id;
+        
+        // Merge the calculated IDs with the validated data
+        $dataToCreate = array_merge($validatedData, [
+            'team_id' => $teamId,
+            'assigned_by_user_id' => $assignedByUserId,
+            'status' => 'pending',
+            // NOTE: 'user_id' is the assignee ID, already present in $validatedData
+        ]);
+
+        // Create the task
+        $this->assignedTaskRepository->create($dataToCreate);
+        
+        // IMPORTANT: Returning a simple back response is generally cleaner for Inertia POST requests
+        return back()->with('success', 'Task assigned successfully!');
     }
 }
