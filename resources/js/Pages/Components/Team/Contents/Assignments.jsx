@@ -4,11 +4,18 @@ import PrimaryButton from "@/Components/PrimaryButton";
 
 export default function TaskManager({ assignedToYou, assignedByYou, members }) {
     const [showTaskModal, setShowTaskModal] = useState(false);
+    const { props } = usePage();
+    const teamId = props.currentTeam_id;
     const { data, setData, post, processing, reset } = useForm({
         assigned_task: "",
         user_id: "",
         due_date: "",
         priority: "",
+        team_id: teamId,
+        assigned_by_user_id: auth.user.id,
+        status: "pending",
+
+
         
     });
 

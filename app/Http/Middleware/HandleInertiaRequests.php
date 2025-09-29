@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Traits\AuthTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
@@ -15,6 +16,8 @@ class HandleInertiaRequests extends Middleware
      * @var string
      */
     protected $rootView = 'app';
+
+    use AuthTrait;
 
 
     /**
@@ -58,6 +61,7 @@ class HandleInertiaRequests extends Middleware
                 'newComment' => fn() => $request->session()->get('newComment'),
                 'deleteComment' => fn() => $request->session()->get('deleteComment'),
             ],
+            'currentTeam_id' => $this->getCurrentTeam()->id,
         ];
     }
 }
