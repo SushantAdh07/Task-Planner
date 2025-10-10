@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Link, useForm } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 import PrimaryButton from "@/Components/PrimaryButton";
 
-export default function TaskManager({ assignedToYou, assignedByYou, members }) {
+export default function TaskManager({ assignedToYou, assignedByYou, members, auth }) {
     const [showTaskModal, setShowTaskModal] = useState(false);
     const { props } = usePage();
     const teamId = props.currentTeam_id;
@@ -13,10 +13,7 @@ export default function TaskManager({ assignedToYou, assignedByYou, members }) {
         priority: "",
         team_id: teamId,
         assigned_by_user_id: auth.user.id,
-        status: "pending",
-
-
-        
+        status: "pending",        
     });
 
     const handleChange = (e) => {
