@@ -13,17 +13,15 @@ class IndividualPlanController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+        if (!$user) {
+            return redirect()->route('login');
+        }
         $tasks = $user->tasks;
 
-        if($tasks){
-            return Inertia::render('Components/Individual/IndividualMain',[
+
+        return Inertia::render('Components/Individual/IndividualMain', [
             'tasks' => $tasks,
-            'user'=>$user,
+            'user' => $user,
         ]);
-        }
-        else{
-            return redirect()->back();
-        }
-        
     }
 }

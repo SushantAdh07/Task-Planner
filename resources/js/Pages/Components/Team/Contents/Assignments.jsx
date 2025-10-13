@@ -7,7 +7,7 @@ export default function TaskManager({ assignedToYou, assignedByYou, members, aut
     const { props } = usePage();
     const teamId = props.currentTeam_id;
     const { data, setData, post, processing, reset } = useForm({
-        assigned_task: "",
+        assigned_tasks: "",
         user_id: "",
         due_date: "",
         priority: "",
@@ -132,9 +132,9 @@ export default function TaskManager({ assignedToYou, assignedByYou, members, aut
                                     </label>
                                     <input
                                         type="text"
-                                        name="assigned_task"
+                                        name="assigned_tasks"
                                         className="w-full bg-slate-700 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                        value={data.assigned_task}
+                                        value={data.assigned_tasks}
                                         onChange={handleChange}
                                     />
                                 </div>

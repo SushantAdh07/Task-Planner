@@ -36,8 +36,6 @@ class AssignedTaskController extends Controller
             'status' => 'pending',
         ]);
 
-        dd($dataToCreate);
-
         $this->assignedTaskRepository->create($dataToCreate);
         
         return back()->with('success', 'Task assigned successfully!');
