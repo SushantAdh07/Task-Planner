@@ -61,7 +61,7 @@ class HandleInertiaRequests extends Middleware
                 'newComment' => fn() => $request->session()->get('newComment'),
                 'deleteComment' => fn() => $request->session()->get('deleteComment'),
             ],
-            'currentTeam_id' => $this->getCurrentTeam()->id,
+            'currentTeam_id' => $this->getCurrentTeam()?->id,
         ];
     }
 }

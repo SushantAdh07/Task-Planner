@@ -16,6 +16,6 @@ trait AuthTrait
     {
         $user = $this->loggedInUser();
 
-        return $user ? $user->team : null;
+        return $user?-> team ?? null;
     }
 }
