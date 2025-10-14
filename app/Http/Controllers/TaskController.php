@@ -36,7 +36,10 @@ class TaskController extends Controller
             $request->validated()
         );
 
-        return back()->with('success', 'Task added successfully');
+        return redirect()->back()->with([
+            'message' => 'Task Added Successfully',
+            'type' => 'success'
+        ]);
     }
 
     public function editTask($id, UpdateTaskRequest $request){

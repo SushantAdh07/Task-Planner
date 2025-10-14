@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, usePage } from "@inertiajs/react";
 import { Plus, X } from "lucide-react";
 
 function InputDialog({ value, errors, loggedInUser }) {
-    const { team } = usePage().props;
+    const { props } = usePage();
+    const [showNotification, setShowNotification] = useState(false);
     
 
     const { data, setData, post, processing, reset } = useForm({
         member_id: loggedInUser,
-        team_id: team.id,
+        team_id: props.team.id,
         task_name: "",
         task_description: "",
         selected_date: value,
@@ -24,13 +25,27 @@ function InputDialog({ value, errors, loggedInUser }) {
         e.preventDefault();
         post("/team-tasks", {
             preserveScroll: true,
-            onSuccess: () => reset(),
+            onSuccess: () => {
+                reset();
+                setShowNotification(true);
+                setTimeout(() => setShowNotification(false), 3000);
+            }
         });
     };
 
     return (
         <div className="space-y-6">
             
+            {showNotification && (
+
+                <div className={`fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
+                    props.flash?.type === 'success'
+                    ? "bg-green-500 text-white"
+                    : "bg-blue-500 text-white"
+                }`}>
+                    {props.flash.message}
+                </div>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
