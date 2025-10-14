@@ -8,6 +8,7 @@ use App\Repositories\AssignedTaskRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Traits\AuthTrait;
+use Inertia\Inertia;
 
 class AssignedTaskController extends Controller
 {
@@ -38,6 +39,9 @@ class AssignedTaskController extends Controller
 
         $this->assignedTaskRepository->create($dataToCreate);
         
-        return back()->with('success', 'Task assigned successfully!');
+        return Inertia::render('Components/Team/Contents/Assignments', [
+            'message' => 'Task Assigned Successfully',
+            'type' => 'success'
+        ]);
     }
 }
