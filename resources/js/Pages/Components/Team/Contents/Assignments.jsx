@@ -27,19 +27,18 @@ export default function TaskManager({
         setData(e.target.name, e.target.value);
     };
 
-    useEffect(() => {
-        if (props.flash?.message) {
-            setShowNotification(true);
-            const timer = setTimeout(() => setShowNotification(false), 3000);
-            return () => clearTimeout(timer);
-        }
-    }, [props.flash]);
+    console.log("message:", props.flash.message);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         post("/plan/create/assignments", {
             preserveScroll: true,
-            onSuccess: () => reset(),
+            onSuccess: () => {
+                reset();
+                setShowTaskModal(false);
+                setShowNotification(true);
+                setTimeout(() => setShowNotification(false), 3000)
+            },
         });
     };
 
@@ -48,9 +47,9 @@ export default function TaskManager({
             {showNotification && (
                 <div
                     className={`fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
-                        flash.type === "success"
+                        props.flash?.type === "success"
                             ? "bg-green-500 text-white"
-                            : "bg-red-500 text-white"
+                            : "bg-blue-500 text-white"
                     }`}
                 >
                     {props.flash.message}
@@ -233,13 +232,15 @@ export default function TaskManager({
                                     </div>
 
                                     <div className="flex justify-end gap-3 pt-4">
-                                        {/**<button
-                                    type="submit"
-                                    onClick={() => setShowTaskModal(false)}
-                                    className="px-4 py-2 text-sm text-slate-300 hover:text-white"
-                                >
-                                    Cancel
-                                </button>*/}
+                                        <button
+                                            type="submit"
+                                            onClick={() =>
+                                                setShowTaskModal(false)
+                                            }
+                                            className="px-4 py-2 text-sm text-slate-300 hover:text-white"
+                                        >
+                                            Cancel
+                                        </button>
                                         <button
                                             type="submit"
                                             disabled={processing}

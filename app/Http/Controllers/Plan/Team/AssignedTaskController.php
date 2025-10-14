@@ -39,7 +39,7 @@ class AssignedTaskController extends Controller
 
         $this->assignedTaskRepository->create($dataToCreate);
         
-        return Inertia::render('Components/Team/Contents/Assignments', [
+        return redirect()->back()->with([
             'message' => 'Task Assigned Successfully',
             'type' => 'success'
         ]);

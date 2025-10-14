@@ -56,10 +56,12 @@ class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
-            'flash' => [
-                'success' => fn() => $request->session()->get('success'),
-                'newComment' => fn() => $request->session()->get('newComment'),
-                'deleteComment' => fn() => $request->session()->get('deleteComment'),
+            'flash' => [   
+                'message' => $request->session()->get('message'),           
+                'success' => $request->session()->get('success'),
+                'type' => $request->session()->get('type'),
+                'newComment' => $request->session()->get('newComment'),
+                'deleteComment' => $request->session()->get('deleteComment'),
             ],
             'currentTeam_id' => $this->getCurrentTeam()?->id,
         ];
