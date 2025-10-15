@@ -20,17 +20,28 @@ class AssignedTaskController extends Controller
     {
         $this->assignedTaskRepository = $assignedTaskRepository;
     }
-   
+
+    public function showAssignedTasks()
+    {
+        $assignedTasks = $this->assignedTaskRepository->getTasksByUser();
+
+        dump($assignedTasks);
+
+        return Inertia::render('Components/Team/TeamMain', [
+            'assignedTasks' => $assignedTasks,
+        ]);
+    }
+
     public function store(AssignedTaskRequest $request)
     {
         $validatedData = $request->validated();
-        
-        $assignedByUserId = Auth::guard('member')->id() 
-            ?? Auth::guard('web')->id() 
+
+        $assignedByUserId = Auth::guard('member')->id()
+            ?? Auth::guard('web')->id()
             ?? Auth::id();
-        
+
         $teamId = $this->getCurrentTeam()->id;
-        
+
         $dataToCreate = array_merge($validatedData, [
             'team_id' => $teamId,
             'assigned_by_user_id' => $assignedByUserId,
@@ -38,7 +49,7 @@ class AssignedTaskController extends Controller
         ]);
 
         $this->assignedTaskRepository->create($dataToCreate);
-        
+
         return redirect()->back()->with([
             'message' => 'Task Assigned Successfully',
             'type' => 'success'

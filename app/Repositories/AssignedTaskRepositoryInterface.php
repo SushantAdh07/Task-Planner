@@ -11,7 +11,7 @@ interface AssignedTaskRepositoryInterface
     public function findById(int $id): ?AssignedTask;
 
     
-    public function getTasksByUser(int $userId): Collection;
+    public function getTasksByUser(): Collection;
 
     
     public function getCompletedTasksByUser(int $userId): Collection;

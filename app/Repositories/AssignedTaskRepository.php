@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\AssignedTask;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class AssignedTaskRepository implements AssignedTaskRepositoryInterface
 {
@@ -12,9 +13,10 @@ class AssignedTaskRepository implements AssignedTaskRepositoryInterface
         return AssignedTask::find($id);
     }
 
-    public function getTasksByUser(int $userId): Collection
+    public function getTasksByUser(): Collection
     {
-        return AssignedTask::where('user_id', $userId)->with('task')->orderBy('priority', 'desc')->get();
+         $currentUser = Auth::guard('member')->id();
+         return AssignedTask::where('user_id', $currentUser)->select('assigned_tasks')->get();
     }
 
     public function getCompletedTasksByUser(int $userId): Collection

@@ -8,6 +8,7 @@ export default function TaskManager({
     members,
     auth,
     message,
+    assignedTasks,
 }) {
     const [showTaskModal, setShowTaskModal] = useState(false);
     const { props } = usePage();
@@ -27,7 +28,7 @@ export default function TaskManager({
         setData(e.target.name, e.target.value);
     };
 
-    console.log("message:", props.flash.message);
+    console.log("asgTsks:", assignedTasks);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,7 +38,7 @@ export default function TaskManager({
                 reset();
                 setShowTaskModal(false);
                 setShowNotification(true);
-                setTimeout(() => setShowNotification(false), 3000)
+                setTimeout(() => setShowNotification(false), 3000);
             },
         });
     };
@@ -96,9 +97,9 @@ export default function TaskManager({
 
                             <div className="space-y-3">
                                 <ol>
-                                    <li className="text-center py-6 text-white text-sm">
-                                        No tasks assigned to you
-                                    </li>
+                                    {assignedTasks.map((task) => (
+                                        <li key={task.id} className="text-center py-2 text-white text-sm">{task.assigned_tasks}<span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300">{task.priority}</span></li>
+                                    ))}
                                 </ol>
                             </div>
                         </div>

@@ -13,15 +13,14 @@ use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
 use App\Traits\AuthTrait;
+use App\Services\AssignedTaskService;
 
 class TeamPlanController extends Controller
 {
 
     use AuthTrait;
 
-    public function dashboard(){
-        
-    }
+    public function __construct(protected AssignedTaskService $taskService) {}
 
     public function showTeam()
     {
@@ -35,7 +34,7 @@ class TeamPlanController extends Controller
 
         $loggedInUser = $this->loggedInUser();
 
-        
+        $assignedTasks = $this->taskService->getAssignedTasksData();
 
         $loggedInMember = $team->members->firstWhere('user_id', $loggedInUser->id);
 
@@ -46,9 +45,10 @@ class TeamPlanController extends Controller
             'auth' => [
                 'user' => $loggedInUser,
                 'memberId' => optional($loggedInUser)->id,
-            ], 
+            ],
             'isCreator' => !Auth::guard('web')->check(),
             'selectedUserId' => optional($loggedInMember)->id,
+            'assignedTasks' => $assignedTasks,
         ]);
     }
 
@@ -68,7 +68,8 @@ class TeamPlanController extends Controller
 
     //Assignments
 
-    public function showAssignments(){
+    public function showAssignments()
+    {
         return Inertia::render('Components/Team/Contents/Assignments');
     }
 
