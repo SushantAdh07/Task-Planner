@@ -97,8 +97,27 @@ export default function TaskManager({
 
                             <div className="space-y-3">
                                 <ol>
-                                    {assignedTasks.map((task) => (
-                                        <li key={task.id} className="text-center py-2 text-white text-sm">{task.assigned_tasks}<span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300">{task.priority}</span></li>
+                                    {assignedTasks.map((task, index) => (
+                                        <li
+                                            key={task.id}
+                                            className={`text-center py-2 text-white text-sm ${
+                                                index % 2 === 0
+                                                    ? "bg-slate-950/95"
+                                                    : "bg-blue-950/95"
+                                            } rounded-md px-3 flex items-center justify-between`}
+                                        >
+                                            {task.assigned_tasks} - {task.member.name}
+                                            <span
+                                                className={`text-xs font-medium px-2.5 py-0.5 ${
+                                                    task.priority === "high"
+                                                        ? "text-red-800 bg-red-200"
+                                                        : task.priority ===
+                                                          "medium"
+                                                        ? "text-yellow-800 bg-yellow-200"
+                                                        : "text-green-800 bg-green-200"
+                                                } rounded-sm dark:bg-red-900 dark:text-red-300 `}
+                                            >{task.priority}</span>
+                                        </li>
                                     ))}
                                 </ol>
                             </div>

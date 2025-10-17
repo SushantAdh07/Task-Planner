@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('team_id')->constrained('teams')->onDelete('cascade');
-            $table->foreignId('assigned_by_user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('assigned_by_user_id')->constrained('members')->onDelete('cascade');
             $table->string('priority');
             $table->timestamp('due_date')->nullable();
             $table->timestamp('completed_at')->nullable();
