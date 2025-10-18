@@ -19,9 +19,10 @@ class AssignedTaskRepository implements AssignedTaskRepositoryInterface
          return AssignedTask::where('user_id', $currentUser)->select('assigned_tasks', 'priority', 'assigned_by_user_id')->with('member')->get();
     }
 
-    public function getCompletedTasksByUser(int $userId): Collection
+    public function getTasksByAssignee(): Collection
     {
-        return AssignedTask::where('user_id', $userId)->whereNotNull('completed_at')->with('task')->get();
+        $currentUser = Auth::guard('member')->id();
+        return AssignedTask::where('assigned_by_user_id', $currentUser)->select('assigned_tasks', 'priority', 'user_id')->with('member')->get();
     }
 
     public function create(array $data): AssignedTask

@@ -17,6 +17,7 @@ function Main({
     comments = [],
     slug,
     assignedTasks,
+    assignedByYouTasks,
     selectedUserId: initialSelectedUserId,
 }) {
     const loggedInUser = auth?.user?.id;
@@ -62,7 +63,7 @@ function Main({
                     />
                 );
             case "assignments":
-                return <Assignments members={members} auth={auth} assignedTasks={assignedTasks} />;
+                return <Assignments members={members} auth={auth} assignedTasks={assignedTasks} assignedByYouTasks={assignedByYouTasks} />;
             default:
                 return (
                     <Calendar

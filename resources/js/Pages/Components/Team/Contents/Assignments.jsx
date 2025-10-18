@@ -9,6 +9,7 @@ export default function TaskManager({
     auth,
     message,
     assignedTasks,
+    assignedByYouTasks,
 }) {
     const [showTaskModal, setShowTaskModal] = useState(false);
     const { props } = usePage();
@@ -28,7 +29,7 @@ export default function TaskManager({
         setData(e.target.name, e.target.value);
     };
 
-    console.log("asgTsks:", assignedTasks);
+    console.log("asgTsks:", assignedByYouTasks);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -106,7 +107,7 @@ export default function TaskManager({
                                                     : "bg-blue-950/95"
                                             } rounded-md px-3 flex items-center justify-between`}
                                         >
-                                            {task.assigned_tasks} - {task.member.name}
+                                            {task.assigned_tasks} <b> by {task.member.name}</b> 
                                             <span
                                                 className={`text-xs font-medium px-2.5 py-0.5 ${
                                                     task.priority === "high"
@@ -136,9 +137,28 @@ export default function TaskManager({
 
                             <div className="space-y-3">
                                 <ol>
-                                    <li className="text-center py-6 text-white text-sm">
-                                        You haven't assigned any tasks
-                                    </li>
+                                    {assignedByYouTasks.map((task, index) => (
+                                        <li
+                                            key={task.id}
+                                            className={`text-center py-2 text-white text-sm ${
+                                                index % 2 === 0
+                                                    ? "bg-slate-950/95"
+                                                    : "bg-blue-950/95"
+                                            } rounded-md px-3 flex items-center justify-between`}
+                                        >
+                                            {task.assigned_tasks}
+                                            <span
+                                                className={`text-xs font-medium px-2.5 py-0.5 ${
+                                                    task.priority === "high"
+                                                        ? "text-red-800 bg-red-200"
+                                                        : task.priority ===
+                                                          "medium"
+                                                        ? "text-yellow-800 bg-yellow-200"
+                                                        : "text-green-800 bg-green-200"
+                                                } rounded-sm dark:bg-red-900 dark:text-red-300 `}
+                                            >{task.priority}</span>
+                                        </li>
+                                    ))}
                                 </ol>
                             </div>
                         </div>

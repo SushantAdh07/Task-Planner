@@ -36,6 +36,8 @@ class TeamPlanController extends Controller
 
         $assignedTasks = $this->taskService->getAssignedTasksData();
 
+        $assignedByYouTasks = $this->taskService->getTasksByAssigneeData();
+
         $loggedInMember = $team->members->firstWhere('user_id', $loggedInUser->id);
 
         return Inertia::render('Components/Team/TeamMain', [
@@ -49,6 +51,7 @@ class TeamPlanController extends Controller
             'isCreator' => !Auth::guard('web')->check(),
             'selectedUserId' => optional($loggedInMember)->id,
             'assignedTasks' => $assignedTasks,
+            'assignedByYouTasks' => $assignedByYouTasks,
         ]);
     }
 

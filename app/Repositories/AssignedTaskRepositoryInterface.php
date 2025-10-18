@@ -14,7 +14,7 @@ interface AssignedTaskRepositoryInterface
     public function getTasksByUser(): Collection;
 
     
-    public function getCompletedTasksByUser(int $userId): Collection;
+    public function getTasksByAssignee(): Collection;
 
     
     public function create(array $data): AssignedTask;

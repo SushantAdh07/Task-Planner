@@ -14,4 +14,8 @@ class AssignedTaskService
     {
         return $this->assignedTaskRepository->getTasksByUser();
     }
+
+    public function getTasksByAssigneeData(){
+        return $this->assignedTaskRepository->getTasksByAssignee();
+    }
 }
