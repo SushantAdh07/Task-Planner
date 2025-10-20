@@ -13,4 +13,8 @@ class AssignedTask extends Model
     public function member(){
         return $this->belongsTo(Member::class, 'assigned_by_user_id');
     }
+
+    public function assignedTo(){
+        return $this->belongsTo(Member::class, 'user_id');
+    }
 }
