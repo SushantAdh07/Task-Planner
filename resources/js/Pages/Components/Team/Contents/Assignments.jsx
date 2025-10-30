@@ -29,7 +29,7 @@ export default function TaskManager({
         setData(e.target.name, e.target.value);
     };
 
-    console.log("asgTsks:", assignedByYouTasks.assignedTo);
+    console.log("asgTsks:", assignedByYouTasks.assignedTo.name);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -146,7 +146,7 @@ export default function TaskManager({
                                                     : "bg-blue-950/95"
                                             } rounded-md px-3 flex items-center justify-between`}
                                         >
-                                            {task.assigned_tasks} to {task.assignedTo.name}
+                                            {task.assigned_tasks} to {}
                                             <span
                                                 className={`text-xs font-medium px-2.5 py-0.5 ${
                                                     task.priority === "high"

@@ -22,7 +22,7 @@ class AssignedTaskRepository implements AssignedTaskRepositoryInterface
     public function getTasksByAssignee(): Collection
     {
         $currentUser = Auth::guard('member')->id();
-        return AssignedTask::where('assigned_by_user_id', $currentUser)->select('id', 'assigned_tasks', 'priority', 'user_id')->with('assignedTo')->get();
+        return AssignedTask::where('assigned_by_user_id', $currentUser)->with('assignedTo')->get();
     }
 
     public function create(array $data): AssignedTask
